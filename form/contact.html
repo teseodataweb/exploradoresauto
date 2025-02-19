@@ -49,7 +49,7 @@
                     <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Nombre completo<samp style="color: #ff0000;">*</samp></div>
                   </div>
                   <div data-layer="input_content" class="InputContent" style="border-radius: 43px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
-                    <input type="text" data-layer="input" class="Input" style="width: 270px;padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: flex-start; align-items: center; display: flex" placeholder="Ingrese su nombre completo">
+                    <input type="text" data-layer="input" class="Input" style="width: 270px;padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: flex-start; align-items: center; display: flex" placeholder="Ingrese su nombre completo"required>
                   </div>
                 </div>
                 <div data-layer="puesto" class="Puesto" style="flex-direction: column; justify-content: center; align-items: flex-start; gap: 15px; display: inline-flex">                  
@@ -57,7 +57,7 @@
                     <i class="bi bi-briefcase"></i>
                     <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">¿A qué se dedica?<samp style="color: #ff0000;">*</samp></div>
                   </div>                  
-                  <select data-layer="input" class="Input" style="width: 200px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: space-between; align-items: center; display: inline-flex">
+                  <select data-layer="input" class="Input" style="width: 200px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: space-between; align-items: center; display: inline-flex" required>
                     <option value="">Seleccione</option>
                     <option value="">Seleccione</option>
                     <option value="">Seleccione</option>
@@ -75,8 +75,8 @@
                     <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Número de teléfono<samp style="color: #ff0000;">*</samp></div>
                   </div>                  
                   <div data-layer="input" class="Input" style="border-radius: 43px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
-                    <input type="text" data-layer="input-lada" class="InputLada" style="width: 30px; padding-left: 6px; padding-right: 6px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; text-align: center;" placeholder="+00">
-                    <input type="text" data-layer="input-number" class="InputNumber" style="width: 90px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; text-align: center;" placeholder="000 000 0000">
+                    <input type="text" data-layer="input-lada" class="InputLada" style="width: 30px; padding-left: 6px; padding-right: 6px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; text-align: center;" placeholder="+00"required>
+                    <input type="text" data-layer="input-number" class="InputNumber" style="width: 90px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; text-align: center;" placeholder="000 000 0000"required>
                   </div>
                 </div>
                 <div data-layer="correo" class="Correo" style="flex-direction: column; justify-content: center; align-items: flex-start; gap: 15px; display: inline-flex">
@@ -85,7 +85,7 @@
                     <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Correo electrónico<samp style="color: #ff0000;">*</samp></div>
                   </div>                  
                   <div data-layer="input_content" class="InputContent" style="justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
-                    <input type="email" data-layer="input" class="Input" style="width: 250px;padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: center; align-items: center; display: flex" placeholder="Ingrese su correo">
+                    <input type="email" data-layer="input" class="Input" style="width: 250px;padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: center; align-items: center; display: flex" placeholder="Ingrese su correo"required>
                   </div>
                 </div>
               </div>
@@ -95,7 +95,7 @@
                 <div data-layer="compania" class="Compania" style="flex-direction: column; justify-content: center; align-items: flex-start; gap: 15px; display: inline-flex">
                   <div data-layer="titulo" class="Titulo" style="padding-left: 10px; padding-right: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
                     <i class="bi bi-buildings"></i>
-                    <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Empresa<samp style="color: #ff0000;">*</samp></div>
+                    <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Empresa</div> <!--<samp style="color: #ff0000;">*</samp>-->
                   </div>  
                   <input type="text" data-layer="input" class="Input" style="width: 300px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: space-between; align-items: center; display: inline-flex" placeholder="Ingrese nombre de su compañía">                  
                 </div>
@@ -107,7 +107,7 @@
             <div data-layer="titulo_form" class="TituloForm" style="align-self: stretch; text-align: center; color: #170F49; font-size: 34px; font-family: DM Sans; font-weight: 700; line-height: 46px; word-wrap: break-word">Razón de solicitud</div>
             <div data-layer="desc" class="Desc" style="width: 678px; text-align: center; color: #6F6C90; font-size: 18px; font-family: DM Sans; font-weight: 400; line-height: 30px; word-wrap: break-word">¿Cuál es la razón por la que se solicita el explorador?</div>
             <div style="height: 20px;"></div>
-
+          <form>
             <div data-layer="razon" class="Razon" style="align-self: stretch; padding-top: 10px; padding-bottom: 21px; padding-left: 10px; padding-right: 10px; background: white; box-shadow: 0px 6px 54px rgba(20.11, 19.66, 42.50, 0.07); border-radius: 34px; overflow: hidden; border: 1px #EFF0F6 solid; flex-direction: column; justify-content: flex-start; align-items: center; gap: 21px; display: flex; height: auto;">
               <div data-layer="step" class="Step" style="flex-direction: column; justify-content: flex-start; align-items: center; gap: 15px; display: flex">
                 <div data-layer="step_1" class="Step1" style="width: 678px; height: 127px; padding-left: 30px; padding-right: 30px; padding-top: 20px; padding-bottom: 20px; justify-content: center; align-items: center; gap: 30px; display: inline-flex">
@@ -118,7 +118,7 @@
                     </div>
                     <select data-layer="input" class="Input" style="height: 38px; width: 350px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: center; align-items: center; display: flex">
                       <option value="">Seleccione</option>
-                      <option value="">Seleccione</option>
+                      <option value="">Seleccione</option>   
                       <option value="">Seleccione</option>
                     </select>                    
                   </div>               
@@ -131,6 +131,7 @@
                 </div>                                  
               </div>
             </div>          
+            </form>
             <div style="height: 20px;"></div>          
             <div data-layer="navigation" class="Navigation" style="align-self: stretch; padding: 10px; justify-content: space-between; align-items: center; display: inline-flex">
               <a href="inicio.html" data-layer="Secondary BTN" class="SecondaryBtn" style="padding: 19px 40px; border-radius: 66px; border: 1px #7021EB solid; display: inline-flex; text-decoration: none;">
