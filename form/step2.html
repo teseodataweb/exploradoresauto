@@ -1,99 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/style.css" />
+
+  <title>Document</title>
 </head>
+
 <body>
-    <div data-layer="Step 2" class="Step2" style="width: 1440px; height: 1051px; background: white;  overflow: hidden; flex-direction: column; justify-content: center; align-items: center; gap: 50px; display: inline-flex">
-      <div data-layer="wrapper" class="Wrapper" style="align-self: stretch; height: 93px; background: white; box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.25); flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: flex; position: fixed; top: 0; width: 100%; z-index: 1000;">
-        <div data-layer="header" class="Header" style="align-self: stretch; height: 93px; padding-right: 86px; padding-top: 14px; padding-bottom: 14px; background: white; justify-content: space-between; align-items: center; display: inline-flex">
-          <div data-layer="logo" class="Logo" style="width: 259.50px; padding-left: 14px; padding-right: 14px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-            <div data-layer="datalpine" class="Datalpine" style="align-self: stretch; height: 42.12px; justify-content: center; align-items: center; display: inline-flex">
-              <img data-layer="logo_image" class="LogoImage" style="width: 44.50px; height: 42.12px" src="..\tools\logo.png"  />
-              <img data-layer="DatLogo" class="Datlogo" style="width: 187px; height: 42px" src="..\tools\DatLogo.png" />
+  <div data-layer="Step 2" class="Step1Map">
+    <div data-layer="wrapper" class="Wrapper">
+      <div data-layer="header" class="Header">
+        <div data-layer="logo" class="Logo">
+          <div data-layer="datalpine" class="Datalpine">
+            <img data-layer="logo_image" class="LogoImage" src="..\tools\logo.png" />
+            <img data-layer="DatLogo" class="Datlogo" src="..\tools\DatLogo.png" />
+          </div>
+        </div>
+        <a href="https://datalpine.mx/exploradores/" data-layer="Primary BTN" class="PrimaryBtn">
+          <div data-layer="Button Text" class="ButtonText">Exploradores</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="espacioabajo"></div>
+    <div data-layer="titulo" class="Titulo">Ubicación de la propiedad</div>
+    <div data-layer="desc" class="Desc1">
+      Asegúrese de ingresar todos los detalles, especialmente los
+      obligatorios.
+    </div>
+    <p></p>
+    <div data-layer="step_form" class="StepFormMap ">
+      <div data-layer="progreso" class="Progreso Abajo">
+        <div data-layer="steps" class="Steps">
+          <div data-layer="step1_bar" class="Step1BarComplete">
+           
+            <div data-layer="Rectangle 4357" class="RectangleGreen22"></div>
+          </div>
+          <div data-layer="step2_bar" class="Step2Bar"></div>
+          <div data-layer="step2_bar" class="          RectangleGreen2
+"></div>
+
+          <div data-layer="step3_bar" class="Step3Bar"></div>
+          <div data-layer="step1_progreso" class="Step1Progreso">
+            <div data-layer="Ellipse 435" class="Ellipse435"></div>
+            <div data-layer="1" class="numberOne">
+              <p>1</p>
             </div>
           </div>
-          <a href="https://datalpine.mx/exploradores/" data-layer="Primary BTN" class="PrimaryBtn" style="padding-top: 20px; padding-bottom: 21px; padding-left: 40px; padding-right: 40px; background: #7021EB; box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18); border-radius: 56px; justify-content: center; align-items: center; gap: 8px; display: flex; text-decoration: none;">
-            <div data-layer="Button Text" class="ButtonText" style="text-align: center; color: white; font-size: 18px; font-family: DM Sans; font-weight: 700; line-height: 20px; word-wrap: break-word">Exploradores</div>
-          </a>
+          <div data-layer="step2_progreso" class="Step2Progreso ">
+            <div data-layer="Ellipse 436" class="Ellipse4366 Elipse2Complete"></div>
+            <div data-layer="2" class="numberTwoElipse2C">
+              <p>2</p>
+            </div>
+          </div>
+          <div data-layer="step3_progreso" class="Step3Progreso">
+            <div data-layer="Ellipse 437" class="Ellipse437"></div>
+            <div data-layer="3" class="NumberTree">
+              <p>3</p>
+            </div>
+          </div>
+          <div data-layer="step4_progreso" class="Step4Progreso">
+            <div data-layer="Ellipse 437" class="Ellipse437 FourElipse"></div>
+            <div data-layer="4" class="NumberFourNot">
+              <p>4</p>
+            </div>
+          </div>
         </div>
+        <br>
       </div>
-      <div data-layer="form_step" class="FormStep" style="flex-direction: column; justify-content: center; align-items: center; gap: 23px; display: flex; position: relative; top: 93px; z-index: 0;">
-        <div data-layer="titulo" class="Titulo" style="align-self: stretch; text-align: center; color: #170F49; font-size: 34px; font-family: DM Sans; font-weight: 700; line-height: 46px; word-wrap: break-word">Ubicación de la propiedad</div>
-          <div data-layer="desc" class="Desc" style="width: 678px; text-align: center; color: #6F6C90; font-size: 18px; font-family: DM Sans; font-weight: 400; line-height: 30px; word-wrap: break-word">Asegúrese de ingresar todos los detalles, especialmente los obligatorios.</div>
-          <div data-layer="step_form" class="StepForm" style="align-self: stretch; height: 632px; padding-top: 10px; padding-bottom: 30px; padding-left: 10px; padding-right: 10px; background: white; box-shadow: 0px 6px 54px rgba(20.11, 19.66, 42.50, 0.07); border-radius: 34px; overflow: hidden; border: 1px #EFF0F6 solid; flex-direction: column; justify-content: flex-start; align-items: center; gap: 21px; display: flex">
-            <div data-layer="progreso" class="Progreso" style="width: 678px; height: 54px; padding: 10px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div data-layer="steps" class="Steps" style="width: 538.27px; position: relative">
-                <div data-layer="step1_bar" class="Step1Bar" style="width: 98.09px; height: 6px; left: 52px; top: 13.50px; position: absolute">
-                  <div data-layer="Rectangle 4354" class="Rectangle4354" style="width: 98.09px; height: 6px; left: 0px; top: 0px; position: absolute; background: #EFF0F6; border-radius: 40px"></div>
-                  <div data-layer="Rectangle 4357" class="Rectangle4357" style="width: 98.09px; height: 6px; left: 0px; top: 0px; position: absolute; background: #8DFF00; border-radius: 40px"></div>
-                </div>
-                <div data-layer="step2_bar" class="Step2Bar" style="width: 98.09px; height: 6px; left: 220.09px; top: 13.50px; position: absolute">
-                  <div data-layer="Rectangle 4354" class="Rectangle4354" style="width: 98.09px; height: 6px; left: 0px; top: 0px; position: absolute; background: #EFF0F6; border-radius: 40px"></div>
-                  <div data-layer="Rectangle 4357" class="Rectangle4357" style="width: 49.04px; height: 6px; left: 0px; top: 0px; position: absolute; background: #8DFF00; border-radius: 40px"></div>
-                </div>
-                <div data-layer="step3_bar" class="Step3Bar" style="width: 98.09px; height: 6px; left: 388.18px; top: 13.50px; position: absolute; background: #EFF0F6; border-radius: 40px"></div>
-                <div data-layer="step1_progreso" class="Step1Progreso" style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute">
-                  <div data-layer="Ellipse 435" class="Ellipse435" style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: #7021EB; border-radius: 9999px"></div>
-                  <div data-layer="1" style="left: 14px; top: 7.53px; position: absolute; color: white; font-size: 16px; font-family: DM Sans; font-weight: 500; line-height: 18px; word-wrap: break-word">1</div>
-                </div>
-                <div data-layer="step2_progreso" class="Step2Progreso" style="width: 34px; height: 34px; left: 168.09px; top: 0px; position: absolute">
-                  <div data-layer="Ellipse 436" class="Ellipse436" style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: #7021EB; border-radius: 9999px"></div>
-                  <div data-layer="2" style="left: 13px; top: 4.53px; position: absolute; color: white; font-size: 16px; font-family: DM Sans; font-weight: 400; line-height: 23px; word-wrap: break-word">2</div>
-                </div>
-                <div data-layer="step3_progreso" class="Step3Progreso" style="width: 34px; height: 34px; left: 336.18px; top: 0px; position: absolute">
-                  <div data-layer="Ellipse 437" class="Ellipse437" style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: #EFF0F6; border-radius: 9999px"></div>
-                  <div data-layer="3" style="left: 12px; top: 4.53px; position: absolute; color: #6F6C90; font-size: 16px; font-family: DM Sans; font-weight: 400; line-height: 23px; word-wrap: break-word">3</div>
-                </div>
-                <div data-layer="step4_progreso" class="Step4Progreso" style="width: 34px; height: 34px; left: 504.27px; top: 0px; position: absolute">
-                  <div data-layer="Ellipse 437" class="Ellipse437" style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: #EFF0F6; border-radius: 9999px"></div>
-                  <div data-layer="4" style="left: 12px; top: 4.53px; position: absolute; color: #6F6C90; font-size: 16px; font-family: DM Sans; font-weight: 400; line-height: 23px; word-wrap: break-word">4</div>
-                </div>
-              </div>
-            </div>             
-            <div data-layer="line" class="Line" style="width: 596.26px; height: 0px; border: 1px #D9DBE9 solid"></div>
-            <div data-layer="titulo_step" class="TituloStep" style="height: 86px; padding: 10px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 1px; display: flex">
-              <div data-layer="titulo_step" class="TituloStep" style="height: 116px; padding: 10px 20px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 1px; display: flex">
-                <div data-layer="titulo" class="Titulo" style="width: 202.63px; color: #170F49; font-size: 24px; font-family: DM Sans; font-weight: 700; line-height: 35px; word-wrap: break-word">Ubicación</div>
-                <div data-layer="desc" class="Desc" style="align-self: stretch; color: #6F6C90; font-size: 18px; font-family: DM Sans; font-weight: 400; line-height: 30px; word-wrap: break-word">Ingresar la dirección exacta de la propiedad, utilice el mapa moviendo el pin para indicar la zona exacta</div>
-              </div>
-            </div>
-            <form data-layer="form" class="Form" style="align-self: stretch; height: 86px; padding-left: 19px; padding-right: 19px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: flex">
-              <div data-layer="direccion" class="Direccion" style="flex-direction: column; justify-content: center; align-items: center; gap: 15px; display: flex">
-                <div data-layer="input_direccion" class="InputDireccion" style="height: 38px; flex-direction: column; justify-content: center; align-items: center; gap: 4px; display: flex">                  
-                  <input type="text" data-layer="input" class="Input" style="width: 400px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: space-between; align-items: center; display: inline-flex" placeholder="Ingrese la dirección">                  
-                </div>
-              </div>
-              <div data-layer="idea" class="Idea" style="height: 38px; flex-direction: column; justify-content: center; align-items: center; gap: 15px; display: flex">
-                <div data-layer="select_idea" class="SelectIdea" style="height: 38px; flex-direction: column; justify-content: center; align-items: center; gap: 4px; display: flex">                  
-                  <select data-layer="idea1" class="Input" style="width: 370px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: space-between; align-items: center; display: inline-flex">
-                    <option value="">Seleccione</option>
-                    <option value="">Seleccione</option>
-                    <option value="">Seleccione</option>
-                    <option value="">Seleccione</option>
-                    <option value="">Seleccione</option>                    
-                  </select>   
-                </div>
-              </div>
-            </form>
-            <div data-layer="mapa" class="Mapa" style="width: 648px; height: 285px; padding-left: 30px; padding-right: 30px; border-radius: 16px; overflow: hidden; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div data-layer="iframe_mapa" class="IframeMapa" style="width: 648px; height: 282px; position: relative">
-                <img data-layer="render" class="Render" style="width: 648px; height: 282px; left: 0px; top: 0px; position: absolute" src="..\tools\mapa_ejemplo.png">
-                <div data-layer="puntero" class="Puntero" style="width: 21px; height: 29px; left: 303px; top: 155.50px; position: absolute; border: 1px #8DFF00 solid"></div>
-              </div>
-            </div>
-          </div>                    
-          <div data-layer="navigation" class="Navigation" style="align-self: stretch; padding: 10px; justify-content: space-between; align-items: center; display: inline-flex">
-            <a href="step1.html" data-layer="Secondary BTN" class="SecondaryBtn" style="padding: 19px 40px; border-radius: 66px; border: 1px #7021EB solid; display: inline-flex; text-decoration: none;">
-              <div data-layer="Button Text" class="ButtonText" style="text-align: center; color: #7021EB; font-size: 18px; font-family: DM Sans; font-weight: 400; line-height: 20px; word-wrap: break-word">Anterior</div>
-            </a>
-            <a href="step3_casa.html" data-layer="Primary BTN" class="PrimaryBtn" style="padding: 20px 40px; background: #7021EB; box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18); border-radius: 56px; display: flex; text-decoration: none;">
-              <div data-layer="Button Text" class="ButtonText" style="text-align: center; color: white; font-size: 18px; font-family: DM Sans; font-weight: 700; line-height: 20px; word-wrap: break-word">Siguiente</div>
-            </a>
+      <div data-layer="line" class="Line"></div>
+      <div data-layer="titulo_step" class="TituloStepMap">
+        <div data-layer="titulo_step" class="Nombre">
+          <div data-layer="titulo" class="NombreMap">
+            Ubicación
+          </div>
+          <div data-layer="desc" class="TextMap">
+            Ingresar la dirección exacta de la propiedad, utilice el mapa
+            moviendo el pin para indicar la zona exacta
           </div>
         </div>
       </div>
+      <form data-layer="form" class="Form">
+        <br>
+        <div data-layer="direccion" class="DireccionDiv">
+          <div data-layer="input_direccion" class="InputDireccion">
+            <input type="text" data-layer="input" class="InputDirec" placeholder="Ingrese la dirección" />
+          </div>
+
+        </div>
+        <br>
+        <div data-layer="idea" class="DireccionDiv">
+          <div data-layer="select_idea" class="InputDireccion">
+            <select data-layer="idea1" class="InputIdea">
+              <option value="">Seleccione</option>
+              <option value="">Seleccione</option>
+              <option value="">Seleccione</option>
+              <option value="">Seleccione</option>
+              <option value="">Seleccione</option>
+            </select>
+          </div>
+        </div>
+        <br>
+      </form>
+      <div data-layer="mapa" class="MapaImg">
+        <div data-layer="iframe_mapa" class="IframeMapa" id="map">
+         
+        </div>
+      </div>
+    </div>
+
+    <div data-layer="navigation" class="Navigation2">
+      <a href="step1.html" data-layer="Secondary BTN" class="SecondaryBtn">
+        <div data-layer="Button Text" class="ButtonTextWhite">
+          Anterior
+        </div>
+      </a>
+      <a href="step3_casa.html" data-layer="Primary BTN" class="PrimaryBtn">
+        <div data-layer="Button Text" class="ButtonText">
+          Siguiente
+        </div>
+      </a>
+    </div>
+  </div>
+  </div>
+
+  <script src="/assets/script.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+
 </body>
+
 </html>

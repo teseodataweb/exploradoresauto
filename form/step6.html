@@ -1,44 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/style.css" />
+
+
+  <title>Document</title>
 </head>
+
 <body>
-    <div data-layer="enviado" class="Enviado" style="width: 1440px; height: 758.41px; padding-bottom: 190px; background: white; box-shadow: 0px 2px 6px rgba(23, 15, 73, 0.16); border-radius: 50px; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: center; gap: 187px; display: inline-flex">
-        <div data-layer="wrapper" class="Wrapper" style="align-self: stretch; height: 93px; background: white; box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.25); flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: flex">
-          <div data-layer="header" class="Header" style="align-self: stretch; height: 93px; padding-left: 86px; padding-right: 86px; padding-top: 14px; padding-bottom: 14px; background: white; justify-content: space-between; align-items: center; display: inline-flex">
-            <div data-layer="logo" class="Logo" style="width: 259.50px; padding-left: 14px; padding-right: 14px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div data-layer="datalpine" class="Datalpine" style="align-self: stretch; height: 42.12px; justify-content: center; align-items: center; display: inline-flex">
-                <img data-layer="logo_image" class="LogoImage" style="width: 44.50px; height: 42.12px" src="https://via.placeholder.com/44x42" />
-                <img data-layer="DatLogo" class="Datlogo" style="width: 187px; height: 42px" src="https://via.placeholder.com/187x42" />
-              </div>
-            </div>
-            <div data-layer="Primary BTN" class="PrimaryBtn" style="padding-top: 20px; padding-bottom: 21px; padding-left: 40px; padding-right: 40px; background: #7021EB; box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18); border-radius: 56px; justify-content: center; align-items: center; gap: 8px; display: flex">
-              <div data-layer="Button Text" class="ButtonText" style="text-align: center; color: white; font-size: 18px; font-family: DM Sans; font-weight: 700; line-height: 20px; word-wrap: break-word">Exploradores</div>
-            </div>
+  <div data-layer="confirmar" class="Step6">
+    <div data-layer="wrapper" class="Wrapper">
+      <div data-layer="header" class="Header">
+        <div data-layer="logo" class="Logo">
+          <div data-layer="datalpine" class="Datalpine">
+            <img data-layer="logo_image" class="LogoImage" src="..\tools\logo.png" />
+            <img data-layer="DatLogo" class="Datlogo" src="..\tools\DatLogo.png" />
           </div>
         </div>
-        <div data-layer="modal_enviado" class="ModalEnviado" style="height: 288.41px; flex-direction: column; justify-content: center; align-items: center; gap: 23px; display: flex">
-          <div data-layer="modal" class="Modal" style="align-self: stretch; height: 288.41px; padding-left: 10px; padding-right: 10px; padding-top: 30px; padding-bottom: 30px; background: white; box-shadow: 0px 6px 54px rgba(20.11, 19.66, 42.50, 0.07); border-radius: 34px; overflow: hidden; border: 1px #EFF0F6 solid; flex-direction: column; justify-content: flex-start; align-items: center; gap: 50px; display: flex">
-            <div data-layer="icono_exito" class="IconoExito" style="flex-direction: column; justify-content: flex-start; align-items: center; gap: 15px; display: flex">
-              <div data-layer="icono" class="Icono" style="width: 157.36px; height: 143.41px; position: relative">
-                <div data-layer="Rectangle 4343" class="Rectangle4343" style="width: 51.54px; height: 51.54px; left: 14.05px; top: 0px; position: absolute; opacity: 0.50; background: #9E96FF; border-radius: 10px"></div>
-                <div data-layer="Rectangle 4345" class="Rectangle4345" style="width: 29.36px; height: 29.36px; left: 128px; top: 32.87px; position: absolute; opacity: 0.50; background: #9E96FF; border-radius: 10px"></div>
-                <div data-layer="Rectangle 4344" class="Rectangle4344" style="width: 31.53px; height: 31.53px; left: 0px; top: 74.87px; position: absolute; opacity: 0.50; background: #DEDBFF; border-radius: 8px"></div>
-                <div data-layer="Rectangle 4346" class="Rectangle4346" style="width: 36.59px; height: 36.59px; left: 114.29px; top: 106.82px; position: absolute; opacity: 0.50; background: #DEDBFF; border-radius: 8px"></div>
-                <div data-layer="icon_tick" class="IconTick" style="width: 120px; height: 120px; left: 23.48px; top: 18.38px; position: absolute">
-                  <div data-layer="Ellipse 446" class="Ellipse446" style="width: 120px; height: 120px; left: 0px; top: 0px; position: absolute; background: #8DFF00; border-radius: 9999px"></div>
-                  <div data-layer="Vector" class="Vector" style="width: 45.43px; height: 32.45px; left: 37.28px; top: 43.77px; position: absolute; background: #8DFF00; border: 8px white solid"></div>
-                </div>
-              </div>
+        <a href="https://datalpine.mx/exploradores/" data-layer="Primary BTN" class="PrimaryBtn">
+          <div data-layer="Button Text" class="ButtonText">
+            Exploradores</div>
+        </a>
+      </div>
+    </div>
+
+
+    <div data-layer="modal_enviado" class="ModalEnviado" s>
+      <div data-layer="modal" class="ModalEn">
+
+
+        <div data-layer="icono_exito" class="IconoExito">
+          <div data-layer="icono" class="IconoListo">
+            <div data-layer="Rectangle 4343" class="Rectangle4343"></div>
+            <div data-layer="Rectangle 4345" class="Rectangle4345"></div>
+            <div data-layer="Rectangle 4344" class="Rectangle4344"></div>
+            <div data-layer="Rectangle 4346" class="Rectangle4346"></div>
+            <div data-layer="icon_tick" class="IconTick">
+              <div data-layer="Ellipse 446" class="Ellipse446"></div>
+              <div data-layer="Vector" class="Vectorc"></div>
             </div>
-            <div data-layer="texto_modal" class="TextoModal" style="flex-direction: column; justify-content: flex-start; align-items: center; gap: 15px; display: flex">
-              <div data-layer="text" class="Text" style="text-align: center; color: #170F49; font-size: 24px; font-family: DM Sans; font-weight: 700; line-height: 35px; word-wrap: break-word">Su información ha sido enviada con éxito.</div>
-            </div>
+
+
           </div>
+        </div>
+        <div data-layer="texto_modal" class="TextoModal">
+          <div data-layer="text" class="Titulo">
+            Su información ha sido enviada con éxito.</div>
         </div>
       </div>
+    </div>
+
+
+  </div>
 </body>
+
 </html>

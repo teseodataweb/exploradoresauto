@@ -55,16 +55,7 @@
                 </div>
               </div>
               <div data-layer="input_content" class="InputContent">
-                <input type="text" 
-                       data-layer="input" 
-                       class="Input" 
-                       placeholder="Ingrese su nombre completo"
-                       pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]{3,50}"
-
-                       title="El nombre debe tener entre 3 y 50 caracteres y solo puede contener letras"
-                       minlength="3"
-                       maxlength="50"
-                       required />
+                <input type="text" data-layer="input" class="Input" placeholder="Ingrese su nombre completo" required />
               </div>
             </div>
             <div data-layer="puesto" class="Step1">
@@ -74,12 +65,11 @@
                 </div>
               </div>
               <select data-layer="input" class="InputDedi" required>
-                <option value="">Seleccione una opción</option>
-                <option value="Empleado">Empleado</option>
-                <option value="Empresario">Empresario</option>
-                <option value="Freelancer">Freelancer</option>
-                <option value="Estudiante">Estudiante</option>
-                <option value="Otro">Otro</option>
+                <option value="">Seleccione</option>
+                <option value="">Seleccione</option>
+                <option value="">Seleccione</option>
+                <option value="">Seleccione</option>
+                <option value="">Seleccione</option>
               </select>
             </div>
           </div>
@@ -109,7 +99,6 @@
               </div>
               <div data-layer="input_content" class="InputContent">
                 <input type="email" data-layer="input" class="Input" placeholder="Ingrese su correo" required />
-
               </div>
             </div>
           </div>
@@ -187,59 +176,6 @@
       </div>
     </div>
   </div>
-
- <script>
-  // Validación de nombre
-  const nombreInput = document.querySelector('.Input');
-  nombreInput.addEventListener('input', function () {
-    const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]{3,50}$/;
-    if (!regex.test(this.value)) {
-      this.setCustomValidity("Solo letras, espacios y acentos (mínimo 3 caracteres)");
-    } else {
-      this.setCustomValidity("");
-    }
-    this.reportValidity();
-  });
-
-  // Lada: solo 2 dígitos
-  const ladaInput = document.querySelector('.InputLada');
-  ladaInput.addEventListener('input', function () {
-    this.value = this.value.replace(/\D/g, '').slice(0, 2);
-    if (this.value.length !== 2) {
-      this.setCustomValidity("Debe ingresar exactamente 2 dígitos");
-    } else {
-      this.setCustomValidity("");
-    }
-    this.reportValidity();
-  });
-
-  // Número de teléfono: solo 10 dígitos
-  const phoneInput = document.querySelector('.InputNumberTwo');
-  phoneInput.addEventListener('input', function () {
-    this.value = this.value.replace(/\D/g, '').slice(0, 10);
-    if (this.value.length !== 10) {
-      this.setCustomValidity("Debe ingresar exactamente 10 dígitos");
-    } else {
-      this.setCustomValidity("");
-    }
-    this.reportValidity();
-  });
-
-  // Correo electrónico básico
-  const emailInput = document.querySelector('input[type="email"]');
-  emailInput.addEventListener('input', function () {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(this.value)) {
-      this.setCustomValidity("Ingrese un correo electrónico válido");
-    } else {
-      this.setCustomValidity("");
-    }
-    this.reportValidity();
-  });
-</script>
-
-
-
 </body>
 
 </html>

@@ -1,298 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/style.css" />
+
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </head>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.ButtonMinus').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const input = btn.closest('.Recamaras').querySelector('input.InputNumberC');
+        let v = parseInt(input.value, 10);
+        input.value = isNaN(v) ? 0 : Math.max(0, v - 1);
+      });
+    });
+    document.querySelectorAll('.ButtonPlus').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const input = btn.closest('.Recamaras').querySelector('input.InputNumberC');
+        let v = parseInt(input.value, 10);
+        input.value = isNaN(v) ? 1 : v + 1;
+      });
+    });
+  });
+</script>
+
+
 <body>
-    <div data-layer="step 3 - casa" class="Step3Casa"  style="width: 1440px; height: 1440px; background: white;  overflow: hidden; flex-direction: column; justify-content: center; align-items: center; gap: 50px; display: inline-flex">
-      <div data-layer="wrapper" class="Wrapper" style="align-self: stretch; height: 93px; background: white; box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.25); flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: flex; position: fixed; top: 0; width: 100%; z-index: 1000;">
-        <div data-layer="header" class="Header" style="align-self: stretch; height: 93px; padding-right: 86px; padding-top: 14px; padding-bottom: 14px; background: white; justify-content: space-between; align-items: center; display: inline-flex">
-          <div data-layer="logo" class="Logo" style="width: 259.50px; padding-left: 14px; padding-right: 14px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-            <div data-layer="datalpine" class="Datalpine" style="align-self: stretch; height: 42.12px; justify-content: center; align-items: center; display: inline-flex">
-              <img data-layer="logo_image" class="LogoImage" style="width: 44.50px; height: 42.12px" src="..\tools\logo.png"  />
-              <img data-layer="DatLogo" class="Datlogo" style="width: 187px; height: 42px" src="..\tools\DatLogo.png" />
+  <div data-layer="step 3 - casa" class="Step11">
+    <div data-layer="wrapper" class="Wrapper">
+      <div data-layer="header" class="Header">
+        <div data-layer="logo" class="Logo">
+          <div data-layer="datalpine" class="Datalpine">
+            <img data-layer="logo_image" class="LogoImage" src="..\tools\logo.png" />
+            <img data-layer="DatLogo" class="Datlogo" src="..\tools\DatLogo.png" />
+          </div>
+        </div>
+        <a href="https://datalpine.mx/exploradores/" data-layer="Primary BTN" class="PrimaryBtn">
+          <div data-layer="Button Text" class="ButtonText">Exploradores</div>
+        </a>
+      </div>
+    </div>
+    <div data-layer="form_step" class="FormStep3">
+      <div data-layer="titulo" class="Titulo">Registro de la propiedad</div>
+      <div data-layer="desc" class="DescText">Asegúrese de ingresar todos los detalles, especialmente los obligatorios.
+      </div>
+      <div data-layer="step_form" class="StepForm StepForm33">
+        <div data-layer="progreso" class="Progreso2 Progreso33">
+          <div data-layer="steps" class="Steps">
+            <div data-layer="step1_bar" class="Step1Bar">
+             
+              <div data-layer="Rectangle 4357" class="Rectangle4357 Rectangle4357Complete"></div>
+            </div>
+
+            <div data-layer="step2_bar" class="Step2BarComplete Step2BarComplete2"></div>
+
+            <div data-layer="step3_bar" class="Step3Bar Step3BarComplete">
+          
+              <div data-layer="Rectangle 4357" class="Rectangle4358 "></div>
+            </div>
+
+            <div data-layer="step1_progreso" class="Step1Progreso Step1ProgresoComplete">
+              <div data-layer="Ellipse 435" class="Ellipse435 Ellipse435Complete"></div>
+              <div data-layer="1" class="numberOne numberOneComplete">
+                <p>1</p>
+              </div>
+            </div>
+            <div data-layer="step2_progreso" class="Step2Progreso">
+              <div data-layer="Ellipse 436" class="Ellipse438 Ellipse438Complete"></div>
+              <div data-layer="2" class="TwoC">
+                <p>2</p>
+              </div>
+            </div>
+            <div data-layer="step3_progreso" class="Step3Progreso">
+              <div data-layer="Ellipse 437" class="Ellipse439 Ellipse439Complete"></div>
+              <div data-layer="3" class="TreeC">
+                <p>3</p>
+              </div>
+            </div>
+            <div data-layer="step4_progreso" class="Step4Progreso">
+              <div data-layer="Ellipse 437" class="Ellipse437 Ellipse437Complete"></div>
+              <div data-layer="4" class="NumberFourNot NumberFourNotComplete">
+                <p>4</p>
+              </div>
             </div>
           </div>
-          <a href="https://datalpine.mx/exploradores/" data-layer="Primary BTN" class="PrimaryBtn" style="padding-top: 20px; padding-bottom: 21px; padding-left: 40px; padding-right: 40px; background: #7021EB; box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18); border-radius: 56px; justify-content: center; align-items: center; gap: 8px; display: flex; text-decoration: none;">
-            <div data-layer="Button Text" class="ButtonText" style="text-align: center; color: white; font-size: 18px; font-family: DM Sans; font-weight: 700; line-height: 20px; word-wrap: break-word">Exploradores</div>
-          </a>
-        </div>
-      </div>
-      <div data-layer="form_step" class="FormStep" style="flex-direction: column; justify-content: center; align-items: center; gap: 23px; display: flex; position: relative; z-index: 0;">
-        <div data-layer="titulo" class="Titulo" style="align-self: stretch; text-align: center; color: #170F49; font-size: 34px; font-family: DM Sans; font-weight: 700; line-height: 46px; word-wrap: break-word">Registro de la propiedad</div>
-        <div data-layer="desc" class="Desc" style="width: 678px; text-align: center; color: #6F6C90; font-size: 18px; font-family: DM Sans; font-weight: 400; line-height: 30px; word-wrap: break-word">Asegúrese de ingresar todos los detalles, especialmente los obligatorios.</div>
-          <div data-layer="step_form" class="StepForm" style="width: 100%; max-width: 698px; height: auto; padding: 10px; background: white; box-shadow: 0px 6px 54px rgba(20.11, 19.66, 42.50, 0.07); border-radius: 34px; overflow: hidden; border: 1px #EFF0F6 solid; flex-direction: column; justify-content: flex-start; align-items: center; gap: 21px; display: inline-flex">
-            <div data-layer="progreso" class="Progreso" style="width: 678px; height: 54px; padding: 10px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-              <div data-layer="steps" class="Steps" style="width: 538.27px; position: relative">
-                <div data-layer="step1_bar" class="Step1Bar" style="width: 98.09px; height: 6px; left: 52px; top: 13.50px; position: absolute">
-                  <div data-layer="Rectangle 4354" class="Rectangle4354" style="width: 98.09px; height: 6px; left: 0px; top: 0px; position: absolute; background: #8DFF00; border-radius: 40px"></div>
-                  <div data-layer="Rectangle 4357" class="Rectangle4357" style="width: 49.04px; height: 6px; left: 0px; top: 0px; position: absolute; background: #8DFF00; border-radius: 40px"></div>
-                </div>
-                <div data-layer="step2_bar" class="Step2Bar" style="width: 98.09px; height: 6px; left: 220.09px; top: 13.50px; position: absolute; background: #8DFF00; border-radius: 40px"></div>
-                
-                <div data-layer="step3_bar" class="Step3Bar" style="width: 98.09px; height: 6px; left: 388.18px; top: 13.50px; position: absolute">
-                  <div data-layer="Rectangle 4354" class="Rectangle4354" style="width: 98.09px; height: 6px; left: 0px; top: 0px; position: absolute; background: #EFF0F6; border-radius: 40px"></div>
-                  <div data-layer="Rectangle 4357" class="Rectangle4357" style="width: 49.04px; height: 6px; left: 0px; top: 0px; position: absolute; background: #8DFF00; border-radius: 40px"></div>
-                </div>
 
-                <div data-layer="step1_progreso" class="Step1Progreso" style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute">
-                  <div data-layer="Ellipse 435" class="Ellipse435" style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: #7021EB; border-radius: 9999px"></div>
-                  <div data-layer="1" style="left: 14px; top: 7.53px; position: absolute; color: white; font-size: 16px; font-family: DM Sans; font-weight: 500; line-height: 18px; word-wrap: break-word">1</div>
-                </div>
-                <div data-layer="step2_progreso" class="Step2Progreso" style="width: 34px; height: 34px; left: 168.09px; top: 0px; position: absolute">
-                  <div data-layer="Ellipse 436" class="Ellipse436" style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: #7021EB; border-radius: 9999px"></div>
-                  <div data-layer="2" style="left: 13px; top: 4.53px; position: absolute; color: white; font-size: 16px; font-family: DM Sans; font-weight: 400; line-height: 23px; word-wrap: break-word">2</div>
-                </div>
-                <div data-layer="step3_progreso" class="Step3Progreso" style="width: 34px; height: 34px; left: 336.18px; top: 0px; position: absolute">
-                  <div data-layer="Ellipse 437" class="Ellipse437" style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: #7021EB; border-radius: 9999px"></div>
-                  <div data-layer="3" style="left: 12px; top: 4.53px; position: absolute; color: white; font-size: 16px; font-family: DM Sans; font-weight: 400; line-height: 23px; word-wrap: break-word">3</div>
-                </div>
-                <div data-layer="step4_progreso" class="Step4Progreso" style="width: 34px; height: 34px; left: 504.27px; top: 0px; position: absolute">
-                  <div data-layer="Ellipse 437" class="Ellipse437" style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: #EFF0F6; border-radius: 9999px"></div>
-                  <div data-layer="4" style="left: 12px; top: 4.53px; position: absolute; color: #6F6C90; font-size: 16px; font-family: DM Sans; font-weight: 400; line-height: 23px; word-wrap: break-word">4</div>
-                </div>
-              </div>              
-            </div>             
-            <div data-layer="line" class="Line" style="width: 596.26px; height: 0px; border: 1px #D9DBE9 solid"></div>            
-            <div data-layer="step3" class="Step3" style="flex-direction: column; justify-content: flex-start; align-items: center; gap: 15px; display: flex">
-              <div data-layer="titulo_step" class="TituloStep" style="height: 86px; padding: 10px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 1px; display: flex">
-                <div data-layer="titulo" class="Titulo" style="color: #170F49; font-size: 24px; font-family: DM Sans; font-weight: 700; line-height: 35px; word-wrap: break-word">Características de la Propiedad</div>
-                <div data-layer="desc" class="Desc" style="color: #6F6C90; font-size: 18px; font-family: DM Sans; font-weight: 400; line-height: 30px; word-wrap: break-word">Proporcionar las características de su propiedad</div>
+        </div>
+        <div data-layer="line" class="Line"></div>
+        <div data-layer="step3" class="Step3">
+          <div data-layer="titulo_step" class="TituloStep">
+            <div data-layer="titulo" class="TituloStep1">Características de la Propiedad</div>
+            <div data-layer="desc" class="DescStep">Proporcionar las características de su propiedad</div>
+          </div>
+          <div data-layer="step" class="Step Step33">
+            <div data-layer="condition" class="Condition">
+              <div data-layer="titulo" class="Titulo">
+                <div data-layer="titulo_text" class="Nombre ConditioName">Condición<samp>*</samp></div>
               </div>
-              <div data-layer="step" class="Step" style="padding-top: 10px; padding-bottom: 10px; justify-content: flex-start; align-items: center; gap: 58px; display: inline-flex">
-                <div data-layer="condition" class="Condition" style="flex-direction: column; justify-content: center; align-items: flex-start; gap: 15px; display: inline-flex">                  
-                  <div data-layer="titulo" class="Titulo" style="padding-left: 10px; padding-right: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">                                                            
-                    <i class="bi bi-house-door"></i>
-                    <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Condición<samp style="color: #ff0000;">*</samp></div>
-                  </div>
-                  <select data-layer="condicion" class="Input" style="width: 180px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: space-between; align-items: center; display: inline-flex">
-                    <option value="">Seleccione</option>
-                    <option value="">Seleccione</option>
-                    <option value="">Seleccione</option>
-                    <option value="">Seleccione</option>
-                    <option value="">Seleccione</option>                    
-                  </select>                     
-                </div>
-                <div data-layer="ano" class="Ano" style="flex-direction: column; justify-content: center; align-items: center; gap: 15px; display: inline-flex">
-                  <div data-layer="titulo" class="Titulo" style="padding-left: 10px; padding-right: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">                                                            
-                    <i class="bi bi-house-gear"></i>
-                    <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Año de construcción<samp style="color: #ff0000;">*</samp></div>
-                  </div>
-                  <input type="text" data-layer="input-año" class="InputLada" style="width: 50px; padding-left: 6px; padding-right: 6px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; text-align: center;" placeholder="0000"required>
-                </div>
+              <select data-layer="condicion" class="InputCondi">
+                <option value="">Seleccione</option>
+                <option value="">Seleccione</option>
+                <option value="">Seleccione</option>
+                <option value="">Seleccione</option>
+                <option value="">Seleccione</option>
+              </select>
+            </div>
+
+            <div data-layer="ano" class="Ano">
+              <div data-layer="titulo" class="Titulo">
+                <div data-layer="titulo_text" class="Nombre AnoCons">Año de construcción<samp>*</samp></div>
               </div>
-              <div data-layer="step" class="Step" style="padding-top: 10px; padding-bottom: 10px; justify-content: flex-start; align-items: center; gap: 58px; display: inline-flex">
-                <div data-layer="m_terreno" class="MTerreno" style="flex-direction: column; justify-content: center; align-items: center; gap: 15px; display: inline-flex">                  
-                  <div data-layer="titulo" class="Titulo" style="padding-left: 10px; padding-right: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">                                                                                
-                    <i class="bi bi-bounding-box-circles"></i>
-                    <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Terreno<samp style="color: #ff0000;">*</samp></div>
-                  </div>
-                  <div data-layer="input" class="Input" style="border-radius: 43px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
-                    <input type="text" data-layer="input-terreno" class="InputNumber" style="width: 50px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; text-align: center;" placeholder="0000"required>                    
-                    <div data-layer="input-" class="InputLada" style="padding-top: 10px; padding-bottom: 10px; border-radius: 43px;  text-align: center;">m²</div>                                       
-                  </div>                 
-                </div>
-                <div data-layer="m_construc" class="MConstruc" style="flex-direction: column; justify-content: center; align-items: center; gap: 15px; display: inline-flex">
-                  <div data-layer="titulo" class="Titulo" style="padding-left: 10px; padding-right: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">                                                            
-                    <i class="bi bi-house"></i>                    
-                    <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Construcción<samp style="color: #ff0000;">*</samp></div>
-                  </div>                  
-                  <div data-layer="input" class="Input" style="border-radius: 43px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
-                    <input type="text" data-layer="input-construcción" class="InputNumber" style="width: 50px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; text-align: center;" placeholder="0000"required>
-                    <div data-layer="input-" class="InputLada" style="padding-top: 10px; padding-bottom: 10px; border-radius: 43px;  text-align: center;">m²</div>                    
-                  </div>                                     
-                </div>
+              <input type="text" data-layer="input-año" class="InputLada1" placeholder="0000" required>
+            </div>
+          </div>
+          <div data-layer="step" class="Step">
+            <div data-layer="m_terreno" class="MTerreno">
+              <div data-layer="titulo" class="MTerrenoText">
+                <div data-layer="titulo_text" class="Nombre"> m² Terreno<samp>*</samp></div>
               </div>
-              <div data-layer="step" class="Step" style="width: 678px; height: 99px; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px; justify-content: space-between; align-items: center; display: inline-flex">
-                <div data-layer="recamaras" class="Recamaras" style="flex-direction: column; justify-content: center; align-items: center; gap: 15px; display: inline-flex">                                    
-                  <div data-layer="titulo" class="Titulo" style="padding-left: 10px; padding-right: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">                                        
-                    <i class="bi bi-houses"></i>
-                    <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Recámaras<samp style="color: #ff0000;">*</samp></div>
-                  </div>
-                  <div data-layer="input" class="Input-recamaras" style="padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 8px; border: 1px #E5E7EB solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                    <button data-layer="button-minus" class="ButtonMinus" style="width: 24px; height: 24px; background: white; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 8px; border: 1px #E5E7EB solid; flex-direction: column; justify-content: center; align-items: center; display: inline-flex; cursor: pointer;">
-                      <div data-layer="minus" class="Minus" style="width: 16px; height: 16px; padding-left: 3.33px; padding-right: 3.33px; justify-content: center; align-items: center; display: inline-flex">
-                        <div data-layer="Vector" class="Vector" style="width: 9.33px; height: 0px; border: 1px #1F2937 solid"></div>
-                      </div>
-                    </button>
-                    <input type="text" data-layer="input-recamara" class="InputNumber" style="width: 20px; padding-left: 12px; padding-right: 12px; padding-top: 5px; padding-bottom: 5px; border-radius: 43px; border: 1px white solid; text-align: center;" placeholder="0"required>                                        
-                    <button data-layer="button-plus" class="ButtonPlus" style="width: 24px; height: 24px; background: white; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 8px; border: 1px #E5E7EB solid; flex-direction: column; justify-content: center; align-items: center; display: inline-flex; cursor: pointer;">
-                      <span data-layer="plus" class="Plus" style="width: 16px; height: 16px; position: relative">
-                        <span data-layer="Vector" class="Vector" style="width: 9.33px; height: 0px; left: 3.33px; top: 8px; position: absolute; border: 1px #1F2937 solid"></span>
-                        <span data-layer="Vector" class="Vector" style="width: 0px; height: 9.33px; left: 8px; top: 3.33px; position: absolute; border: 1px #1F2937 solid"></span>
-                      </span>
-                    </button>
-                  </div>
-                </div>
-                <div data-layer="estacion" class="Estacion" style="flex-direction: column; justify-content: center; align-items: center; gap: 15px; display: inline-flex">
-                  <div data-layer="titulo" class="Titulo" style="padding-left: 10px; padding-right: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">                                        
-                    <i class="bi bi-car-front"></i>
-                    <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Estacionamientos<samp style="color: #ff0000;">*</samp></div>
-                  </div>                  
-                  <div data-layer="input" class="Input" style="padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 8px; border: 1px #E5E7EB solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                    <button data-layer="button-minus" class="ButtonMinus" style="width: 24px; height: 24px; background: white; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 8px; border: 1px #E5E7EB solid; flex-direction: column; justify-content: center; align-items: center; display: inline-flex; cursor: pointer;">
-                      <div data-layer="minus" class="Minus" style="width: 16px; height: 16px; padding-left: 3.33px; padding-right: 3.33px; justify-content: center; align-items: center; display: inline-flex">
-                        <div data-layer="Vector" class="Vector" style="width: 9.33px; height: 0px; border: 1px #1F2937 solid"></div>
-                      </div>
-                    </button>
-                    <input type="text" data-layer="input-estacion" class="InputNumber" style="width: 20px; padding-left: 12px; padding-right: 12px; padding-top: 5px; padding-bottom: 5px; border-radius: 43px; border: 1px white solid; text-align: center;" placeholder="0"required>                                        
-                    <button data-layer="button-plus" class="ButtonPlus" style="width: 24px; height: 24px; background: white; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 8px; border: 1px #E5E7EB solid; flex-direction: column; justify-content: center; align-items: center; display: inline-flex; cursor: pointer;">
-                      <span data-layer="plus" class="Plus" style="width: 16px; height: 16px; position: relative">
-                        <span data-layer="Vector" class="Vector" style="width: 9.33px; height: 0px; left: 3.33px; top: 8px; position: absolute; border: 1px #1F2937 solid"></span>
-                        <span data-layer="Vector" class="Vector" style="width: 0px; height: 9.33px; left: 8px; top: 3.33px; position: absolute; border: 1px #1F2937 solid"></span>
-                      </span>
-                    </button>
-                  </div>                  
-                </div>
-                <div data-layer="banos_compl" class="BanosCompl" style="flex-direction: column; justify-content: center; align-items: center; gap: 15px; display: inline-flex">
-                  <div data-layer="titulo" class="Titulo" style="padding-left: 10px; padding-right: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">                                                            
-                    <i class="bi bi-circle"></i>
-                    <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Baños<samp style="color: #ff0000;">*</samp></div>
-                  </div>                    
-                  <div data-layer="input" class="Input" style="padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 8px; border: 1px #E5E7EB solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                    <button data-layer="button-minus" class="ButtonMinus" style="width: 24px; height: 24px; background: white; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 8px; border: 1px #E5E7EB solid; flex-direction: column; justify-content: center; align-items: center; display: inline-flex; cursor: pointer;">
-                      <div data-layer="minus" class="Minus" style="width: 16px; height: 16px; padding-left: 3.33px; padding-right: 3.33px; justify-content: center; align-items: center; display: inline-flex">
-                        <div data-layer="Vector" class="Vector" style="width: 9.33px; height: 0px; border: 1px #1F2937 solid"></div>
-                      </div>
-                    </button>
-                    <input type="text" data-layer="input-estacion" class="InputNumber" style="width: 20px; padding-left: 12px; padding-right: 12px; padding-top: 5px; padding-bottom: 5px; border-radius: 43px; border: 1px white solid; text-align: center;" placeholder="0"required>                                        
-                    <button data-layer="button-plus" class="ButtonPlus" style="width: 24px; height: 24px; background: white; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 8px; border: 1px #E5E7EB solid; flex-direction: column; justify-content: center; align-items: center; display: inline-flex; cursor: pointer;">
-                      <span data-layer="plus" class="Plus" style="width: 16px; height: 16px; position: relative">
-                        <span data-layer="Vector" class="Vector" style="width: 9.33px; height: 0px; left: 3.33px; top: 8px; position: absolute; border: 1px #1F2937 solid"></span>
-                        <span data-layer="Vector" class="Vector" style="width: 0px; height: 9.33px; left: 8px; top: 3.33px; position: absolute; border: 1px #1F2937 solid"></span>
-                      </span>
-                    </button>
-                  </div> 
-                </div>
-                <div data-layer="banos_med" class="BanosMed" style="flex-direction: column; justify-content: center; align-items: center; gap: 15px; display: inline-flex">                  
-                  <div data-layer="titulo" class="Titulo" style="padding-left: 10px; padding-right: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">                                        
-                    <i class="bi bi-circle-half"></i>                    
-                    <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">1/2 Baños<samp style="color: #ff0000;">*</samp></div>
-                  </div>  
-                  <div data-layer="input" class="Input" style="padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 8px; border: 1px #E5E7EB solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                    <button data-layer="button-minus" class="ButtonMinus" style="width: 24px; height: 24px; background: white; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 8px; border: 1px #E5E7EB solid; flex-direction: column; justify-content: center; align-items: center; display: inline-flex; cursor: pointer;">
-                      <div data-layer="minus" class="Minus" style="width: 16px; height: 16px; padding-left: 3.33px; padding-right: 3.33px; justify-content: center; align-items: center; display: inline-flex">
-                        <div data-layer="Vector" class="Vector" style="width: 9.33px; height: 0px; border: 1px #1F2937 solid"></div>
-                      </div>
-                    </button>
-                    <input type="text" data-layer="input-estacion" class="InputNumber" style="width: 20px; padding-left: 12px; padding-right: 12px; padding-top: 5px; padding-bottom: 5px; border-radius: 43px; border: 1px white solid; text-align: center;" placeholder="0"required>                                        
-                    <button data-layer="button-plus" class="ButtonPlus" style="width: 24px; height: 24px; background: white; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 8px; border: 1px #E5E7EB solid; flex-direction: column; justify-content: center; align-items: center; display: inline-flex; cursor: pointer;">
-                      <span data-layer="plus" class="Plus" style="width: 16px; height: 16px; position: relative">
-                        <span data-layer="Vector" class="Vector" style="width: 9.33px; height: 0px; left: 3.33px; top: 8px; position: absolute; border: 1px #1F2937 solid"></span>
-                        <span data-layer="Vector" class="Vector" style="width: 0px; height: 9.33px; left: 8px; top: 3.33px; position: absolute; border: 1px #1F2937 solid"></span>
-                      </span>
-                    </button>
-                  </div> 
-                </div>
+              <div data-layer="input" class="InputMT">
+                <input type="number" data-layer="input-terreno" class="InputLada2" placeholder="0" required>
               </div>
-              <div data-layer="step" class="Step" style="width: 678px; height: 99px; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px; justify-content: center; align-items: center; display: inline-flex">
-                <div data-layer="amenidades" class="Amenidades" style="flex-direction: column; justify-content: center; align-items: center; gap: 15px; display: inline-flex">                  
-                  <div data-layer="titulo" class="Titulo" style="padding-left: 10px; padding-right: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">                                        
-                    <i class="bi bi-house-add"></i>
-                    <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Amenidades extra:<samp style="color: #ff0000;">*</samp></div>
-                  </div>  
-                  <div data-layer="input_amenities" class="InputAmenities" style="flex-direction: column; justify-content: center; align-items: center; display: flex">
-                    <div data-layer="input_content" class="InputContent" style="height: 48px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: flex">
-                      <div data-layer="input" class="Input" style="align-self: stretch; background: white; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 8px; overflow: hidden; border: 1px #E5E7EB solid; justify-content: center; align-items: center; display: inline-flex">
-                        <div data-layer="content" class="Content" style="flex: 1 1 0; height: 48px; justify-content: center; align-items: center; display: flex">
-                          <div data-layer="tags" class="Tags" style="padding: 8px; justify-content: flex-start; align-items: flex-start; gap: 5px; display: flex">
-                            <div data-layer="badge" class="Badge" style="justify-content: flex-start; align-items: flex-start; display: flex">
-                              <div data-layer="tag" class="Tag" style="padding: 6px; border-radius: 999px; border: 1px #E5E7EB solid; justify-content: flex-start; align-items: center; gap: 1px; display: flex">
-                                <div data-layer="placeholder" class="Placeholder" style="padding-left: 4px; padding-right: 4px; justify-content: flex-start; align-items: center; gap: 7px; display: flex">
-                                  <div data-layer="text" class="Text" style="color: #6B7280; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 20px; letter-spacing: 0.07px; word-wrap: break-word">Picina</div>
-                                </div>
-                                <div data-layer="check-icon" class="CheckIcon" style="width: 15px; height: 15px; background: #E5E7EB; border-radius: 999px; justify-content: center; align-items: center; display: flex">
-                                  <input type="checkbox" data-layer="check" class="Check" style="width: 8px; height: 8px; position: relative">
-                                </div>
-                              </div>
+            </div>
+            <div data-layer="m_construc" class="MConstruc">
+              <div data-layer="titulo" class="Nombre">
+                <div data-layer="titulo_text" class="Nombre"> m² Construcción<samp>*</samp></div>
+              </div>
+              <div data-layer="input">
+                <input type="number" data-layer="input-construccion" class="InputLada2" placeholder="0" required>
+              </div>
+            </div>
+          </div>
+          <div data-layer="step" class="Step4">
+            <div data-layerk="recamaras" class="Recamaras">
+              <div data-layer="titulo" class="Titulo">
+
+                <div data-layer="titulo_text" class="TituloR">Recámaras<samp>*</samp></div>
+              </div>
+              <div data-layer="input" class="InputRecamaras">
+                <button data-layer="button-minus" class="ButtonMinus">
+                  <div data-layer="minus" class="Minus">
+                    <div data-layer="Vector" class="VectorButton"></div>
+                  </div>
+                </button>
+                <input type="text" data-layer="input-recamara" class="InputNumberC" placeholder="0" required>
+                <button data-layer="button-plus" class="ButtonPlus">
+                  <span data-layer="plus" class="Plus">
+                    <span data-layer="Vector" class="VectorButtonPlus"></span>
+                    <span data-layer="VectorButtonPlus2" class="VectorButtonPlus2"></span>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div data-layer="estacion" class="Recamaras">
+              <div data-layer="titulo" class="Titulo">
+
+                <div data-layer="titulo_text" class="TituloR">Estacionamientos<samp>*</samp></div>
+              </div>
+              <div data-layer="input" class="InputRecamaras">
+                <button data-layer="button-minus" class="ButtonMinus">
+                  <div data-layer="minus" class="Minus">
+                    <div data-layer="Vector" class="VectorButton"></div>
+                  </div>
+                </button>
+                <input type="text" data-layer="input-estacion" class="InputNumberC" placeholder="0" required>
+                <button data-layer="button-plus" class="ButtonPlus">
+                  <span data-layer="plus" class="Plus">
+                    <span data-layer="Vector" class="VectorButtonPlus"></span>
+                    <span data-layer="Vector" class="VectorButtonPlus2"></span>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div data-layer="banos_compl" class="Recamaras">
+              <div data-layer="titulo" class="Titulo BanosCompl">
+
+                <div data-layer="titulo_text" class="TituloR">Baños<samp>*</samp></div>
+              </div>
+              <div data-layer="input" class="InputRecamaras">
+                <button data-layer="button-minus" class="ButtonMinus">
+                  <div data-layer="minus" class="Minus">
+                    <div data-layer="Vector" class="VectorButton"></div>
+                  </div>
+                </button>
+                <input type="text" data-layer="input-estacion" class="InputNumberC" placeholder="0" required>
+                <button data-layer="button-plus" class="ButtonPlus">
+                  <span data-layer="plus" class="Plus">
+                    <span data-layer="Vector" class="VectorButtonPlus"></span>
+                    <span data-layer="Vector" class="VectorButtonPlus2"></span>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div data-layer="banos_med" class="Recamaras">
+              <div data-layer="titulo" class="Titulo">
+                <div data-layer="titulo_text" class="TituloR">1/2 Baños<samp>*</samp></div>
+              </div>
+              <div data-layer="input" class="InputRecamaras">
+                <button data-layer="button-minus" class="ButtonMinus">
+                  <div data-layer="minus" class="Minus">
+                    <div data-layer="Vector" class="VectorButton"></div>
+                  </div>
+                </button>
+                <input type="text" data-layer="input-estacion" class="InputNumberC" placeholder="0" required>
+                <button data-layer="button-plus" class="ButtonPlus">
+                  <span data-layer="plus" class="Plus">
+                    <span data-layer="Vector" class="VectorButtonPlus"></span>
+                    <span data-layer="Vector" class="VectorButtonPlus2"></span>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+          <div data-layer="step" class="Step">
+            <div data-layer="amenidades" class="Amenidades">
+              <div data-layer="titulo" class="Titulo">
+
+                <div data-layer="titulo_text" class="Nombre">Amenidades extra:<samp>*</samp></div>
+              </div>
+              <div data-layer="input_amenities" class="InputAmenidades">
+                <div data-layer="input_content" class="InputContent">
+                  <div data-layer="input" class="InputAm">
+                    <div data-layer="content" class="Content">
+                      <div data-layer="tags" class="Tags">
+                        <div data-layer="badge" class="Badge">
+                          <div data-layer="tag" class="Tag">
+                            <div data-layer="placeholder" class="PlaceholderT">
+                              <div data-layer="text" class="TextT">
+                                Picina</div>
                             </div>
-                            <div data-layer="badge" class="Badge" style="justify-content: flex-start; align-items: flex-start; display: flex">
-                              <div data-layer="tag" class="Tag" style="padding: 6px; border-radius: 999px; border: 1px #E5E7EB solid; justify-content: flex-start; align-items: center; gap: 1px; display: flex">
-                                <div data-layer="placeholder" class="Placeholder" style="padding-left: 4px; padding-right: 4px; justify-content: flex-start; align-items: center; gap: 7px; display: flex">
-                                  <div data-layer="text" class="Text" style="color: #6B7280; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 20px; letter-spacing: 0.07px; word-wrap: break-word">Jardín</div>
-                                </div>
-                                <div data-layer="check-icon" class="CheckIcon" style="width: 15px; height: 15px; background: #E5E7EB; border-radius: 999px; justify-content: center; align-items: center; display: flex">
-                                  <input type="checkbox" data-layer="check" class="Check" style="width: 8px; height: 8px; position: relative">
-                                </div>
-                              </div>
-                            </div>                            
-                            <div data-layer="badge" class="Badge" style="justify-content: flex-start; align-items: flex-start; display: flex">
-                              <div data-layer="tag" class="Tag" style="padding: 6px; border-radius: 999px; border: 1px #E5E7EB solid; justify-content: flex-start; align-items: center; gap: 1px; display: flex">
-                                <div data-layer="placeholder" class="Placeholder" style="padding-left: 4px; padding-right: 4px; justify-content: flex-start; align-items: center; gap: 7px; display: flex">
-                                  <div data-layer="text" class="Text" style="color: #6B7280; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 20px; letter-spacing: 0.07px; word-wrap: break-word">Balcón</div>
-                                </div>
-                                <div data-layer="check-icon" class="CheckIcon" style="width: 15px; height: 15px; background: #E5E7EB; border-radius: 999px; justify-content: center; align-items: center; display: flex">
-                                  <input type="checkbox" data-layer="check" class="Check" style="width: 8px; height: 8px; position: relative">
-                                </div>
-                              </div>
-                            </div>
-                            <div data-layer="badge" class="Badge" style="justify-content: flex-start; align-items: flex-start; display: flex">
-                              <div data-layer="tag" class="Tag" style="padding: 6px; border-radius: 999px; border: 1px #E5E7EB solid; justify-content: flex-start; align-items: center; gap: 1px; display: flex">
-                                <div data-layer="placeholder" class="Placeholder" style="padding-left: 4px; padding-right: 4px; justify-content: flex-start; align-items: center; gap: 7px; display: flex">
-                                  <div data-layer="text" class="Text" style="color: #6B7280; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 20px; letter-spacing: 0.07px; word-wrap: break-word">Balcón</div>
-                                </div>
-                                <div data-layer="check-icon" class="CheckIcon" style="width: 15px; height: 15px; background: #E5E7EB; border-radius: 999px; justify-content: center; align-items: center; display: flex">
-                                  <input type="checkbox" data-layer="check" class="Check" style="width: 8px; height: 8px; position: relative">
-                                </div>
-                              </div>
-                            </div>
-                            <div data-layer="badge" class="Badge" style="justify-content: flex-start; align-items: flex-start; display: flex">
-                              <div data-layer="tag" class="Tag" style="padding: 6px; border-radius: 999px; border: 1px #E5E7EB solid; justify-content: flex-start; align-items: center; gap: 1px; display: flex">
-                                <div data-layer="placeholder" class="Placeholder" style="padding-left: 4px; padding-right: 4px; justify-content: flex-start; align-items: center; gap: 7px; display: flex">
-                                  <div data-layer="text" class="Text" style="color: #6B7280; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 20px; letter-spacing: 0.07px; word-wrap: break-word">Balcón</div>
-                                </div>
-                                <div data-layer="check-icon" class="CheckIcon" style="width: 15px; height: 15px; background: #E5E7EB; border-radius: 999px; justify-content: center; align-items: center; display: flex">
-                                  <input type="checkbox" data-layer="check" class="Check" style="width: 8px; height: 8px; position: relative">
-                                </div>
-                              </div>
-                            </div>
-                            <div data-layer="badge" class="Badge" style="justify-content: flex-start; align-items: flex-start; display: flex">
-                              <div data-layer="tag" class="Tag" style="padding: 6px; border-radius: 999px; border: 1px #E5E7EB solid; justify-content: flex-start; align-items: center; gap: 1px; display: flex">
-                                <div data-layer="placeholder" class="Placeholder" style="padding-left: 4px; padding-right: 4px; justify-content: flex-start; align-items: center; gap: 7px; display: flex">
-                                  <div data-layer="text" class="Text" style="color: #6B7280; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 20px; letter-spacing: 0.07px; word-wrap: break-word">Balcón</div>
-                                </div>
-                                <div data-layer="check-icon" class="CheckIcon" style="width: 15px; height: 15px; background: #E5E7EB; border-radius: 999px; justify-content: center; align-items: center; display: flex">
-                                  <input type="checkbox" data-layer="check" class="Check" style="width: 8px; height: 8px; position: relative">
-                                </div>
-                              </div>
+                            <div data-layer="check-icon" class="CheckIcon">
+                              <input type="checkbox" data-layer="check" class="Check">
                             </div>
                           </div>
                         </div>
+                        <div data-layer="badge" class="Badge">
+                          <div data-layer="tag" class="Tag">
+                            <div data-layer="placeholder" class="Placeholder">
+                              <div data-layer="text" class="TextT">
+                                Jardín</div>
+                            </div>
+                            <div data-layer="check-icon" class="CheckIcon">
+                              <input type="checkbox" data-layer="check" class="Check">
+                            </div>
+                          </div>
+                        </div>
+                       
+                        <div data-layer="badge" class="Badge">
+                          <div data-layer="tag" class="Tag">
+                            <div data-layer="placeholder" class="Placeholder">
+                              <div data-layer="text" class="TextT">
+                                Balcón</div>
+                            </div>
+                            <div data-layer="check-icon" class="CheckIcon">
+                              <input type="checkbox" data-layer="check" class="Check">
+                            </div>
+                          </div>
+                        </div>
+                        <div data-layer="badge" class="Badge">
+                          <div data-layer="tag" class="Tag">
+                            <div data-layer="placeholder" class="Placeholder">
+                              <div data-layer="text" class="TextT">
+                                Balcón</div>
+                            </div>
+                            <div data-layer="check-icon" class="CheckIcon">
+                              <input type="checkbox" data-layer="check" class="Check">
+                            </div>
+                          </div>
+                        </div>
+
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div data-layer="step" class="Step" style="width: 678px; height: 99px; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px; justify-content: center; align-items: center; display: inline-flex">
-                <div data-layer="precio" class="Precio" style="flex-direction: column; justify-content: center; align-items: center; gap: 15px; display: inline-flex">                  
-                  <div data-layer="titulo" class="Titulo" style="padding-left: 10px; padding-right: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">                    
-                    <i class="bi bi-coin"></i>
-                    <div data-layer="titulo_text" class="TituloText" style="color: #170F49; font-size: 18px; font-family: DM Sans; font-weight: 500; line-height: 20px; word-wrap: break-word">Define un precio para la propiedad<samp style="color: #ff0000;">*</samp></div>
-                  </div>  
-                  <div data-layer="input" class="Input" style="border-radius: 43px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
-                    <input type="text" data-layer="input-precio" class="InputLada" style="width: 100px; padding-left: 6px; padding-right: 6px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; text-align: center;" placeholder="0"required>
-                    <select data-layer="input" class="Input-divisa" style="width: 80px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: space-between; align-items: center; display: inline-flex" required>
-                      <option value="">MXN</option>
-                      <option value="">USD</option>                      
-                    </select>    
-                  </div>                                    
-                </div>
-              </div>
             </div>
           </div>
-          <div data-layer="navigation" class="Navigation" style="align-self: stretch; padding: 10px; justify-content: space-between; align-items: center; display: inline-flex">
-            <a href="step2.html" data-layer="Secondary BTN" class="SecondaryBtn" style="padding: 19px 40px; border-radius: 66px; border: 1px #7021EB solid; display: inline-flex; text-decoration: none;">
-              <div data-layer="Button Text" class="ButtonText" style="text-align: center; color: #7021EB; font-size: 18px; font-family: DM Sans; font-weight: 400; line-height: 20px; word-wrap: break-word">Anterior</div>
-            </a>
-            <a href="step4.html" data-layer="Primary BTN" class="PrimaryBtn" style="padding: 20px 40px; background: #7021EB; box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18); border-radius: 56px; display: flex; text-decoration: none;">
-              <div data-layer="Button Text" class="ButtonText" style="text-align: center; color: white; font-size: 18px; font-family: DM Sans; font-weight: 700; line-height: 20px; word-wrap: break-word">Siguiente</div>
-            </a>
+        </div>
+        <div data-layer="step" class="Step PrecioStep">
+          <div data-layer="precio" class="Precio">
+            <div data-layer="titulo" class="Titulo">
+
+              <div data-layer="titulo_text" class="Nombre">
+                Define un precio para la propiedad<samp>*</samp></div>
+            </div>
+            <div data-layer="input" class="InputPrecio">
+              <input type="text" data-layer="input-precio" class="InputLada1" placeholder="0" required>
+              <select data-layer="input" class="InputLada1" required>
+                <option value="">MXN</option>
+                <option value="">USD</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div data-layer="navigation" class="Navigation">
+      <a href="step2.html" data-layer="Secondary BTN" class="SecondaryBtn">
+        <div data-layer="Button Text" class="ButtonTextWhite">
+          Anterior</div>
+      </a>
+      <a href="step4.html" data-layer="Primary BTN" class="PrimaryBtn">
+        <div data-layer="Button Text" class="ButtonText">
+          Siguiente</div>
+      </a>
+    </div>
+  </div>
+  </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const añoInput = document.querySelector('[data-layer="input-año"]');
+  const m2Construccion = document.querySelector('[data-layer="input-construccion"]');
+  const precioInput = document.querySelector('[data-layer="input-precio"]');
+  const currentYear = new Date().getFullYear();
+
+  function createError(input, message) {
+    let error = input.nextElementSibling;
+    if (!error || !error.classList.contains('error-message')) {
+      error = document.createElement('div');
+      error.className = 'error-message';
+      error.style.color = 'red';
+      error.style.fontFamily = 'DM Sans';
+      error.style.fontSize = '12px';
+      error.style.marginTop = '4px';
+      input.insertAdjacentElement('afterend', error);
+    }
+    error.textContent = message;
+    input.style.border = '1px solid red';
+  }
+
+  function clearError(input) {
+    const error = input.nextElementSibling;
+    if (error && error.classList.contains('error-message')) {
+      error.remove();
+    }
+    input.style.border = '';
+  }
+
+  function onlyNumbers(input, maxLength, validatorFn = null) {
+    input.addEventListener('input', () => {
+      // Eliminar caracteres no numéricos
+      input.value = input.value.replace(/\D/g, '');
+
+      if (input.value.length > maxLength) {
+        input.value = input.value.slice(0, maxLength);
+      }
+
+      const numericValue = parseInt(input.value, 10);
+
+      if (input.value === '' || isNaN(numericValue)) {
+        createError();
+        return;
+      }
+
+      if (validatorFn) {
+        const errorMsg = validatorFn(numericValue);
+        if (errorMsg) {
+          createError(input, errorMsg);
+          return;
+        }
+      }
+
+      clearError(input);
+    });
+  }
+
+  onlyNumbers(añoInput, 4, (val) => {
+    return (val < 1800 || val > currentYear)
+      ? `El año debe estar entre 1800 y ${currentYear}`
+      : null;
+  });
+
+  onlyNumbers(m2Construccion, 6);
+  onlyNumbers(precioInput, 10);
+});
+</script>
+
+
 </body>
+
 </html>

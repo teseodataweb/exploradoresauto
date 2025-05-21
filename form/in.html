@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Buscador Mapsly</title>
+    <style>
+      #map {
+        height: 400px;
+        width: 100%;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Buscar ubicación con Mapsly</h2>
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Ingresa el nombre del lugar"
+    />
+    <button onclick="searchPlace()">Buscar</button>
+
+    <select id="resultsDropdown" onchange="loadMap(this.value)">
+      <option value="">Selecciona un resultado</option>
+    </select>
+
+    <div id="map"></div>
+
+    <script src="https://cdn.mapsly.com/mapsly-client-sdk-latest.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
