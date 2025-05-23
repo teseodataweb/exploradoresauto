@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
 
   <title>Document</title>
 </head>
@@ -41,7 +43,7 @@
       <div data-layer="progreso" class="Progreso Abajo">
         <div data-layer="steps" class="Steps">
           <div data-layer="step1_bar" class="Step1BarComplete">
-           
+
             <div data-layer="Rectangle 4357" class="RectangleGreen22"></div>
           </div>
           <div data-layer="step2_bar" class="Step2Bar"></div>
@@ -92,27 +94,31 @@
         <br>
         <div data-layer="direccion" class="DireccionDiv">
           <div data-layer="input_direccion" class="InputDireccion">
-            <input type="text" data-layer="input" class="InputDirec" placeholder="Ingrese la dirección" />
+            <input id="inputDireccion" type="text" data-layer="input" placeholder="Ej: Pachuca" class="InputDirec"
+              oninput="buscarDireccion()" />
           </div>
 
         </div>
         <br>
         <div data-layer="idea" class="DireccionDiv">
           <div data-layer="select_idea" class="InputDireccion">
-            <select data-layer="idea1" class="InputIdea">
-              <option value="">Seleccione</option>
-              <option value="">Seleccione</option>
-              <option value="">Seleccione</option>
-              <option value="">Seleccione</option>
-              <option value="">Seleccione</option>
+            <select id="selectSugerencias" class="InputIdea" onchange="actualizarMapa()">
+              <option>Escribe una dirección arriba...</option>
             </select>
           </div>
         </div>
+
+
+        <br>
+
+        <br><br>
+
+
         <br>
       </form>
       <div data-layer="mapa" class="MapaImg">
         <div data-layer="iframe_mapa" class="IframeMapa" id="map">
-         
+
         </div>
       </div>
     </div>
@@ -123,17 +129,161 @@
           Anterior
         </div>
       </a>
-      <a href="step3_casa.html" data-layer="Primary BTN" class="PrimaryBtn">
+      <a href="#" data-layer="Primary BTN" id="PrimaryBtn" class="PrimaryBtn">
         <div data-layer="Button Text" class="ButtonText">
           Siguiente
         </div>
       </a>
+
+
+
     </div>
   </div>
   </div>
 
-  <script src="/assets/script.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    let mapa = L.map('map').setView([20.123, -98.733], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(mapa);
+
+    let marcador;
+
+    function colocarMarcador(lat, lon, nombre = "") {
+      if (marcador) {
+        mapa.removeLayer(marcador);
+      }
+
+      marcador = L.marker([lat, lon], { draggable: true }).addTo(mapa);
+      marcador.bindPopup(nombre || 'Ubicación seleccionada').openPopup();
+
+      marcador.on("dragend", function () {
+        const { lat, lng } = marcador.getLatLng();
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`)
+          .then(res => res.json())
+          .then(data => {
+            const direccion = data.display_name;
+            document.getElementById('inputDireccion').value = direccion;
+
+            const nuevaOpcion = {
+              display_name: direccion,
+              lat: lat,
+              lon: lng
+            };
+            const select = document.getElementById('selectSugerencias');
+            const option = document.createElement('option');
+            option.value = JSON.stringify(nuevaOpcion);
+            option.textContent = direccion;
+            select.appendChild(option);
+            select.value = option.value;
+
+            // Guardar en sessionStorage
+            //si lo subo a local no se descargan al final esos datos jeje
+            sessionStorage.setItem("direccion", direccion);
+            sessionStorage.setItem("idea", option.value);
+            sessionStorage.setItem("lat", lat);
+            sessionStorage.setItem("lon", lng);
+          });
+      });
+    }
+
+    function buscarDireccion() {
+      const input = document.getElementById('inputDireccion').value;
+      const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(input)}`;
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          const select = document.getElementById('selectSugerencias');
+          select.innerHTML = '<option value="">Selecciona una opción...</option>';
+          data.forEach(item => {
+            const option = document.createElement('option');
+            option.value = JSON.stringify(item);
+            option.textContent = item.display_name;
+            select.appendChild(option);
+          });
+        });
+    }
+
+    function actualizarMapa() {
+      const select = document.getElementById('selectSugerencias');
+      if (!select.value) return;
+
+      const lugar = JSON.parse(select.value);
+
+      document.getElementById('inputDireccion').value = lugar.display_name;
+      colocarMarcador(lugar.lat, lugar.lon, lugar.display_name);
+      mapa.setView([lugar.lat, lugar.lon], 15);
+
+      // Guardar en sessionStorage
+      sessionStorage.setItem("direccion", lugar.display_name);
+      sessionStorage.setItem("idea", select.value);
+      sessionStorage.setItem("lat", lugar.lat);
+      sessionStorage.setItem("lon", lugar.lon);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const btnSiguiente = document.getElementById("PrimaryBtn");
+      const inputDireccion = document.getElementById("inputDireccion");
+      const selectIdea = document.getElementById("selectSugerencias");
+
+      btnSiguiente.addEventListener("click", e => {
+        e.preventDefault();
+
+        const direccion = inputDireccion.value.trim();
+        const idea = selectIdea.value;
+
+        if (!direccion || idea === "") return;
+
+        console.log("Dirección guardada:", direccion);
+
+        window.location.href = "step3_casa.html";
+      });
+
+      // Restaurar valores guardados
+      const savedDireccion = sessionStorage.getItem("direccion");
+      const savedIdea = sessionStorage.getItem("idea");
+      const savedLat = sessionStorage.getItem("lat");
+      const savedLon = sessionStorage.getItem("lon");
+
+      if (savedDireccion) {
+        inputDireccion.value = savedDireccion;
+      }
+
+      if (savedIdea) {
+        const ideaObj = JSON.parse(savedIdea);
+        const option = document.createElement('option');
+        option.value = savedIdea;
+        option.textContent = ideaObj.display_name;
+        const exists = Array.from(selectIdea.options).some(opt => opt.value === savedIdea);
+        if (!exists) selectIdea.appendChild(option);
+        selectIdea.value = savedIdea;
+      }
+
+      if (savedLat && savedLon) {
+        colocarMarcador(savedLat, savedLon, savedDireccion);
+        mapa.setView([savedLat, savedLon], 15);
+      }
+
+      inputDireccion.addEventListener("input", () => {
+        sessionStorage.setItem("direccion", inputDireccion.value);
+      });
+
+      selectIdea.addEventListener("change", () => {
+        sessionStorage.setItem("idea", selectIdea.value);
+      });
+
+      window.direccion = inputDireccion.value;
+    });
+  </script>
+
+
+
+
+
+
+
 
 </body>
 

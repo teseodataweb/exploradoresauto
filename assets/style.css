@@ -269,6 +269,8 @@ line-height: 46px;
 word-wrap: break-word;
 }
 
+
+
 .Desc {
 width: 678px;
 color: #6f6c90;
@@ -728,6 +730,13 @@ position: absolute;
 border: 3px #7021eb solid;
 }
 
+.archivo-guardado {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #444;
+}
+
+
 .Text {
 justify-content: center;
 align-items: center;
@@ -760,7 +769,9 @@ gap: 21px;
 display: flex;
 cursor: pointer;
 transition: border-color 0.2s ease-in-out;
-}
+}ç
+
+
 
 .Tipo1:hover {
 border: 2px #7021eb solid;
@@ -2766,3 +2777,9 @@ cursor: pointer;
     background: #f5f0ff;
     cursor: pointer;
 }
+
+.Tipo1.active, .Tipo2.active {
+  border: 2px solid #28a745; /* verde como ejemplo */
+  background-color: #e6f9f0;
+}
+

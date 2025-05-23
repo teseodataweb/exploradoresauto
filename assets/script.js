@@ -10,3 +10,38 @@ function iniciarMap() {
     title: "4to Creativo",
   });
 }
+
+function initAutocomplete() {
+  const input = document.getElementById("pac-input");
+  const autocomplete = new google.maps.places.Autocomplete(input, {
+    fields: ["place_id", "geometry", "name"],
+  });
+  autocomplete.addListener("place_changed", () => {
+    const place = autocomplete.getPlace();
+    // Aquí puedes acceder a la información del lugar (place)
+    console.log(place);
+    // Puedes actualizar el mapa para mostrar el lugar
+  });
+}
+
+function searchNearby(map, center) {
+  const placesService = new google.maps.places.PlacesService(map);
+  const request = {
+    location: center,
+    radius: 500, // Radio de búsqueda
+    types: ["restaurant"], // Ejemplo: restaurantes
+  };
+  placesService.nearbySearch(request, (results, status) => {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      // Procesar los resultados (results)
+      results.forEach((result) => {
+        // Crear un marcador para cada lugar
+        new google.maps.Marker({
+          map: map,
+          position: result.geometry.location,
+          title: result.name,
+        });
+      });
+    }
+  });
+}

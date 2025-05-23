@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="UTF-8" />
-    <title>Buscador Mapsly</title>
+    <meta charset="utf-8" />
+    <title>Boundary Text Search con Google Maps</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
     <style>
+      /* Para que el mapa ocupe toda la pantalla */
+      html,
+      body {
+        height: 50%;
+        margin: 20px;
+        padding: 20px;
+      }
       #map {
-        height: 400px;
-        width: 100%;
-        margin-top: 20px;
+        height: 100%;
       }
     </style>
   </head>
   <body>
-    <h2>Buscar ubicación con Mapsly</h2>
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Ingresa el nombre del lugar"
-    />
-    <button onclick="searchPlace()">Buscar</button>
-
-    <select id="resultsDropdown" onchange="loadMap(this.value)">
-      <option value="">Selecciona un resultado</option>
-    </select>
-
     <div id="map"></div>
 
-    <script src="https://cdn.mapsly.com/mapsly-client-sdk-latest.js"></script>
-    <script src="script.js"></script>
+    <!-- Tu código JavaScript -->
+    <script src="mapa.js"></script>
+    </script>
+
+    <!-- Carga de la librería de Maps y Places -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
   </body>
 </html>

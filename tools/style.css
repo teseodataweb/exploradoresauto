@@ -1,0 +1,28 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/* [START maps_place_autocomplete_data_simple] */
+/* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+#map {
+  height: 100%;
+}
+
+/* 
+ * Optional: Makes the sample page fill the window. 
+ */
+html,
+body {
+  font-family: "Roboto", "Arial", sans-serif;
+  height: 100%;
+  margin: 90px;
+  padding: 0;
+  background-color: #edecec;
+  color: #000;
+}
+
+/* [END maps_place_autocomplete_data_simple] */
