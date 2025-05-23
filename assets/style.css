@@ -2334,11 +2334,8 @@ z-index: 100;
       left: -110px;
 }
 
-.Step3Progreso,
-{
-left: -290px;
-
-
+.Step3Progreso{
+      left: -290px;
 }
 
 
@@ -2364,8 +2361,8 @@ background: #eff0f6;
 border-radius: 40px;
 }
 
-.StepFormMap{
-}
+/*.StepFormMap{
+}*/
 
 
 
@@ -2726,10 +2723,10 @@ left: 5px; top: -10px; position: absolute; color: white; font-size: 16px; font-f
 width: 34px; height: 34px; left: -30px; top: 0px; position: absolute; background: #7021EB; border-radius: 9999px
 }
 
-.numberTreeMorado{
+/*.numberTreeMorado{
 
 }
-
+*/
 
 .Ellipse441{
 width: 34px; height: 34px; left: -80px; top: 0px; position: absolute; background: #7021EB; border-radius: 9999px
@@ -2783,3 +2780,4 @@ cursor: pointer;
   background-color: #e6f9f0;
 }
 
+}
