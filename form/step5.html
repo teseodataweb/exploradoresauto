@@ -98,7 +98,7 @@
           <br />
         </div>
 
-        <a href="step6.html" data-layer="Primary BTN" id="btnDescargar" class="PrimaryBtn">
+        <a href="step6.html" data-layer="Primary BTN" id="btnEnviar" class="PrimaryBtn">
           <div data-layer="Button Text" class="ButtonText">Enviar</div>
         </a>
 
@@ -113,43 +113,44 @@
   </div>
 
   <script>
-    document.getElementById("btnDescargar").addEventListener("click", () => {
-      const keys = Object.keys(sessionStorage);
-      let datos = {};
+    document.getElementById('btnEnviar').addEventListener('click', async e => {
+      e.preventDefault();
+      // En orden:
+      const orden = [
+        'nombre', 'dedication', 'prefijo', 'numerotelefono', 'email',
+        'razon', 'DescribeRazon', 'tipo_propiedad', 'tipovienda', 'direccion',
+        'idea', 'Condición', 'AnoConstruccion', 'mTerreno', 'mConstruccion',
+        'Recamaras', 'Estacionamiento', 'Banos', 'mediobano', 'amenidades',
+        'Precio', 'Moneda'
+      ];
+      const datos = {};
+      for (const key of orden) {
+        const v = sessionStorage.getItem(key);
+        if (v !== null) datos[key] = v;
+      }
 
-      keys.forEach((key) => {
-        let value = sessionStorage.getItem(key);
+      datos.fotos = JSON.parse(sessionStorage.getItem('fotos') || '[]');
+      datos.apoyos = JSON.parse(sessionStorage.getItem('apoyos') || '[]');
 
-        // Ocultar completamente valores largos o base64
-        if (
-          key.toLowerCase().includes("base64") ||
-          (typeof value === "string" &&
-            value.length > 200 &&
-            value.startsWith("data:"))
-        ) {
-          datos[key] = "[BASE64_IMAGE_REDACTED]";
+      try {
+        const resp = await fetch('../propiedades/guardar.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(datos)
+        });
+        const j = await resp.json();
+        if (j.ok) {
+          alert(`Guardado en propiedades/${j.archivo}`);
+          sessionStorage.clear();
         } else {
-          datos[key] = value;
+          throw new Error(j.error);
         }
-      });
-
-      const blob = new Blob([JSON.stringify(datos, null, 2)], {
-        type: "application/json",
-      });
-      const url = URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "datos.json";
-      a.click();
-
-      URL.revokeObjectURL(url);
-
-      // Limpiar sessionStorage después de la descarga
-      sessionStorage.clear();
+      } catch (err) {
+        console.error(err);
+        alert('Error guardando metadatos.');
+      }
     });
   </script>
-
 
 </body>
 

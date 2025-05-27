@@ -27,6 +27,65 @@ z-index: 1000;
 }
 
 
+/* contenedor general de los archivos */
+.upload-list {
+      margin-top: 1rem;
+      list-style: none;
+      padding: 0;
+    }
+    
+    /* cada ítem de archivo */
+    .file-item {
+      display: flex;
+      width: 346px;
+      align-items: center;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.75rem;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    
+    .file-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* icono de tipo de archivo (puede ser un emoji o una SVG) */
+    .file-icon {
+      font-size: 1.25rem;
+      margin-right: 0.75rem;
+    }
+    
+    /* nombre de archivo */
+    .file-name {
+      flex: 1;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      color: #6f13e7;
+      word-break: break-all;
+      
+    }
+    
+    /* botón de eliminar */
+    .file-remove {
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      line-height: 1;
+      color: #f93737;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    
+    .file-remove:hover,
+    .file-remove:focus {
+      color: #e60000;
+    }
+    
+
 .RectangleGreen2 {
 width: 43px;
 height: 6px;
@@ -110,7 +169,9 @@ text-decoration: none;
         text-align: center;
         margin-bottom: 20px;
         max-height: 180px;
-        overflow-y: auto;
+        overflow-y: scroll;
+        -ms-overflow-style: none;   /* IE y Edge Legacy */
+        scrollbar-width: none; 
       }
 
       .file-container {

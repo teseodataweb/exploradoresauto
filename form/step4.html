@@ -166,121 +166,198 @@
         <a href="step3_casa.html" data-layer="Secondary BTN" class="SecondaryBtn">
           <div data-layer="Button Text" class="ButtonTextWhite">Anterior</div>
         </a>
-        <a href="step5.html" data-layer="Primary BTN" class="PrimaryBtn">
+        <a href="step5.html" id="nextBtn" data-layer="Primary BTN" class="PrimaryBtn">
           <div data-layer="Button Text" class="ButtonText">Siguiente</div>
         </a>
       </div>
     </div>
   </div>
+
+
+
+
+
+
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const fotos = JSON.parse(sessionStorage.getItem("fotos")) || [];
-      fotos.forEach((nombre) => mostrarArchivo(nombre, "filesDrop", "fotos"));
+    (function () {
+      const STORAGE_FOTOS = 'fotos';
+      const STORAGE_APOYOS = 'apoyos';
+      const userName = sessionStorage.getItem('nombre');
 
-      const apoyos = JSON.parse(sessionStorage.getItem("apoyos")) || [];
-      apoyos.forEach((nombre) =>
-        mostrarArchivo(nombre, "supportFilesDrop", "apoyos")
+      if (!userName) {
+        alert('Primero debes rellenar tu nombre en pasos anteriores.');
+      }
+
+      const fotosQueue = JSON.parse(sessionStorage.getItem(STORAGE_FOTOS) || '[]');
+      const apoyosQueue = JSON.parse(sessionStorage.getItem(STORAGE_APOYOS) || '[]');
+
+      function saveQueues() {
+        sessionStorage.setItem(STORAGE_FOTOS, JSON.stringify(fotosQueue));
+        sessionStorage.setItem(STORAGE_APOYOS, JSON.stringify(apoyosQueue));
+      }
+
+      function crearVista(nombre, contenedorId) {
+        const div = document.createElement('div');
+        div.classList.add('file-item');
+
+        const icon = document.createElement('span');
+        icon.classList.add('file-icon');
+        icon.textContent = nombre.match(/\.(jpe?g|png|gif)$/i) ? '🖼️' : '📄';
+
+        const nameSpan = document.createElement('span');
+        nameSpan.classList.add('file-name');
+        nameSpan.textContent = nombre;
+
+        const btn = document.createElement('button');
+        btn.classList.add('file-remove');
+        btn.setAttribute('aria-label', `Eliminar ${nombre}`);
+        btn.innerHTML = '&times;';
+        btn.addEventListener('click', () => {
+          div.remove();
+          if (contenedorId === 'filesDrop') {
+            removeFromQueue(nombre, fotosQueue);
+          } else {
+            removeFromQueue(nombre, apoyosQueue);
+          }
+          saveQueues();
+        });
+
+        div.append(icon, nameSpan);
+        if (icon.textContent === '🖼️') {
+          const img = document.createElement('img');
+          img.src = '';
+          img.style.maxWidth = '60px';
+          img.style.marginLeft = '0.5rem';
+          div.insertBefore(img, nameSpan);
+        }
+        div.appendChild(btn);
+
+        document.getElementById(contenedorId).appendChild(div);
+      }
+
+      function removeFromQueue(nombre, queueArr) {
+        const idx = queueArr.indexOf(nombre);
+        if (idx > -1) queueArr.splice(idx, 1);
+      }
+
+      async function uploadFile(file, tipo) {
+        const form = new FormData();
+        form.append('nombre', userName);
+        form.append('tipo', tipo);
+        form.append('archivo', file);
+        try {
+          const resp = await fetch('../propiedades/guardar.php?upload=1', {
+            method: 'POST',
+            body: form
+          });
+          const j = await resp.json();
+          if (!j.ok) console.error('Error al subir', j.error);
+        } catch (e) {
+          console.error('Fetch error', e);
+        }
+      }
+
+      async function handleFiles(files, tipo, contenedorId, queueArr, storageKey) {
+        for (const file of files) {
+          if (!queueArr.includes(file.name)) {
+            queueArr.push(file.name);
+            crearVista(file.name, contenedorId);
+            saveQueues();
+            uploadFile(file, tipo);
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        if (fotosQueue.length) fotosQueue.forEach(name => crearVista(name, 'filesDrop'));
+        if (apoyosQueue.length) apoyosQueue.forEach(name => crearVista(name, 'supportFilesDrop'));
+      });
+
+      document.getElementById('fotoLink').onclick = () =>
+        document.getElementById('fotoInput').click();
+      document.getElementById('filesLink').onclick = () =>
+        document.getElementById('filesInput').click();
+
+      document.getElementById('fotoInput').addEventListener('change', e =>
+        handleFiles(e.target.files, 'fotos', 'filesDrop', fotosQueue, STORAGE_FOTOS)
       );
-    });
+      document.getElementById('filesInput').addEventListener('change', e =>
+        handleFiles(e.target.files, 'apoyos', 'supportFilesDrop', apoyosQueue, STORAGE_APOYOS)
+      );
 
-    document.getElementById("fotoLink").addEventListener("click", () => {
-      document.getElementById("fotoInput").click();
-    });
-
-    document.getElementById("filesLink").addEventListener("click", () => {
-      document.getElementById("filesInput").click();
-    });
-
-    document.getElementById("fotoInput").addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        agregarArchivo(file.name, "filesDrop", "fotos");
+      function makeDrop(areaId, tipo, queueArr, storageKey) {
+        const area = document.getElementById(areaId);
+        area.addEventListener('dragover', e => {
+          e.preventDefault();
+          area.style.border = '1px dashed #8DFF00';
+        });
+        area.addEventListener('dragleave', () => {
+          area.style.border = '1px solid #ccc';
+        });
+        area.addEventListener('drop', e => {
+          e.preventDefault();
+          area.style.border = '1px solid #ccc';
+          handleFiles(e.dataTransfer.files, tipo, areaId, queueArr, storageKey);
+        });
       }
-    });
+      makeDrop('filesDrop', 'fotos', fotosQueue, STORAGE_FOTOS);
+      makeDrop('supportFilesDrop', 'apoyos', apoyosQueue, STORAGE_APOYOS);
 
-    document.getElementById("filesInput").addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        agregarArchivo(file.name, "supportFilesDrop", "apoyos");
-      }
-    });
+      // Validación antes de ir a step5.html
+      document.getElementById('nextBtn').addEventListener('click', function (e) {
+        if (fotosQueue.length === 0) {
+          e.preventDefault();
+          alert('Por favor, sube al menos una foto para continuar.');
+        }
+      });
 
-    function agregarArchivo(nombre, contenedorID, storageKey) {
-      const archivos = JSON.parse(sessionStorage.getItem(storageKey)) || [];
-      if (!archivos.includes(nombre)) {
-        archivos.push(nombre);
-        sessionStorage.setItem(storageKey, JSON.stringify(archivos));
-        mostrarArchivo(nombre, contenedorID, storageKey);
-      }
-    }
+      // Envío final de metadatos
+      document.getElementById('btnEnviar').addEventListener('click', async e => {
+        e.preventDefault();
+        const orden = [
+          'nombre', 'dedication', 'prefijo', 'numeroteléfono', 'email',
+          'razon', 'DescribeRazon', 'tipo_propiedad', 'tipovienda', 'direccion',
+          'idea', 'Condición', 'AnoConstruccion', 'mTerreno', 'mConstruccion',
+          'Recamaras', 'Estacionamiento', 'Banos', 'midiobano', 'amenidades',
+          'Precio', 'Moneda'
+        ];
+        const datos = {};
+        for (const key of orden) {
+          const v = sessionStorage.getItem(key);
+          if (v !== null) datos[key] = v;
+        }
+        datos.fotos = fotosQueue;
+        datos.apoyos = apoyosQueue;
 
-    function mostrarArchivo(nombre, contenedorID, storageKey) {
-      const container = document.getElementById(contenedorID);
+        try {
+          const resp = await fetch('../propiedades/guardar.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(datos)
+          });
+          const j = await resp.json();
+          if (j.ok) {
+            alert(`Guardado en propiedades/${j.archivo}`);
+            sessionStorage.clear();
+          } else {
+            throw new Error(j.error);
+          }
+        } catch (err) {
+          console.error(err);
+          alert('Error guardando metadatos.');
+        }
+      });
 
-      const div = document.createElement("div");
-      div.textContent = `Archivo: ${nombre}`;
-      div.style.border = "1px solid #ccc";
-      div.style.padding = "6px";
-      div.style.margin = "4px";
-      div.style.display = "flex";
-      div.style.justifyContent = "space-between";
-      div.style.alignItems = "center";
+      document.getElementById('back').addEventListener('click', () => {
+        window.location.href = 'step3_casa.html';
+      });
+      document.getElementById('next').addEventListener('click', () => {
+        window.location.href = 'step5.html';
+      });
 
-      const btn = document.createElement("button");
-      btn.textContent = "Eliminar";
-      btn.style.marginLeft = "10px";
-      btn.onclick = () => {
-        div.remove();
-        const archivos = JSON.parse(sessionStorage.getItem(storageKey)) || [];
-        const actualizados = archivos.filter((item) => item !== nombre);
-        sessionStorage.setItem(storageKey, JSON.stringify(actualizados));
-      };
-
-      div.appendChild(btn);
-      container.appendChild(div);
-    }
-
-
-    const dropAreaFoto = document.getElementById("filesDrop");
-    dropAreaFoto.addEventListener("dragover", (e) => {
-      e.preventDefault();
-      dropAreaFoto.style.border = "2px dashed #8DFF00";
-    });
-
-    dropAreaFoto.addEventListener("dragleave", () => {
-      dropAreaFoto.style.border = "none";
-    });
-
-    dropAreaFoto.addEventListener("drop", (e) => {
-      e.preventDefault();
-      dropAreaFoto.style.border = "none";
-      const files = e.dataTransfer.files;
-      if (files.length > 0) {
-        const file = files[0];
-        agregarArchivo(file.name, "filesDrop", "fotos");
-      }
-    });
-
-    const dropAreaApoyo = document.getElementById("supportFilesDrop");
-    dropAreaApoyo.addEventListener("dragover", (e) => {
-      e.preventDefault();
-      dropAreaApoyo.style.border = "2px dashed #8DFF00";
-    });
-
-    dropAreaApoyo.addEventListener("dragleave", () => {
-      dropAreaApoyo.style.border = "none";
-    });
-
-    dropAreaApoyo.addEventListener("drop", (e) => {
-      e.preventDefault();
-      dropAreaApoyo.style.border = "none";
-      const files = e.dataTransfer.files;
-      if (files.length > 0) {
-        const file = files[0];
-        agregarArchivo(file.name, "supportFilesDrop", "apoyos");
-      }
-    });
+    })();
   </script>
+
 
   <script src="/form/script.js"></script>
 </body>

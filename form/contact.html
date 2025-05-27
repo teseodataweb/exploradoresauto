@@ -1,286 +1,220 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Inicio Formulario Explorador</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/assets/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-    />
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Inicio Formulario Explorador</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <body class="InicioOver">
-    <div data-layer="contact" class="Contact">
-      <div data-layer="wrapper" class="Wrapper">
-        <div data-layer="header" class="Header">
-          <div data-layer="logo" class="Logo">
-            <div data-layer="datalpine" class="Datalpine">
-              <img
-                data-layer="logo_image"
-                class="LogoImage"
-                src="..\tools\logo.png"
-              />
-              <img
-                data-layer="DatLogo"
-                class="Datlogo"
-                src="..\tools\DatLogo.png"
-              />
-            </div>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+</head>
+
+<body class="InicioOver">
+  <div data-layer="contact" class="Contact">
+    <div data-layer="wrapper" class="Wrapper">
+      <div data-layer="header" class="Header">
+        <div data-layer="logo" class="Logo">
+          <div data-layer="datalpine" class="Datalpine">
+            <img data-layer="logo_image" class="LogoImage" src="..\tools\logo.png" />
+            <img data-layer="DatLogo" class="Datlogo" src="..\tools\DatLogo.png" />
           </div>
-          <a
-            href="https://datalpine.mx/exploradores/"
-            data-layer="Primary BTN"
-            class="PrimaryBtn"
-          >
-            <div data-layer="Button Text" class="ButtonText">Exploradores</div>
-          </a>
         </div>
+        <a href="https://datalpine.mx/exploradores/" data-layer="Primary BTN" class="PrimaryBtn">
+          <div data-layer="Button Text" class="ButtonText">Exploradores</div>
+        </a>
+      </div>
+    </div>
+
+    <div data-layer="contact_form" class="ContactForm">
+      <div data-layer="titulo_form" class="Titulo">Detalles de contacto</div>
+      <div data-layer="advertencia" class="Advertencia">
+        Asegúrese de ingresar todos los detalles, especialmente los
+        obligatorios.
       </div>
 
-      <div data-layer="contact_form" class="ContactForm">
-        <div data-layer="titulo_form" class="Titulo">Detalles de contacto</div>
-        <div data-layer="advertencia" class="Advertencia">
-          Asegúrese de ingresar todos los detalles, especialmente los
-          obligatorios.
+      <form data-layer="contact" class="ContactDiv" action="#">
+        <div data-layer="step" class="Step">
+          <div data-layer="step_1" class="Step2">
+            <div data-layer="nombre" class="Step1">
+              <div data-layer="titulo" class="TituloIcon">
+                <i class="bi bi-person"></i>
+                <div data-layer="titulo_text" class="Nombre">
+                  Nombre completo<samp>*</samp>
+                </div>
+              </div>
+              <div data-layer="input_content" class="InputContent">
+                <input type="text" data-layer="input" id="nombre" class="Input" placeholder="Ingrese su nombre completo"
+                  pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]{3,50}"
+                  title="El nombre debe tener entre 3 y 50 caracteres y solo puede contener letras" minlength="3"
+                  maxlength="50" required />
+              </div>
+            </div>
+            <div data-layer="puesto" class="Step1">
+              <div data-layer="titulo" class="TituloIcon">
+                <i class="bi bi-briefcase"></i>
+                <div data-layer="titulo_text" class="Nombre">
+                  ¿A qué se dedica?<samp>*</samp>
+                </div>
+              </div>
+              <select data-layer="input" id="Dedication" class="InputDedi" required>
+                <option value="">Seleccione una opción</option>
+                <option value="Empleado">Empleado</option>
+                <option value="Empresario">Empresario</option>
+                <option value="Freelancer">Freelancer</option>
+                <option value="Estudiante">Estudiante</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div data-layer="step" class="Step">
+          <div data-layer="step_2" class="Step2">
+            <div data-layer="numero" class="Numero">
+              <div data-layer="titulo" class="TituloIcon">
+                <i class="bi bi-telephone"></i>
+                <div data-layer="titulo_text" class="Nombre">
+                  Número de teléfono<samp>*</samp>
+                </div>
+              </div>
+              <div data-layer="input" class="InputNumber">
+                <br />
+                <input type="text" data-layer="input-lada" id="prefijo" class="InputLada" placeholder="+00" required />
+                <input type="number" data-layer="input-number" id="numerotelefono" class="InputNumberTwo"
+                  placeholder="000 000 0000" required />
+              </div>
+            </div>
+            <div data-layer="correo" class="Correo">
+              <div data-layer="titulo" class="TituloIcon">
+                <i class="bi bi-envelope-at"></i>
+                <div data-layer="titulo_text" class="Nombre">
+                  Correo electrónico<samp>*</samp>
+                </div>
+              </div>
+              <div data-layer="input_content" class="InputContent">
+                <input type="email" data-layer="input" id="email" class="Input"
+                  placeholder="Ingrese su correo electrónico" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                  required />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-layer="step" class="EmpresaIcon">
+          <div data-layer="step_3" class="EmpresaIcon2">
+            <div data-layer="compania" class="EmpresaAlign">
+              <div data-layer="titulo" class="TituloIcon">
+                <i class="bi bi-buildings"></i>
+                <div data-layer="titulo_text" class="Nombre">Empresa</div>
+              </div>
+              <input type="text" data-layer="input" id="empresa" class="Input"
+                placeholder="Ingrese nombre de su compañía" />
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <br />
+      <div data-layer="razon_form" class="RazonForm">
+        <div data-layer="titulo_form" class="Titulo">Razón de solicitud</div>
+        <div data-layer="desc" class="Desc">
+          ¿Cuál es la razón por la que se solicita el explorador?
         </div>
 
-        <form data-layer="contact" class="ContactDiv" action="#">
-          <div data-layer="step" class="Step">
-            <div data-layer="step_1" class="Step2">
-              <div data-layer="nombre" class="Step1">
-                <div data-layer="titulo" class="TituloIcon">
-                  <i class="bi bi-person"></i>
-                  <div data-layer="titulo_text" class="Nombre">
-                    Nombre completo<samp>*</samp>
+        <form class="FormRazon" action="#">
+          <div data-layer="razon" class="Razon">
+            <div data-layer="step" class="StepRazon">
+              <div data-layer="step_1" class="Step1Razon">
+                <div data-layer="razon" class="RazonAlign">
+                  <div class="Step1">
+                    <div data-layer="titulo" class="TituloIcon">
+                      <i class="bi bi-patch-question"></i>
+                      <div data-layer="titulo_text" class="Nombre">
+                        Razón<samp>*</samp>
+                      </div>
+                    </div>
+                    <select data-layer="input" id="razon" class="InputRazon">
+                      <option value="">Seleccione una opción</option>
+                      <option value="Familiar">Familiar</option>
+                      <option value="Venta">Venta</option>
+                      <option value="Servicio">Servicio</option>
+                      <option value="Otro">Otro</option>
+                    </select>
                   </div>
                 </div>
-                <div data-layer="input_content" class="InputContent">
-                  <input
-                    type="text"
-                    data-layer="input"
-                    id="nombre"
-                    class="Input"
-                    placeholder="Ingrese su nombre completo"
-                    pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]{3,50}"
-                    title="El nombre debe tener entre 3 y 50 caracteres y solo puede contener letras"
-                    minlength="3"
-                    maxlength="50"
-                    required
-                  />
-                </div>
               </div>
-              <div data-layer="puesto" class="Step1">
-                <div data-layer="titulo" class="TituloIcon">
-                  <i class="bi bi-briefcase"></i>
-                  <div data-layer="titulo_text" class="Nombre">
-                    ¿A qué se dedica?<samp>*</samp>
-                  </div>
+              <div data-layer="describe" class="Describe">
+                <div data-layer="titulo_text" class="Nombre">Describe</div>
+                <div data-layer="input" class="InputDescribe">
+                  <textarea data-layer="input" id="DescribeRazon" class="TextArea"></textarea>
                 </div>
-                <select
-                  data-layer="input"
-                  id="Dedication"
-                  class="InputDedi"
-                  required
-                >
-                  <option value="">Seleccione una opción</option>
-                  <option value="Empleado">Empleado</option>
-                  <option value="Empresario">Empresario</option>
-                  <option value="Freelancer">Freelancer</option>
-                  <option value="Estudiante">Estudiante</option>
-                  <option value="Otro">Otro</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div data-layer="step" class="Step">
-            <div data-layer="step_2" class="Step2">
-              <div data-layer="numero" class="Numero">
-                <div data-layer="titulo" class="TituloIcon">
-                  <i class="bi bi-telephone"></i>
-                  <div data-layer="titulo_text" class="Nombre">
-                    Número de teléfono<samp>*</samp>
-                  </div>
-                </div>
-                <div data-layer="input" class="InputNumber">
-                  <br />
-                  <input
-                    type="text"
-                    data-layer="input-lada"
-                    id="prefijo"
-                    class="InputLada"
-                    placeholder="+00"
-                    required
-                  />
-                  <input
-                    type="number"
-                    data-layer="input-number"
-                    id="numerotelefono"
-                    class="InputNumberTwo"
-                    placeholder="000 000 0000"
-                    required
-                  />
-                </div>
-              </div>
-              <div data-layer="correo" class="Correo">
-                <div data-layer="titulo" class="TituloIcon">
-                  <i class="bi bi-envelope-at"></i>
-                  <div data-layer="titulo_text" class="Nombre">
-                    Correo electrónico<samp>*</samp>
-                  </div>
-                </div>
-                <div data-layer="input_content" class="InputContent">
-                  <input
-                    type="email"
-                    data-layer="input"
-                    id="email"
-                    class="Input"
-                    placeholder="Ingrese su correo electrónico"
-                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div data-layer="step" class="EmpresaIcon">
-            <div data-layer="step_3" class="EmpresaIcon2">
-              <div data-layer="compania" class="EmpresaAlign">
-                <div data-layer="titulo" class="TituloIcon">
-                  <i class="bi bi-buildings"></i>
-                  <div data-layer="titulo_text" class="Nombre">Empresa</div>
-                </div>
-                <input
-                  type="text"
-                  data-layer="input"
-                  id="empresa"
-                  class="Input"
-                  placeholder="Ingrese nombre de su compañía"
-                />
               </div>
             </div>
           </div>
         </form>
 
-        <br />
-        <div data-layer="razon_form" class="RazonForm">
-          <div data-layer="titulo_form" class="Titulo">Razón de solicitud</div>
-          <div data-layer="desc" class="Desc">
-            ¿Cuál es la razón por la que se solicita el explorador?
-          </div>
-
-          <form class="FormRazon" action="#">
-            <div data-layer="razon" class="Razon">
-              <div data-layer="step" class="StepRazon">
-                <div data-layer="step_1" class="Step1Razon">
-                  <div data-layer="razon" class="RazonAlign">
-                    <div class="Step1">
-                      <div data-layer="titulo" class="TituloIcon">
-                        <i class="bi bi-patch-question"></i>
-                        <div data-layer="titulo_text" class="Nombre">
-                          Razón<samp>*</samp>
-                        </div>
-                      </div>
-                      <select data-layer="input" id="razon" class="InputRazon">
-                        <option value="">Seleccione una opción</option>
-                        <option value="Familiar">Familiar</option>
-                        <option value="Venta">Venta</option>
-                        <option value="Servicio">Servicio</option>
-                        <option value="Otro">Otro</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div data-layer="describe" class="Describe">
-                  <div data-layer="titulo_text" class="Nombre">Describe</div>
-                  <div data-layer="input" class="InputDescribe">
-                    <textarea
-                      data-layer="input"
-                      id="DescribeRazon"
-                      class="TextArea"
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
+        <div data-layer="navigation" class="Navigation3">
+          <a href="inicio.html" data-layer="Secondary BTN" class="SecondaryBtn">
+            <div data-layer="Button Text" class="ButtonTextWhite">
+              Anterior
             </div>
-          </form>
-
-          <div data-layer="navigation" class="Navigation3">
-            <a
-              href="inicio.html"
-              data-layer="Secondary BTN"
-              class="SecondaryBtn"
-            >
-              <div data-layer="Button Text" class="ButtonTextWhite">
-                Anterior
-              </div>
-            </a>
-            <a
-              href="#"
-              data-layer="Primary BTN"
-              id="BtnAdelante"
-              class="PrimaryBtn"
-            >
-              <div data-layer="Button Text" class="ButtonText">Siguiente</div>
-            </a>
-          </div>
-          <div class="espacioabajo"></div>
+          </a>
+          <a href="#" data-layer="Primary BTN" id="BtnAdelante" class="PrimaryBtn">
+            <div data-layer="Button Text" class="ButtonText">Siguiente</div>
+          </a>
         </div>
+        <div class="espacioabajo"></div>
       </div>
     </div>
+  </div>
 
-    <script>
-      // Validaciones
-      document.getElementById("nombre").addEventListener("input", function () {
-        const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]{3,50}$/;
+  <script>
+    // Validaciones
+    document.getElementById("nombre").addEventListener("input", function () {
+      const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]{3,50}$/;
+      this.setCustomValidity(
+        regex.test(this.value)
+          ? ""
+          : "Solo letras, espacios y acentos (mínimo 3 caracteres)"
+      );
+      this.reportValidity();
+    });
+
+    document.getElementById("prefijo").addEventListener("input", function () {
+      this.value = this.value.replace(/\D/g, "").slice(0, 2);
+      this.setCustomValidity(
+        this.value.length === 2 ? "" : "Debe ingresar exactamente 2 dígitos"
+      );
+      this.reportValidity();
+    });
+
+    document
+      .getElementById("numerotelefono")
+      .addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "").slice(0, 10);
         this.setCustomValidity(
-          regex.test(this.value)
+          this.value.length === 10
             ? ""
-            : "Solo letras, espacios y acentos (mínimo 3 caracteres)"
+            : "Debe ingresar exactamente 10 dígitos"
         );
         this.reportValidity();
       });
 
-      document.getElementById("prefijo").addEventListener("input", function () {
-        this.value = this.value.replace(/\D/g, "").slice(0, 2);
-        this.setCustomValidity(
-          this.value.length === 2 ? "" : "Debe ingresar exactamente 2 dígitos"
-        );
-        this.reportValidity();
-      });
+    document.getElementById("email").addEventListener("input", function () {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      this.setCustomValidity(
+        emailRegex.test(this.value)
+          ? ""
+          : "Ingrese un correo electrónico válido"
+      );
+      this.reportValidity();
+    });
+  </script>
 
-      document
-        .getElementById("numerotelefono")
-        .addEventListener("input", function () {
-          this.value = this.value.replace(/\D/g, "").slice(0, 10);
-          this.setCustomValidity(
-            this.value.length === 10
-              ? ""
-              : "Debe ingresar exactamente 10 dígitos"
-          );
-          this.reportValidity();
-        });
+  <script src="/assets/guardado.js"></script>
+</body>
 
-      document.getElementById("email").addEventListener("input", function () {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        this.setCustomValidity(
-          emailRegex.test(this.value)
-            ? ""
-            : "Ingrese un correo electrónico válido"
-        );
-        this.reportValidity();
-      });
-    </script>
-
-    <script src="/assets/guardado.js"></script>
-  </body>
 </html>

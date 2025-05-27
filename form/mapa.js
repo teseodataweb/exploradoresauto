@@ -11,7 +11,6 @@ function iniciarMap() {
   });
 }
 
-// Add an initial request body.
 let request = {
   input: "Tadi",
   locationRestriction: {
@@ -25,9 +24,6 @@ let request = {
   language: "en-US",
   region: "us",
 };
-// Create a session token.
 const token = new AutocompleteSessionToken();
 
-// Add the token to the request.
-// @ts-ignore
 request.sessionToken = token;

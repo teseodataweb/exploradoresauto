@@ -50,7 +50,6 @@ window.addEventListener("DOMContentLoaded", () => {
 function mostrarArchivo(nombre, contenedorId, tipoStorage) {
   const container = document.getElementById(contenedorId);
 
-  // Evita mostrar archivos duplicados visualmente
   const yaExiste = Array.from(container.children).some((child) =>
     child.textContent.includes(nombre)
   );

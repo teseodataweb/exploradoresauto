@@ -264,7 +264,7 @@
                         <div data-layer="badge" class="Badge">
                           <div data-layer="tag" class="Tag">
                             <div data-layer="placeholder" class="PlaceholderT">
-                              <input type="checkbox" name="amenidad_piscina" />
+                              <input type="checkbox" id="amenidad_piscina" name="amenidad_piscina" />
                               <label for="amenidad_piscina">Piscina</label>
                             </div>
                           </div>
@@ -272,7 +272,7 @@
                         <div data-layer="badge" class="Badge">
                           <div data-layer="tag" class="Tag">
                             <div data-layer="placeholder" class="Placeholder">
-                              <input type="checkbox" name="amenidad_jardin" />
+                              <input type="checkbox" id="amenidad_jardin" name="amenidad_jardin" />
                               <label for="amenidad_jardin">Jardín</label>
                             </div>
                           </div>
@@ -281,14 +281,14 @@
                         <div data-layer="badge" class="Badge">
                           <div data-layer="tag" class="Tag">
                             <div data-layer="placeholder" class="Placeholder">
-                              <input type="checkbox" name="amenidad_balcon1" />
+                              <input type="checkbox" id="amenidad_balcon1" name="amenidad_balcon1" />
                               <label for="amenidad_balcon1">Balcón</label>
                             </div>
                           </div>
                           <div data-layer="badge" class="Badge">
                             <div data-layer="tag" class="Tag">
                               <div data-layer="placeholder" class="Placeholder">
-                                <input type="checkbox" name="amenidad_balcon2" />
+                                <input type="checkbox" id="amenidad_balcon2" name="amenidad_balcon2" />
                                 <label for="amenidad_balcon2">Balcón</label>
                               </div>
                             </div>
@@ -332,6 +332,35 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+
+      const amenCheckboxes = document.querySelectorAll("input[type='checkbox'][name^='amenidad_']");
+
+      function saveAmenidades() {
+        const seleccionadas = Array.from(amenCheckboxes)
+          .filter(cb => cb.checked)
+          .map(cb => {
+            const label = document.querySelector(`label[for='${cb.id}']`);
+            return label ? label.textContent.trim() : cb.value || cb.name;
+          });
+        sessionStorage.setItem("amenidades", JSON.stringify(seleccionadas));
+      }
+
+      amenCheckboxes.forEach(cb => cb.addEventListener("change", saveAmenidades));
+
+      const savedAmen = sessionStorage.getItem("amenidades");
+      if (savedAmen) {
+        try {
+          const arr = JSON.parse(savedAmen);
+          amenCheckboxes.forEach(cb => {
+            const label = document.querySelector(`label[for='${cb.id}']`);
+            const text = label ? label.textContent.trim() : cb.value || cb.name;
+            cb.checked = arr.includes(text);
+          });
+        } catch (e) {
+          console.warn("Error parseando amenidades:", e);
+        }
+      }
+
       const formFields = {
         Condicion: document.querySelector(".InputCondi"),
         AnoConstruccion: document.querySelector(".InputLada1[placeholder='0000']"),
@@ -349,45 +378,38 @@
 
       for (const key in formFields) {
         const input = formFields[key];
-        if (input) {
-          input.addEventListener("input", () => {
-            let value = input.value.trim();
+        if (!input) continue;
 
-            if (key === "AnoConstruccion") {
-              value = value.replace(/\D/g, "").slice(0, 4);
-              input.value = value;
-
-              const year = parseInt(value, 10);
-              if (value.length === 4 && (year < 1600 || year > 2025)) {
-                input.setCustomValidity("El año debe estar entre 1600 y 2025");
-                if (anoErrorMsg) anoErrorMsg.style.display = "block";
-              } else {
-                input.setCustomValidity("");
-                if (anoErrorMsg) anoErrorMsg.style.display = "none";
-              }
-            }
-
-            if (key === "Precio") {
-              value = value.replace(/\D/g, "").slice(0, 12);
-              input.value = value;
-              input.setCustomValidity("");
-            }
-
-            if (
-              ["mTerreno", "mConstruccion", "Recamaras", "Estacionamiento", "Banos", "mediobano"].includes(key)
-            ) {
-              value = value.replace(/\D/g, "");
-              input.value = value;
-            }
-
-            sessionStorage.setItem(key, input.value.trim());
-          });
-
-          const storedValue = sessionStorage.getItem(key);
-          if (storedValue) {
-            input.value = storedValue;
-          }
+        const storedValue = sessionStorage.getItem(key);
+        if (storedValue) {
+          input.value = storedValue;
         }
+
+        input.addEventListener("input", () => {
+          let value = input.value.trim();
+
+          if (key === "AnoConstruccion") {
+            value = value.replace(/\D/g, "").slice(0, 4);
+            input.value = value;
+            const year = parseInt(value, 10);
+            if (value.length === 4 && (year < 1600 || year > 2025)) {
+              input.setCustomValidity("El año debe estar entre 1600 y 2025");
+              anoErrorMsg && (anoErrorMsg.style.display = "block");
+            } else {
+              input.setCustomValidity("");
+              anoErrorMsg && (anoErrorMsg.style.display = "none");
+            }
+          } else if (key === "Precio") {
+            value = value.replace(/\D/g, "").slice(0, 12);
+            input.value = value;
+            input.setCustomValidity("");
+          } else if (["mTerreno", "mConstruccion", "Recamaras", "Estacionamiento", "Banos", "mediobano"].includes(key)) {
+            value = value.replace(/\D/g, "");
+            input.value = value;
+          }
+
+          sessionStorage.setItem(key, input.value.trim());
+        });
       }
 
       const nextBtn = document.getElementById("btnSiguiente");
@@ -408,16 +430,19 @@
           if (!allValid) {
             e.preventDefault();
             alert("Por favor, completa todos los campos correctamente.");
-          } else {
-            for (const key in formFields) {
-              const input = formFields[key];
-              sessionStorage.setItem(key, input.value.trim());
-            }
+            return;
+          }
+
+          saveAmenidades();
+
+          for (const key in formFields) {
+            sessionStorage.setItem(key, formFields[key].value.trim());
           }
         });
       }
     });
   </script>
+
 
 
 

@@ -18,9 +18,7 @@ function initAutocomplete() {
   });
   autocomplete.addListener("place_changed", () => {
     const place = autocomplete.getPlace();
-    // Aquí puedes acceder a la información del lugar (place)
     console.log(place);
-    // Puedes actualizar el mapa para mostrar el lugar
   });
 }
 
@@ -28,8 +26,8 @@ function searchNearby(map, center) {
   const placesService = new google.maps.places.PlacesService(map);
   const request = {
     location: center,
-    radius: 500, // Radio de búsqueda
-    types: ["restaurant"], // Ejemplo: restaurantes
+    radius: 500,
+    types: ["restaurant"], 
   };
   placesService.nearbySearch(request, (results, status) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
