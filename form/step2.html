@@ -109,6 +109,13 @@
         </div>
 
 
+
+
+
+
+
+
+
         <br>
 
         <br><br>
@@ -141,6 +148,9 @@
   </div>
   </div>
 
+
+
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     let mapa = L.map('map').setView([20.123, -98.733], 13);
@@ -154,23 +164,21 @@
       if (marcador) {
         mapa.removeLayer(marcador);
       }
-
       marcador = L.marker([lat, lon], { draggable: true }).addTo(mapa);
       marcador.bindPopup(nombre || 'Ubicación seleccionada').openPopup();
 
       marcador.on("dragend", function () {
         const { lat, lng } = marcador.getLatLng();
         fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`)
-          .then(res => res.json())
+          .then(res => {
+            if (!res.ok) throw new Error(`Reverse HTTP ${res.status}`);
+            return res.json();
+          })
           .then(data => {
             const direccion = data.display_name;
             document.getElementById('inputDireccion').value = direccion;
 
-            const nuevaOpcion = {
-              display_name: direccion,
-              lat: lat,
-              lon: lng
-            };
+            const nuevaOpcion = { display_name: direccion, lat, lon: lng };
             const select = document.getElementById('selectSugerencias');
             const option = document.createElement('option');
             option.value = JSON.stringify(nuevaOpcion);
@@ -182,16 +190,28 @@
             sessionStorage.setItem("idea", option.value);
             sessionStorage.setItem("lat", lat);
             sessionStorage.setItem("lon", lng);
-          });
+          })
+          .catch(err => console.error('Reverse Nominatim error:', err));
       });
     }
 
+
     function buscarDireccion() {
-      const input = document.getElementById('inputDireccion').value;
-      const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(input)}`;
+
+      const input = document.getElementById('inputDireccion').value.trim();
+      if (!input) return;
+
+      const url =
+        'https://nominatim.openstreetmap.org/search?format=json' +
+        `&q=${encodeURIComponent(input)}` +
+        '&limit=500' +
+        '&email=alvarezirvingalvarez@gmail.com';
 
       fetch(url)
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error(`Search HTTP ${res.status}`);
+          return res.json();
+        })
         .then(data => {
           const select = document.getElementById('selectSugerencias');
           select.innerHTML = '<option value="">Selecciona una opción...</option>';
@@ -201,7 +221,8 @@
             option.textContent = item.display_name;
             select.appendChild(option);
           });
-        });
+        })
+        .catch(err => console.error('Nominatim search error:', err));
     }
 
     function actualizarMapa() {
@@ -209,12 +230,10 @@
       if (!select.value) return;
 
       const lugar = JSON.parse(select.value);
-
       document.getElementById('inputDireccion').value = lugar.display_name;
       colocarMarcador(lugar.lat, lugar.lon, lugar.display_name);
       mapa.setView([lugar.lat, lugar.lon], 15);
 
-      // Guardar en sessionStorage
       sessionStorage.setItem("direccion", lugar.display_name);
       sessionStorage.setItem("idea", select.value);
       sessionStorage.setItem("lat", lugar.lat);
@@ -228,18 +247,14 @@
 
       btnSiguiente.addEventListener("click", e => {
         e.preventDefault();
-
         const direccion = inputDireccion.value.trim();
         const idea = selectIdea.value;
-
         if (!direccion || idea === "") return;
-
         console.log("Dirección guardada:", direccion);
-
         window.location.href = "step3_casa.html";
       });
 
-      // Restaurar valores guardados
+      // Restaurar desde sessionStorage
       const savedDireccion = sessionStorage.getItem("direccion");
       const savedIdea = sessionStorage.getItem("idea");
       const savedLat = sessionStorage.getItem("lat");
@@ -248,17 +263,16 @@
       if (savedDireccion) {
         inputDireccion.value = savedDireccion;
       }
-
       if (savedIdea) {
         const ideaObj = JSON.parse(savedIdea);
         const option = document.createElement('option');
         option.value = savedIdea;
         option.textContent = ideaObj.display_name;
-        const exists = Array.from(selectIdea.options).some(opt => opt.value === savedIdea);
-        if (!exists) selectIdea.appendChild(option);
+        if (![...selectIdea.options].some(o => o.value === savedIdea)) {
+          selectIdea.appendChild(option);
+        }
         selectIdea.value = savedIdea;
       }
-
       if (savedLat && savedLon) {
         colocarMarcador(savedLat, savedLon, savedDireccion);
         mapa.setView([savedLat, savedLon], 15);
@@ -266,15 +280,15 @@
 
       inputDireccion.addEventListener("input", () => {
         sessionStorage.setItem("direccion", inputDireccion.value);
+        buscarDireccion();
       });
-
       selectIdea.addEventListener("change", () => {
         sessionStorage.setItem("idea", selectIdea.value);
+        actualizarMapa();
       });
-
-      window.direccion = inputDireccion.value;
     });
   </script>
+
 
 
 
