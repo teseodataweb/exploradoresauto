@@ -4,6 +4,60 @@ import numpy as np
 import pandas as pd
 
 class PDF(FPDF):
+
+    def add_property_details(self, image_path, property_data):
+        # Configurar márgenes FIJOS
+        margin = 20
+        self.set_left_margin(margin)
+        self.set_right_margin(margin)
+        self.set_top_margin(20)
+        self.set_auto_page_break(auto=True, margin=20)
+                
+        available_width = self.w - (2 * margin) # ancho disponible respetando márgenes
+        
+        # Proporción de columnas (60% - 40%)
+        left_column_width = available_width * 0.60  
+        right_column_width = available_width * 0.40 
+            
+        initial_y = 85 # Posición Y inicial
+        
+        # Imagen de la propiedad (columna izquierda) - RESPETANDO MÁRGENES
+        image_height = 100
+        self.image(image_path, x=margin, y=initial_y, w=left_column_width - 7, h=image_height)
+        
+        # línea divisoria - POSICIÓN CORRECTA
+        self.set_draw_color(100,149,237)  
+        line_x = margin + left_column_width
+        self.line(line_x, initial_y, line_x, initial_y + image_height)
+        
+        # Detalles de la propiedad (columna derecha) - RESPETANDO MÁRGENES
+        x_second_column = margin + left_column_width + 7        
+        
+        # Ubicación
+        self.set_xy(x_second_column, initial_y)
+        self.set_font('Arial', 'B', 14)
+        self.cell(right_column_width - 10, 10, "Ubicación de la propiedad", 0, 1)        
+        self.set_xy(x_second_column, initial_y + 10)
+        self.set_font('Arial', '', 12)
+        # Usar ancho limitado para multi_cell
+        self.multi_cell(right_column_width - 10, 5, property_data['ubicacion'], 0, 'L')
+        
+        # Valor
+        self.set_xy(x_second_column, initial_y + 35)
+        self.set_font('Arial', 'B', 14)
+        self.cell(right_column_width - 10, 10, "Valor de la Propiedad", 0, 1)        
+        self.set_xy(x_second_column, initial_y + 45)
+        self.set_font('Arial', '', 12)
+        self.cell(right_column_width - 10, 10, f"${property_data['valor']:,}", 0, 1)        
+        
+        # Fecha
+        self.set_xy(x_second_column, initial_y + 60)
+        self.set_font('Arial', 'B', 14)
+        self.cell(right_column_width - 10, 10, "Fecha de entrega", 0, 1)        
+        self.set_xy(x_second_column, initial_y + 70)
+        self.set_font('Arial', '', 12)
+        self.cell(right_column_width - 10, 10, property_data['fecha'], 0, 1)
+        
     def header(self):        
         page_width = self.w
         page_height = self.h
@@ -85,59 +139,6 @@ class PDF(FPDF):
             page_width = self.get_string_width(page_text)
             self.set_x(self.w - margin - page_width)
             self.cell(page_width, 10, page_text, 0, 0, 'R')
-
-    def add_property_details(self, image_path, property_data):
-        # Configurar márgenes FIJOS
-        margin = 20
-        self.set_left_margin(margin)
-        self.set_right_margin(margin)
-        self.set_top_margin(20)
-        self.set_auto_page_break(auto=True, margin=20)
-                
-        available_width = self.w - (2 * margin) # ancho disponible respetando márgenes
-        
-        # Proporción de columnas (60% - 40%)
-        left_column_width = available_width * 0.60  
-        right_column_width = available_width * 0.40 
-            
-        initial_y = 85 # Posición Y inicial
-        
-        # Imagen de la propiedad (columna izquierda) - RESPETANDO MÁRGENES
-        image_height = 100
-        self.image(image_path, x=margin, y=initial_y, w=left_column_width - 7, h=image_height)
-        
-        # línea divisoria - POSICIÓN CORRECTA
-        self.set_draw_color(100,149,237)  
-        line_x = margin + left_column_width
-        self.line(line_x, initial_y, line_x, initial_y + image_height)
-        
-        # Detalles de la propiedad (columna derecha) - RESPETANDO MÁRGENES
-        x_second_column = margin + left_column_width + 7        
-        
-        # Ubicación
-        self.set_xy(x_second_column, initial_y)
-        self.set_font('Arial', 'B', 14)
-        self.cell(right_column_width - 10, 10, "Ubicación de la propiedad", 0, 1)        
-        self.set_xy(x_second_column, initial_y + 10)
-        self.set_font('Arial', '', 12)
-        # Usar ancho limitado para multi_cell
-        self.multi_cell(right_column_width - 10, 5, property_data['ubicacion'], 0, 'L')
-        
-        # Valor
-        self.set_xy(x_second_column, initial_y + 35)
-        self.set_font('Arial', 'B', 14)
-        self.cell(right_column_width - 10, 10, "Valor de la Propiedad", 0, 1)        
-        self.set_xy(x_second_column, initial_y + 45)
-        self.set_font('Arial', '', 12)
-        self.cell(right_column_width - 10, 10, f"${property_data['valor']:,}", 0, 1)        
-        
-        # Fecha
-        self.set_xy(x_second_column, initial_y + 60)
-        self.set_font('Arial', 'B', 14)
-        self.cell(right_column_width - 10, 10, "Fecha de entrega", 0, 1)        
-        self.set_xy(x_second_column, initial_y + 70)
-        self.set_font('Arial', '', 12)
-        self.cell(right_column_width - 10, 10, property_data['fecha'], 0, 1)
     
     def create_price_chart(self, property_value):
         """Crear gráfica de rangos de precios con slider horizontal y precio dinámico"""
@@ -981,7 +982,7 @@ property_data = {
     'condicion': 'Ocupada'
 }
 
-
+pdf.add_property_details('tools/Propiedad.jpg', property_data)
 # Agregar la segunda página
 pdf.add_second_page(property_data)
 # Agregar la tercera página (usando el método correcto)
