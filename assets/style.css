@@ -245,6 +245,34 @@ display: flex;
 flex-direction: column;
 }
 
+
+
+.Step2Mapasa{
+      margin: 0 auto;
+      gap: 80px;
+      align-items: start;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+}
+
+
+
+.InputDirecSelect{
+      width: 225px;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border: 1px #e5e7eb solid;
+      justify-content: space-between;
+      align-items: center;
+      display: inline-flex;
+      }
+
+
+
+
 .TituloText {
 text-align: center;
 color: #170f49;
@@ -308,6 +336,7 @@ background: white;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+gap: 20px;
 }
 
 .FormStep {
@@ -327,12 +356,12 @@ font-size: 32px;
 font-family: DM Sans;
 font-weight: 700;
 line-height: 46px;
-word-wrap: break-word;
 }
 
 
 
 .Desc {
+      margin: 0 auto;
 width: 678px;
 color: #6f6c90;
 font-size: 18px;
@@ -349,7 +378,7 @@ max-width: 698px;
 height: auto;
 padding-left: 10px;
 padding-right: 10px;
-background: white;
+background: rgb(255, 255, 255);
 box-shadow: 0px 6px 54px rgba(20.11, 19.66, 42.5, 0.07);
 border-radius: 34px;
 overflow: hidden;
@@ -381,8 +410,8 @@ display: inline-flex;
 flex-direction: column;
 justify-content: flex-start;
 align-items: center;
-gap: 10px;
-margin-top: 8px;  display: flex;
+margin-bottom: 80px;  
+display: flex;
 }
 
 .Step11 {
@@ -649,7 +678,6 @@ font-size: 18px;
 font-family: DM Sans;
 font-weight: 400;
 text-align: left;
-
 line-height: 30px;
 word-wrap: break-word;
 }
@@ -657,6 +685,7 @@ word-wrap: break-word;
 .TituloTextProp {
 color: #170f49;
 font-size: 24px;
+margin-left: 80px;
 font-family: DM Sans;
 font-weight: 700;
 line-height: 30px;
@@ -697,6 +726,20 @@ transition: border-color 0.2s ease-in-out;
 border: 2px #7021eb solid;
 cursor: pointer;
 }
+
+
+
+
+
+
+.PrecioStep{
+      margin-bottom: 30px;
+      flex-direction: row;
+      display: flex;
+      gap: 10px;
+}
+
+
 
 .Icono {
 width: 66.64px;
@@ -939,7 +982,7 @@ word-wrap: break-word;
 margin: 0 auto;
 align-self: stretch;
 width: 578px;
-height: 300px;
+height: 320px;
 padding-left: 50px;
 padding-right: 50px;
 padding-bottom: 100px;
@@ -1003,6 +1046,7 @@ display: inline-flex;
 }
 
 .Step{
+      margin-top: 18px;
 height: 120px;
 }
 
@@ -1104,6 +1148,20 @@ width: 65px;
 }
 
 
+.InputLada1Ano{
+      width: 30px;
+      padding-left: 6px;
+      padding-right: 6px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-radius: 10px;
+      border: 1px #e5e7eb solid;
+      text-align: center;
+      width: 65px;
+      
+      }
+
+
 .InputNumberTwo{
 width: 90px;
 padding-left: 12px;
@@ -1191,6 +1249,7 @@ justify-content: flex-start;
 align-items: center;
 gap: 15px;
 display: flex;
+margin-top: 20px;
 background-color: white;
 }
 
@@ -1236,6 +1295,9 @@ gap: 4px;
 display: inline-flex;
 }
 
+
+
+
 .TextArea{
 width: 329px;
 height: 76px;
@@ -1279,10 +1341,11 @@ word-wrap: break-word;
 .StepFormMap {
 width: 92%;
 max-width: 698px;
-height: 590px;
+height: auto;
+padding-bottom: 20px;
 padding-left: 10px;
 padding-right: 10px;
-background: white;
+background: rgb(255, 255, 255);
 box-shadow: 0px 6px 54px rgba(20.11, 19.66, 42.5, 0.07);
 border-radius: 34px;
 overflow: hidden;
@@ -1362,7 +1425,7 @@ display: flex;
 }
 
 .InputDirec{
-width: 400px;
+width: 200px;
 padding-left: 12px;
 padding-right: 12px;
 padding-top: 10px;
@@ -1389,14 +1452,14 @@ display: inline-flex;
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 800px;
+    width: 60%;
+    max-width: 700px;
     margin: 0 auto;
     
   }
 
   .IframeMapa {
-    width: 100%;
+    width: 80%;
     height: 230px; 
     border: none; 
   }
@@ -1504,6 +1567,7 @@ color: #6F6C90; font-size: 18px; font-family: DM Sans; font-weight: 400; line-he
 }
 
 .FormStep3 {
+      width: 90%;
 margin-top: 50vh;
 margin: 0 auto;
 width: 100vh;
@@ -1513,15 +1577,20 @@ display: flex;
 }
 
 .Condition{
+
+      width: 36%;
 flex-direction: column; justify-content: center; align-items: flex-start; gap: 4px; display: inline-flex;
-margin-right: 50px;
+margin-left: 180px;
 }
 
 .InputCondi{
-width: 180px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: space-between; align-items: center; display: inline-flex
+
+width: 140px; padding-left: 12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px; border-radius: 43px; border: 1px #E5E7EB solid; justify-content: space-between; align-items: center; display: inline-flex
 }
 
+
 .Ano{
+      width: 80%;
 flex-direction: column; justify-content: center; align-items: center; gap: 4px; display: inline-flex;
 margin-left: 50px;
 
@@ -1564,8 +1633,22 @@ margin-left: 20px;
 flex-direction: column; justify-content: center; align-items: center; gap: 14px; display: inline-flex
 }
 
+
+
+.Step4 {
+      justify-content: center;
+margin-left: -20px;
+  margin-bottom: 100px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+
 .Step4{
-width: 678px; height: 99px; padding-left: 30px; padding-right: 30px; padding-bottom: 10px; justify-content: space-around; align-items: center; display: inline-flex
+      margin: 0 auto;
+      margin-left: 158px;
+width: 678px; height: 99px; padding-left: 30px; padding-right: 30px; padding-bottom: 10px; justify-content: space-around; align-items: center;
 }
 .Ellipse437CompleteYes{
       margin-left:20px;
@@ -1573,7 +1656,7 @@ width: 678px; height: 99px; padding-left: 30px; padding-right: 30px; padding-bot
 }
 
 .Recamaras{
-flex-direction: column; justify-content: center; align-items: center; gap: 15px; display: inline-flex
+flex-direction: column; justify-content: space-between; align-items: center; gap: 15px; display: inline-flex
 }
 
 .TituloR{
@@ -2061,18 +2144,196 @@ border: 8px solid #fff;
 }
 
 
+
+.Step33{
+      margin-right: 190px;
+display: flex;
+flex-direction: row;
+justify-content: center;
+      }
+      
+
+
 /* Ajustes para pantallas más pequeñas */
-@media (max-width: 780px) {
+@media screen and (max-width: 739px) {
 
 .Datlogo{
-      width: 160px;
+      width: 100px;
       height: auto;
+      margin-right: 22px;
 }
       .LogoImage{
-            width: 45px;
-            height: 45px;
-            margin-left: 12px;
+            width: 35px;
+            height: 35px;
+            margin-right: 22px;
       }
+
+
+      .Logo{
+            margin-right: 32px;
+      }
+
+.TituloDiv{
+      width: 70%;
+}
+
+
+
+
+      .Step1{
+      width: 100%;
+      max-width:2000px;
+            margin: 0 auto;
+            margin-top: 10px;
+            
+      }
+
+      .Inicio{
+            width: 100%;
+            height: auto;
+            padding: 0px;
+            margin: 0px;
+
+      }
+
+
+
+
+      .StepForm{
+            width: 150%;
+            max-width: 3000px;
+      }
+
+
+.Step{
+      height: 900px;
+}
+
+
+
+.Step33{
+            text-align: start;
+            flex-direction: column;
+      display: flex;
+      gap: 10px;
+            
+            
+      } 
+      
+      
+      /* 
+      .Condition{
+            margin-right: 195px;
+      
+      } */
+      
+      .ConditioName{
+            margin-right: 65px;
+      }
+      
+      /* .InputCondi{
+          margin-left: 184px;
+            width: 350px;
+            border-radius: 10px;
+      
+      } */
+      
+      .Ano{
+      
+            margin-right: 50px;
+      
+      }
+      
+      /* .InputLada1{
+            text-align: left;
+            width: 52%;
+      } */
+      
+      .AnoCons{
+            margin-right: 165px;
+      }     
+      
+      
+      
+      /* .Step4 {
+            justify-content: center;
+      margin-left: -20px;
+        margin-bottom: 100px;
+        margin-top: -100px;
+        flex-wrap: wrap;
+        gap: 20px;
+      } */
+      
+      .Step4 > .Recamaras {
+            
+        flex: 0 0 calc(40% - 50px); /* Dos por fila, descontando el gap */
+        box-sizing: border-box;     /* Para que padding/margen no rompan el 50% */
+      }
+      
+      /* Opcional: centrar el contenido interno de cada tarjeta */
+      .Step4 > .Recamaras .Titulo,
+      .Step4 > .Recamaras .InputRecamaras {
+        text-align: center;
+      }
+      
+      
+      /* .PrecioStep{
+            margin-bottom: 30px;
+            flex-direction: row;
+            display: flex;
+            gap: 10px;
+            margin-top: -86px;
+      } */
+
+
+
+
+
+
+.RazonForm{
+      width: 98%;
+
+}
+
+.InputDescribe,
+.InputRazon{
+      width: 250px;
+
+}
+
+.StepRazon{
+      margin-top: -20px;
+}
+
+.Razon{
+      
+      width: 80%;
+      height: 300px;
+}
+
+
+
+
+
+.Step4Progreso{
+      margin-left: -20px;
+}
+
+
+
+
+.FormStep3{
+      width: 60%;
+}
+
+
+
+
+
+
+
+
+
 .Wrapper{
        width: 100%;
 }
@@ -2087,15 +2348,62 @@ border: 8px solid #fff;
 
 }
 
+
+
+
+
+.FormDirec{
+      /* overflow: hidden;
+      overflow: auto;
+scrollbar-width: none; */
+      margin: 0 auto;
+      margin-top: 20px;
+      width: 60%;
+      height: auto;
+      text-align: center;
+}
+
+
+.Step2Mapasa{
+      align-items: center;
+      gap: 10px;
+      margin: 0 auto;
+      flex-direction: column;
+}
+
+
+
+.InputDirecSelect{
+      width: 225px;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border: 1px #e5e7eb solid;
+      justify-content: space-between;
+      align-items: center;
+      display: inline-flex;
+      }
+
+
+
+
+
+
   .TituloText, .TituloTextProp {
+      text-align: center;
+      margin-right: 90px;
     font-size: 24px;
     line-height: 32px;
   }
+
+
   
   .Descripcion, .Desc, .DescText {
+      text-align: center;
     font-size: 16px;
     line-height: 24px;
-    width: 100%;
+    width: 80%;
   }
   
   .InputNumber {
@@ -2142,12 +2450,14 @@ border: 8px solid #fff;
 }
 .FormRazon{
          flex-direction: column;
-      width: 58%;
-      border-radius: 20px;
+      width: 100%;
+      border-radius: 12px;
       align-items: center;
       text-align: center;
       height: 44vh;
 }
+
+
 
 
 
@@ -2157,7 +2467,7 @@ border: 8px solid #fff;
       border-radius: 20px;
       align-items: center;
       text-align: center;
-      height: 50vh;
+      height: 450px;
       
 }
 
@@ -2168,9 +2478,10 @@ border: 8px solid #fff;
 }
 
 .Step{
+      margin-top: 0px;
       flex-direction: column;
-      gap: 100px;
-      margin-bottom: 80px;
+      gap: 300px;
+      margin-bottom: 100px;
       
 
 }
@@ -2182,12 +2493,25 @@ border: 8px solid #fff;
 
 }
 
+
+/* .Step2Mapasa{
+      margin-left: 290px;
+      text-align: center;
+      align-items: start;
+      flex-direction: column;
+} */
+
+
 .Step2{
       margin-left: 290px;
       text-align: center;
       align-items: start;
       flex-direction: column;
+      margin-bottom: -50px;
 }
+
+
+
 
 
 .TituloIcon{
@@ -2254,7 +2578,7 @@ border: 8px solid #fff;
 .Inicio{
       overflow-y: visible;
 }
-
+}
 
 
 
@@ -2342,6 +2666,7 @@ align-items: center;
       margin-left: 90px;
       margin-left: 90px;
       width: 100%;
+      margin-bottom: 10px;
 }
 
 .Line{
@@ -2415,7 +2740,7 @@ z-index: 100;
 .Step3Bar {
 width: 45px;
 height: 6px;
-left: 270px;
+left: 260px;
 top: 13.5px;
 position: absolute;
 background: #eff0f6;
@@ -2427,10 +2752,12 @@ border-radius: 40px;
 
 
 
+
+
 .Step1Progreso {
 width: 45px;
 height: 34px;
-left: 0px;
+left: 10px;
 top: 0px;
 position: absolute;
 }
@@ -2441,6 +2768,16 @@ left: 168.09px;
 top: 0px;
 position: absolute;
 }
+
+.Step3Progreso {
+      width: 45px;
+      height: 34px;
+      left: 328px;
+      top: 0px;
+      position: absolute;
+      }
+
+
 .RectangleGreen {
 width: 22px;
 height: 6px;
@@ -2469,7 +2806,7 @@ border-radius: 40px;
 }
 
 .MapaImg{
-      width: 400px;
+      width: 200px;
       height: 230px;
 }
 
@@ -2521,16 +2858,14 @@ border-radius: 40px;
 
 
 
-.FormStep3{
-      width: 90%;
-}
 
-.DescText{
+
+/* .DescText{
 align-items: center;
 justify-content: center;
 text-align: center;
 margin-bottom: 20px;
- }
+ } */
 
  .Progreso33{
       margin-bottom: 18px;
@@ -2546,84 +2881,11 @@ margin-bottom: 20px;
 
 .DescStep{
       width: 50%;
-      margin-left: 178px;
+      margin: 0 auto;
       text-align: start;
 }
 
-.Step33{
 
-      text-align: start;
-      flex-direction: column;
-display: flex;
-gap: 10px;
-      
-      
-}
-
-
-
-.Condition{
-      margin-right: 195px;
-
-}
-
-.ConditioName{
-      margin-right: 65px;
-}
-
-.InputCondi{
-    margin-left: 184px;
-      width: 350px;
-      border-radius: 10px;
-
-}
-
-.Ano{
-
-      margin-right: 50px;
-
-}
-
-.InputLada1{
-      text-align: left;
-      width: 52%;
-}
-
-.AnoCons{
-      margin-right: 165px;
-}     
-
-
-
-.Step4 {
-      justify-content: center;
-margin-left: -20px;
-  margin-bottom: 100px;
-  margin-top: -100px;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.Step4 > .Recamaras {
-      
-  flex: 0 0 calc(40% - 50px); /* Dos por fila, descontando el gap */
-  box-sizing: border-box;     /* Para que padding/margen no rompan el 50% */
-}
-
-/* Opcional: centrar el contenido interno de cada tarjeta */
-.Step4 > .Recamaras .Titulo,
-.Step4 > .Recamaras .InputRecamaras {
-  text-align: center;
-}
-
-
-.PrecioStep{
-      margin-bottom: 30px;
-      flex-direction: row;
-      display: flex;
-      gap: 10px;
-      margin-top: -86px;
-}
 
 .InputPrecio{
       flex-direction: row;
@@ -2635,6 +2897,7 @@ width:50%;
 }
 
 .DescText{
+      margin: 0 auto;
       width: 75%;
 }
 
@@ -2799,6 +3062,29 @@ width: 34px; height: 34px; left: -80px; top: 0px; position: absolute; background
 left: -68px; top: -10px; position: absolute; color: rgb(255, 255, 255); font-size: 16px; font-family: DM Sans; font-weight: 400; line-height: 23px; word-wrap: break-word
 }
 
+.BtnBuscarMapa{
+
+      padding-top: 10px;
+padding-bottom: 11px;
+padding-left: 40px;
+padding-right: 40px;
+background: #7021eb;
+
+box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18);
+border-radius: 8px;
+justify-content: center;
+align-items: center;
+display: flex;
+text-decoration: none;
+}
+
+
+a{
+      text-decoration: none;
+      color: white;
+      font-size: 16px; font-family: DM Sans; 
+}
+
 .FinProgreso{
       margin-bottom: -20px;
 }
@@ -2815,13 +3101,13 @@ cursor: pointer;
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 80%;
     max-width: 800px;
     margin: 0 auto;
   }
 
   .IframeMapa {
-    width: 100%;
+    width: 80%;
     height: 320px; 
     border: none; 
   }
@@ -2841,4 +3127,7 @@ cursor: pointer;
   background-color: #e6f9f0;
 }
 
-}
+
+
+
+

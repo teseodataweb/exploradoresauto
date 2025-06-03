@@ -1,0 +1,21 @@
+{
+    "nombre": "Irving Alvarez Bautista",
+    "prefijo": "32",
+    "numerotelefono": "2345678909",
+    "email": "irving.4tocreativo@gmail.com",
+    "razon": "Venta",
+    "DescribeRazon": "avdfgbsfbdfbgxfxgd ",
+    "tipo_propiedad": "casa",
+    "cp": "43240",
+    "estado": "Hidalgo",
+    "municipio": "Calnali",
+    "localidad": "Papatlatla",
+    "colonia": "Axomol",
+    "numero": "12345",
+    "fotos": [
+        "youtube.png"
+    ],
+    "apoyos": [
+        "CPdescarga.xlsx"
+    ]
+}

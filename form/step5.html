@@ -115,23 +115,39 @@
   <script>
     document.getElementById('btnEnviar').addEventListener('click', async e => {
       e.preventDefault();
-      // En orden:
+
+      // Orden de claves individuales
       const orden = [
         'nombre', 'dedication', 'prefijo', 'numerotelefono', 'email',
-        'razon', 'DescribeRazon', 'tipo_propiedad', 'tipovienda', 'direccion',
-        'idea', 'Condición', 'AnoConstruccion', 'mTerreno', 'mConstruccion',
-        'Recamaras', 'Estacionamiento', 'Banos', 'mediobano', 'amenidades',
-        'Precio', 'Moneda'
+        'razon', 'DescribeRazon', 'tipo_propiedad', 'tipovienda', 'cp',
+        'estado', 'municipio', 'localidad', 'Condición', 'colonia', 'numero',
+        'AnoConstruccion', 'mTerreno', 'mConstruccion', 'Recamaras',
+        'Estacionamiento', 'Banos', 'mediobano', 'amenidades', 'Precio', 'Moneda'
       ];
+
       const datos = {};
+
+      // Leer claves simples desde sessionStorage
       for (const key of orden) {
         const v = sessionStorage.getItem(key);
         if (v !== null) datos[key] = v;
       }
 
+      // Cargar datos combinados desde direccionData (si existen)
+      const direccionData = sessionStorage.getItem("direccionData");
+      if (direccionData) {
+        const parsed = JSON.parse(direccionData);
+        // Sobrescribe o añade claves desde direccionData
+        ['cp', 'estado', 'municipio', 'localidad', 'colonia', 'numero'].forEach(k => {
+          if (parsed[k]) datos[k] = parsed[k];
+        });
+      }
+
+      // Fotos y apoyos
       datos.fotos = JSON.parse(sessionStorage.getItem('fotos') || '[]');
       datos.apoyos = JSON.parse(sessionStorage.getItem('apoyos') || '[]');
 
+      // Enviar al servidor
       try {
         const resp = await fetch('../propiedades/guardar.php', {
           method: 'POST',
@@ -151,6 +167,7 @@
       }
     });
   </script>
+
 
 </body>
 

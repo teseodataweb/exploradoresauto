@@ -2,176 +2,443 @@
 <html lang="es">
 
 <head>
-  <meta charset="utf-8">
-  <title>Mapa con Leaflet + Caché</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Hoja de estilos de Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha512-sA+QoOo3XJ8z6H2IDXCCsL78x4V1WE8+o1KMbjssjtdTkVcq+/jmdU9+wK6MZdYJYZzDN6mWShV0c0U5t6Ucdg=="
-    crossorigin="" />
+  <!-- Fuentes de Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
 
-  <style>
-    html,
-    body,
-    #map {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
+  <!-- Hoja de estilos personalizada -->
+  <link rel="stylesheet" href="/assets/style.css" />
 
-    #controls {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: white;
-      padding: 8px;
-      border-radius: 4px;
-      z-index: 1000;
-    }
-  </style>
+  <!-- OpenLayers CSS -->
+  <link rel="stylesheet" href="https://openlayers.org/en/v6.5.0/css/ol.css" type="text/css">
+
+  <title>Document</title>
+
+  <!-- Scripts necesarios -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <!-- OpenLayers JS -->
+  <script src="https://openlayers.org/en/v6.5.0/build/ol.js"></script>
 </head>
 
 <body>
+  <div data-layer="Step 2" class="Step1Map">
+    <div data-layer="wrapper" class="Wrapper">
+      <div data-layer="header" class="Header">
+        <div data-layer="logo" class="Logo">
+          <div data-layer="datalpine" class="Datalpine">
+            <img data-layer="logo_image" class="LogoImage" src="..\tools\logo.png" />
+            <img data-layer="DatLogo" class="Datlogo" src="..\tools\DatLogo.png" />
+          </div>
+        </div>
+        <a href="https://datalpine.mx/exploradores/" data-layer="Primary BTN" class="PrimaryBtn">
+          <div data-layer="Button Text" class="ButtonText">Exploradores</div>
+        </a>
+      </div>
+    </div>
 
-  <div id="controls">
-    <input id="inputDireccion" type="text" placeholder="Buscar dirección…" size="30">
-    <button onclick="buscarDireccion()">Buscar</button>
-    <select id="selectSugerencias">
-      <option value="">Selecciona una opción…</option>
-    </select>
-    <button id="PrimaryBtn">Siguiente</button>
+    <div class="espacioabajo"></div>
+    <div data-layer="titulo" class="Titulo">Ubicación de la propiedad</div>
+    <div data-layer="desc" class="Desc1">
+      Asegúrese de ingresar todos los detalles, especialmente los obligatorios.
+    </div>
+    <p></p>
+    <div data-layer="step_form" class="StepFormMap ">
+      <div data-layer="progreso" class="Progreso Abajo">
+        <div data-layer="steps" class="Steps">
+          <div data-layer="step1_bar" class="Step1BarComplete">
+            <div data-layer="Rectangle 4357" class="RectangleGreen22"></div>
+          </div>
+          <div data-layer="step2_bar" class="Step2Bar"></div>
+          <div data-layer="step2_bar" class="RectangleGreen2"></div>
+          <div data-layer="step3_bar" class="Step3Bar"></div>
+          <div data-layer="step1_progreso" class="Step1Progreso">
+            <div data-layer="Ellipse 435" class="Ellipse435"></div>
+            <div data-layer="1" class="numberOne">
+              <p>1</p>
+            </div>
+          </div>
+          <div data-layer="step2_progreso" class="Step2Progreso ">
+            <div data-layer="Ellipse 436" class="Ellipse4366 Elipse2Complete"></div>
+            <div data-layer="2" class="numberTwoElipse2C">
+              <p>2</p>
+            </div>
+          </div>
+          <div data-layer="step3_progreso" class="Step3Progreso">
+            <div data-layer="Ellipse 437" class="Ellipse437"></div>
+            <div data-layer="3" class="NumberTree">
+              <p>3</p>
+            </div>
+          </div>
+          <div data-layer="step4_progreso" class="Step4Progreso">
+            <div data-layer="Ellipse 437" class="Ellipse437 FourElipse"></div>
+            <div data-layer="4" class="NumberFourNot">
+              <p>4</p>
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+      <div data-layer="line" class="Line"></div>
+      <div data-layer="titulo_step" class="TituloStepMap">
+        <div data-layer="titulo_step" class="Nombre">
+          <div data-layer="titulo" class="NombreMap">Ubicación</div>
+          <div data-layer="desc" class="TextMap">
+            Ingresar la dirección exacta de la propiedad, utilice el mapa moviendo el pin para indicar la zona exacta
+          </div>
+        </div>
+      </div>
+      <form data-layer="form" class="FormDirec">
+        <br>
+        <div class="Step2Mapasa">
+          <div class="Nombre">
+            <label class="" for="cp">Código postal:</label><br>
+            <input class="InputDirec" type="text" id="cp" name="cp" maxlength="5"><br><br>
+          </div>
+          <div class="Nombre">
+            <label class="" for="estado">Estado:</label><br>
+            <input class="InputDirec" type="text" id="estado" name="estado" disabled><br><br>
+          </div>
+        </div>
+        <div class="Step2Mapasa">
+          <div class="Nombre">
+            <label class="Nombre" for="municipio">Municipio / Alcaldía:</label><br>
+            <input class="InputDirec" type="text" id="municipio" name="municipio" disabled><br><br>
+          </div>
+          <div class="Nombre">
+            <label for="localidad">Localidad:</label><br>
+            <select class="InputDirecSelect" id="localidad" name="localidad">
+              <option value="">Seleccione una localidad</option>
+            </select>
+            <input class="InputDirec" type="text" id="localidad-custom" name="localidad-custom"
+              placeholder="Escriba la localidad" style="display: none;"><br><br>
+          </div>
+        </div>
+        <div class="Step2Mapasa">
+          <div class="Nombre">
+            <label for="colonia">Colonia o barrio:</label><br>
+            <select class="InputDirecSelect" type="text" id="colonia" name="colonia">
+              <option value="">Seleccione una colonia</option>
+            </select>
+            <input class="InputDirec" type="text" id="colonia-custom" name="colonia-custom"
+              placeholder="Escriba la colonia" style="display: none;"><br><br>
+          </div>
+          <div class="Nombre">
+            <label for="numero">Número:</label><br>
+            <input class="InputDirec" type="text" id="numero" name="numero" placeholder="Opcional"><br>
+            <div id="error-message" style="color: red;"></div>
+          </div>
+        </div>
+        <br>
+        <a href="#" id="buscarMapa">Buscar en el mapa</a>
+        <br>
+      </form>
+      <div data-layer="mapa" class="MapaImg">
+        <div data-layer="iframe_mapa" class="IframeMapa" id="map" style="width: 100%; height: 400px;"></div>
+      </div>
+    </div>
+    <div data-layer="navigation" class="Navigation2">
+      <a href="step1.html" data-layer="Secondary BTN" class="SecondaryBtn">
+        <div data-layer="Button Text" class="ButtonTextWhite">Anterior</div>
+      </a>
+      <a href="step4.html" data-layer="Primary BTN" id="PrimaryBtn" class="PrimaryBtn">
+        <div data-layer="Button Text" class="ButtonText">Siguiente</div>
+      </a>
+    </div>
   </div>
 
-  <div id="map"></div>
-
-  <!-- Script de Leaflet -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha512-huTH5Qncgkz6Upk5P0gbpov7Z15jSe6Q7TkZ8/3fkiIY2B9QXa8nTmJW4w2MbNKIJanjb0BU+qIYh8mnM+YdQw=="
-    crossorigin=""></script>
-
-  <!-- Registro del Service Worker -->
+  <!-- Script combinado para manejar el Excel, sessionStorage, mapa y búsqueda -->
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('Service Worker registrado:', reg.scope))
-        .catch(err => console.warn('Error al registrar SW:', err));
+    let cpData = [];
+
+    // Función para mostrar mensajes de error
+    function showError(message) {
+      document.getElementById('error-message').textContent = message;
+      console.error(message);
     }
-  </script>
 
-  <!-- Tu lógica de Leaflet y Nominatim -->
-  <script>
-    let mapa = L.map('map').setView([20.123, -98.733], 13);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(mapa);
+    // Función para limpiar mensajes de error
+    function clearError() {
+      document.getElementById('error-message').textContent = '';
+    }
 
-    let marcador;
+    // Cargar el archivo Excel
+    async function loadExcelFile() {
+      try {
+        const response = await fetch('/assets/CPdescarga.xlsx');
+        if (!response.ok) {
+          throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
+        }
+        const data = await response.arrayBuffer();
+        const workbook = XLSX.read(data, { type: 'array' });
 
-    function colocarMarcador(lat, lon, nombre = "") {
-      if (marcador) mapa.removeLayer(marcador);
+        // Procesar todas las hojas
+        cpData = [];
+        workbook.SheetNames.forEach(sheetName => {
+          const sheet = workbook.Sheets[sheetName];
+          const sheetData = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+          cpData = cpData.concat(sheetData);
+        });
 
-      marcador = L.marker([lat, lon], { draggable: true }).addTo(mapa);
-      marcador.bindPopup(nombre || 'Ubicación seleccionada').openPopup();
+        // Normalizar d_codigo a strings y eliminar espacios
+        cpData = cpData.map(row => ({
+          ...row,
+          d_codigo: row.d_codigo ? String(row.d_codigo).trim() : ''
+        }));
 
-      marcador.on("dragend", () => {
-        const { lat, lng } = marcador.getLatLng();
-        fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`)
-          .then(res => res.json())
-          .then(data => {
-            const direccion = data.display_name;
-            document.getElementById('inputDireccion').value = direccion;
+        console.log('Archivo Excel cargado correctamente, total registros:', cpData.length);
+        clearError();
+      } catch (error) {
+        showError(`Error al cargar el archivo Excel: ${error.message}`);
+      }
+    }
 
-            const nuevaOpcion = { display_name: direccion, lat, lon };
-            const select = document.getElementById('selectSugerencias');
-            const option = document.createElement('option');
-            option.value = JSON.stringify(nuevaOpcion);
-            option.textContent = direccion;
-            select.appendChild(option);
-            select.value = option.value;
+    // Función para actualizar los campos basados en el código postal
+    function updateFields() {
+      clearError();
+      const cp = document.getElementById('cp').value.trim();
+      if (!cp || cpData.length === 0) {
+        showError('Datos no cargados o código postal inválido');
+        return;
+      }
 
-            sessionStorage.setItem("direccion", direccion);
-            sessionStorage.setItem("idea", option.value);
-            sessionStorage.setItem("lat", lat);
-            sessionStorage.setItem("lon", lng);
-          });
+      const matches = cpData.filter(row => row.d_codigo === cp);
+
+      if (matches.length === 0) {
+        alert('Código postal inválido');
+        document.getElementById('estado').value = '';
+        document.getElementById('municipio').value = '';
+        document.getElementById('localidad').innerHTML = '<option value="">Seleccione una localidad</option>';
+        document.getElementById('localidad-custom').style.display = 'none';
+        document.getElementById('localidad-custom').value = '';
+        document.getElementById('colonia').innerHTML = '<option value="">Seleccione una colonia</option>';
+        document.getElementById('colonia-custom').style.display = 'none';
+        document.getElementById('colonia-custom').value = '';
+        return;
+      }
+
+      // Auto-fill Estado y Municipio
+      document.getElementById('estado').value = matches[0].d_estado || '';
+      document.getElementById('municipio').value = matches[0].D_mnpio || '';
+
+      // Localidad: lista de d_ciudad únicas no vacías
+      const localidades = [...new Set(matches.map(row => row.d_ciudad).filter(ciudad => ciudad))];
+      const localidadSelect = document.getElementById('localidad');
+      localidadSelect.innerHTML = '<option value="">Seleccione una localidad</option>';
+      localidades.forEach(localidad => {
+        const option = document.createElement('option');
+        option.value = localidad;
+        option.text = localidad;
+        localidadSelect.appendChild(option);
       });
+      const otherOptionLocalidad = document.createElement('option');
+      otherOptionLocalidad.value = 'other';
+      otherOptionLocalidad.text = 'Otro';
+      localidadSelect.appendChild(otherOptionLocalidad);
+
+      // Colonia: lista de todas las d_asenta
+      const colonias = matches.map(row => row.d_asenta).filter(colonia => colonia);
+      const coloniaSelect = document.getElementById('colonia');
+      coloniaSelect.innerHTML = '<option value="">Seleccione una colonia</option>';
+      colonias.forEach(colonia => {
+        const option = document.createElement('option');
+        option.value = colonia;
+        option.text = colonia;
+        coloniaSelect.appendChild(option);
+      });
+      const otherOptionColonia = document.createElement('option');
+      otherOptionColonia.value = 'other';
+      otherOptionColonia.text = 'Otro';
+      coloniaSelect.appendChild(otherOptionColonia);
     }
 
+    // Inicializar el mapa con OpenLayers
+    var map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([-99.1332, 19.4326]), // Centro inicial: Ciudad de México
+        zoom: 12
+      })
+    });
+
+    // Función para buscar la dirección
     function buscarDireccion() {
-      const input = document.getElementById('inputDireccion').value;
-      const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(input)}`;
-      fetch(url)
-        .then(res => res.json())
+      var cp = document.getElementById('cp').value;
+      var estado = document.getElementById('estado').value;
+      var municipio = document.getElementById('municipio').value;
+      var localidad = document.getElementById('localidad').value === 'other'
+        ? document.getElementById('localidad-custom').value
+        : document.getElementById('localidad').value;
+      var colonia = document.getElementById('colonia').value === 'other'
+        ? document.getElementById('colonia-custom').value
+        : document.getElementById('colonia').value;
+      var numero = document.getElementById('numero').value;
+
+      // Validar campos obligatorios
+      if (!cp || !estado || !municipio) {
+        alert('Por favor, completa los campos obligatorios: Código postal, Estado y Municipio');
+        return;
+      }
+
+      var direccion = [numero, colonia, localidad, municipio, estado, cp, 'México']
+        .filter(Boolean)
+        .join(', ');
+
+      var query = encodeURIComponent(direccion);
+
+      fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
+        .then(response => response.json())
         .then(data => {
-          const select = document.getElementById('selectSugerencias');
-          select.innerHTML = '<option value="">Selecciona una opción…</option>';
-          data.forEach(item => {
-            const option = document.createElement('option');
-            option.value = JSON.stringify(item);
-            option.textContent = item.display_name;
-            select.appendChild(option);
-          });
+          if (data.length > 0) {
+            var lon = parseFloat(data[0].lon);
+            var lat = parseFloat(data[0].lat);
+            var coordinates = ol.proj.fromLonLat([lon, lat]);
+
+            map.getView().setCenter(coordinates);
+            map.getView().setZoom(16);
+
+            var marker = new ol.Feature({
+              geometry: new ol.geom.Point(coordinates)
+            });
+            var vectorSource = new ol.source.Vector({
+              features: [marker]
+            });
+            var markerLayer = new ol.layer.Vector({
+              source: vectorSource,
+              style: new ol.style.Style({
+                image: new ol.style.Icon({
+                  anchor: [0.5, 1],
+                  src: 'https://openlayers.org/en/latest/examples/data/icon.png'
+                })
+              })
+            });
+            // Eliminar capas de marcadores previas
+            map.getLayers().getArray()
+              .filter(layer => layer instanceof ol.layer.Vector)
+              .forEach(layer => map.removeLayer(layer));
+            map.addLayer(markerLayer);
+          } else {
+            alert('No se encontró la dirección');
+          }
+        })
+        .catch(error => {
+          console.error('Error en la geocodificación:', error);
+          alert('Error al buscar la dirección');
         });
     }
 
-    function actualizarMapa() {
-      const select = document.getElementById('selectSugerencias');
-      if (!select.value) return;
-      const lugar = JSON.parse(select.value);
-      document.getElementById('inputDireccion').value = lugar.display_name;
-      colocarMarcador(lugar.lat, lugar.lon, lugar.display_name);
-      mapa.setView([lugar.lat, lugar.lon], 15);
-      sessionStorage.setItem("direccion", lugar.display_name);
-      sessionStorage.setItem("idea", select.value);
-      sessionStorage.setItem("lat", lugar.lat);
-      sessionStorage.setItem("lon", lugar.lon);
-    }
-
+    // Cargar el archivo Excel y configurar event listeners
     document.addEventListener("DOMContentLoaded", () => {
-      const btnSiguiente = document.getElementById("PrimaryBtn");
-      const inputDireccion = document.getElementById("inputDireccion");
-      const selectIdea = document.getElementById("selectSugerencias");
-
-      btnSiguiente.addEventListener("click", e => {
-        e.preventDefault();
-        const direccion = inputDireccion.value.trim();
-        const idea = selectIdea.value;
-        if (!direccion || idea === "") return;
-        window.location.href = "step3_casa.html";
-      });
-
-      // Restaurar sesión
-      const savedDireccion = sessionStorage.getItem("direccion");
-      const savedIdea = sessionStorage.getItem("idea");
-      const savedLat = sessionStorage.getItem("lat");
-      const savedLon = sessionStorage.getItem("lon");
-
-      if (savedDireccion) inputDireccion.value = savedDireccion;
-      if (savedIdea) {
-        const ideaObj = JSON.parse(savedIdea);
-        const option = document.createElement('option');
-        option.value = savedIdea;
-        option.textContent = ideaObj.display_name;
-        if (![...selectIdea.options].some(o => o.value === savedIdea)) {
-          selectIdea.appendChild(option);
+      loadExcelFile().then(() => {
+        const saved = sessionStorage.getItem("direccionData");
+        if (saved) {
+          const data = JSON.parse(saved);
+          document.getElementById("cp").value = data.cp || "";
+          if (data.cp) {
+            document.getElementById("cp").dispatchEvent(new Event("input"));
+            setTimeout(() => {
+              document.getElementById("estado").value = data.estado || "";
+              document.getElementById("municipio").value = data.municipio || "";
+              const localidadSelect = document.getElementById("localidad");
+              if (localidadSelect && data.localidad) {
+                const optionExists = [...localidadSelect.options].some(opt => opt.value === data.localidad);
+                if (optionExists) {
+                  localidadSelect.value = data.localidad;
+                } else {
+                  localidadSelect.value = "other";
+                  document.getElementById("localidad-custom").style.display = "block";
+                  document.getElementById("localidad-custom").value = data.localidad;
+                }
+              }
+              const coloniaSelect = document.getElementById("colonia");
+              if (coloniaSelect && data.colonia) {
+                const optionExists = [...coloniaSelect.options].some(opt => opt.value === data.colonia);
+                if (optionExists) {
+                  coloniaSelect.value = data.colonia;
+                } else {
+                  coloniaSelect.value = "other";
+                  document.getElementById("colonia-custom").style.display = "block";
+                  document.getElementById("colonia-custom").value = data.colonia;
+                }
+              }
+              document.getElementById("numero").value = data.numero || "";
+            }, 500);
+          }
         }
-        selectIdea.value = savedIdea;
-      }
-      if (savedLat && savedLon) {
-        colocarMarcador(savedLat, savedLon, savedDireccion);
-        mapa.setView([savedLat, savedLon], 15);
-      }
-
-      inputDireccion.addEventListener("input", () => {
-        sessionStorage.setItem("direccion", inputDireccion.value);
       });
-      selectIdea.addEventListener("change", () => {
-        sessionStorage.setItem("idea", selectIdea.value);
+
+      // Event listener para actualizar campos cuando se ingresa el CP
+      document.getElementById('cp').addEventListener('input', () => {
+        if (document.getElementById('cp').value.length === 5) {
+          updateFields();
+        } else {
+          document.getElementById('estado').value = '';
+          document.getElementById('municipio').value = '';
+          document.getElementById('localidad').innerHTML = '<option value="">Seleccione una localidad</option>';
+          document.getElementById('localidad-custom').style.display = 'none';
+          document.getElementById('localidad-custom').value = '';
+          document.getElementById('colonia').innerHTML = '<option value="">Seleccione una colonia</option>';
+          document.getElementById('colonia-custom').style.display = 'none';
+          document.getElementById('colonia-custom').value = '';
+          clearError();
+        }
+      });
+
+      // Event listeners para mostrar/ocultar inputs personalizados
+      document.getElementById('localidad').addEventListener('change', function () {
+        const customInput = document.getElementById('localidad-custom');
+        if (this.value === 'other') {
+          customInput.style.display = 'block';
+          customInput.focus();
+        } else {
+          customInput.style.display = 'none';
+          customInput.value = '';
+        }
+      });
+
+      document.getElementById('colonia').addEventListener('change', function () {
+        const customInput = document.getElementById('colonia-custom');
+        if (this.value === 'other') {
+          customInput.style.display = 'block';
+          customInput.focus();
+        } else {
+          customInput.style.display = 'none';
+          customInput.value = '';
+        }
+      });
+
+      // Event listener para guardar datos en sessionStorage al hacer clic en "Siguiente"
+      document.getElementById("PrimaryBtn").addEventListener("click", () => {
+        const direccionData = {
+          cp: document.getElementById("cp").value,
+          estado: document.getElementById("estado").value,
+          municipio: document.getElementById("municipio").value,
+          localidad: document.getElementById("localidad").value === "other"
+            ? document.getElementById("localidad-custom").value
+            : document.getElementById("localidad").value,
+          colonia: document.getElementById("colonia").value === "other"
+            ? document.getElementById("colonia-custom").value
+            : document.getElementById("colonia").value,
+          numero: document.getElementById("numero").value
+        };
+        sessionStorage.setItem("direccionData", JSON.stringify(direccionData));
+      });
+
+      // Event listener para buscar en el mapa
+      document.getElementById('buscarMapa').addEventListener('click', function (event) {
+        event.preventDefault();
+        buscarDireccion();
       });
     });
   </script>
-
 </body>
 
 </html>
