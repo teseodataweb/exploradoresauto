@@ -19,7 +19,7 @@
 </head>
 
 <body>
-  <div data-layer="confirmar" class="Step5">
+  <div data-layer="confirmar" class="Step55">
     <div data-layer="wrapper" class="Wrapper">
       <div data-layer="header" class="Header">
         <div data-layer="logo" class="Logo">
@@ -33,13 +33,13 @@
         </a>
       </div>
     </div>
-    <div data-layer="form_step" class="FormStep1">
+    <div data-layer="form_step" class="FormStep111">
       <div data-layer="titulo" class="Titulo">Confirmar solicitud</div>
-      <div data-layer="desc" class="DescText">
+      <div data-layer="desc" class="DescText  TextWidth">
         ¿Está seguro de realizar el envío de su información?
       </div>
       <div data-layer="step_form" class="StepForm FinForm">
-        <div data-layer="progreso" class="ProgresoConfirm FinProgreso">
+        <div data-layer="progreso" class="ProgresoConfirmYes FinProgreso">
           <div data-layer=" steps" class="Steps">
             <div data-layer="step1_bar" class="Step1BarC"></div>
             <div data-layer="step2_bar" class="Step2BarC"></div>
@@ -116,7 +116,6 @@
     document.getElementById('btnEnviar').addEventListener('click', async e => {
       e.preventDefault();
 
-      // Orden de claves individuales
       const orden = [
         'nombre', 'dedication', 'prefijo', 'numerotelefono', 'email',
         'razon', 'DescribeRazon', 'tipo_propiedad', 'tipovienda', 'cp',
@@ -127,23 +126,30 @@
 
       const datos = {};
 
-      // Leer claves simples desde sessionStorage
+      // Leer claves simples
       for (const key of orden) {
         const v = sessionStorage.getItem(key);
         if (v !== null) datos[key] = v;
       }
 
-      // Cargar datos combinados desde direccionData (si existen)
+      // Leer datos combinados de direccionData
       const direccionData = sessionStorage.getItem("direccionData");
       if (direccionData) {
         const parsed = JSON.parse(direccionData);
-        // Sobrescribe o añade claves desde direccionData
         ['cp', 'estado', 'municipio', 'localidad', 'colonia', 'numero'].forEach(k => {
           if (parsed[k]) datos[k] = parsed[k];
         });
       }
 
-      // Fotos y apoyos
+      // Leer latitud y longitud
+      const mapCoords = sessionStorage.getItem("mapCoords");
+      if (mapCoords) {
+        const { lat, lon } = JSON.parse(mapCoords);
+        datos.latitud = lat;
+        datos.longitud = lon;
+      }
+
+      // Leer fotos y apoyos
       datos.fotos = JSON.parse(sessionStorage.getItem('fotos') || '[]');
       datos.apoyos = JSON.parse(sessionStorage.getItem('apoyos') || '[]');
 
@@ -167,6 +173,7 @@
       }
     });
   </script>
+
 
 
 </body>

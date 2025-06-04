@@ -152,22 +152,18 @@
     </div>
   </div>
 
-  <!-- Script combinado para manejar el Excel, sessionStorage, mapa y búsqueda -->
   <script>
     let cpData = [];
 
-    // Función para mostrar mensajes de error
     function showError(message) {
       document.getElementById('error-message').textContent = message;
       console.error(message);
     }
 
-    // Función para limpiar mensajes de error
     function clearError() {
       document.getElementById('error-message').textContent = '';
     }
 
-    // Cargar el archivo Excel
     async function loadExcelFile() {
       try {
         const response = await fetch('/assets/CPdescarga.xlsx');
@@ -196,7 +192,6 @@
       }
     }
 
-    // Función para actualizar los campos basados en el código postal
     function updateFields() {
       clearError();
       const cp = document.getElementById('cp').value.trim();
@@ -252,7 +247,6 @@
       coloniaSelect.appendChild(otherOptionColonia);
     }
 
-    // Inicializar el mapa con OpenLayers
     var map = new ol.Map({
       target: 'map',
       layers: [
@@ -266,7 +260,6 @@
       })
     });
 
-    // Crear capa vectorial para el marcador
     var vectorSource = new ol.source.Vector();
     var markerLayer = new ol.layer.Vector({
       source: vectorSource,
@@ -279,7 +272,6 @@
     });
     map.addLayer(markerLayer);
 
-    // Función para agregar o mover el marcador
     function addOrMoveMarker(coordinates) {
       vectorSource.clear();
       var marker = new ol.Feature({
@@ -288,19 +280,17 @@
       vectorSource.addFeature(marker);
     }
 
-    // Listener para clics en el mapa
+    // Clic en el mapa: mover marcador (opcional)
     map.on('click', function (event) {
       var coordinates = event.coordinate;
       addOrMoveMarker(coordinates);
     });
 
-    // Hacer el marcador movible
     var translateInteraction = new ol.interaction.Translate({
       features: vectorSource.getFeaturesCollection()
     });
     map.addInteraction(translateInteraction);
 
-    // Función para buscar la dirección
     function buscarDireccion() {
       var cp = document.getElementById('cp').value;
       var estado = document.getElementById('estado').value;
@@ -335,6 +325,9 @@
             map.getView().setCenter(coordinates);
             map.getView().setZoom(16);
             addOrMoveMarker(coordinates);
+
+            // Guardar coordenadas
+            sessionStorage.setItem("mapCoords", JSON.stringify({ lon, lat }));
           } else {
             alert('No se encontró la dirección');
           }
@@ -345,7 +338,6 @@
         });
     }
 
-    // Cargar el archivo Excel y configurar event listeners
     document.addEventListener("DOMContentLoaded", () => {
       loadExcelFile().then(() => {
         const saved = sessionStorage.getItem("direccionData");
@@ -382,6 +374,16 @@
               document.getElementById("numero").value = data.numero || "";
             }, 500);
           }
+        }
+
+        // Restaurar marcador del mapa si hay coordenadas guardadas
+        const savedCoords = sessionStorage.getItem("mapCoords");
+        if (savedCoords) {
+          const { lon, lat } = JSON.parse(savedCoords);
+          const coordinates = ol.proj.fromLonLat([lon, lat]);
+          map.getView().setCenter(coordinates);
+          map.getView().setZoom(16);
+          addOrMoveMarker(coordinates);
         }
       });
 
@@ -445,6 +447,7 @@
       });
     });
   </script>
+
 </body>
 
 </html>

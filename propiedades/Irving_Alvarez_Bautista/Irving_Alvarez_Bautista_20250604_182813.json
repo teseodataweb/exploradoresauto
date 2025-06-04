@@ -1,0 +1,28 @@
+{
+    "nombre": "Irving Alvarez Bautista",
+    "prefijo": "52",
+    "numerotelefono": "7711226366",
+    "email": "irving.4tocreativo@gmail.com",
+    "razon": "Venta",
+    "DescribeRazon": "fcrtsd",
+    "tipo_propiedad": "casa",
+    "mTerreno": "1555",
+    "mConstruccion": "452",
+    "Recamaras": "30",
+    "Estacionamiento": "2",
+    "Banos": "40",
+    "mediobano": "10",
+    "amenidades": "[\"Piscina\",\"Jardín\",\"Balcón\"]",
+    "Precio": "2000020",
+    "cp": "42088",
+    "estado": "Hidalgo",
+    "municipio": "Pachuca de Soto",
+    "localidad": "Pachuca de Soto",
+    "colonia": "El Palmar",
+    "latitud": 20.1119234,
+    "longitud": -98.7718523,
+    "fotos": [
+        "Captura de pantalla 2025-06-04 115902.png"
+    ],
+    "apoyos": []
+}

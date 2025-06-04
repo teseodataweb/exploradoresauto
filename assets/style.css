@@ -284,6 +284,18 @@ word-wrap: break-word;
 padding: 0 20px;
 }
 
+
+.TituloTextIn {
+      text-align: center;
+      color: #170f49;
+      font-size: 40px;
+      font-family: DM Sans;
+      font-weight: 700;
+      line-height: 62px;
+      word-wrap: break-word;
+      padding: 0 20px;
+      }
+
 .Inicio {
 padding: 20px;
 flex-direction: column;
@@ -1122,6 +1134,11 @@ position: relative;
       
 }
 
+.StepTerreno{
+      height: 100px;
+}
+
+
 .InputLada{
 width: 30px;
 padding-left: 6px;
@@ -1406,6 +1423,12 @@ margin-left: 70px;
               line-height: 30px;
               word-wrap: break-word;
 }
+
+
+
+
+
+
 
 .DireccionDiv{
 flex-direction: column;
@@ -1762,6 +1785,14 @@ width: 100%; height: 145vh; padding-bottom: 50px; overflow: hidden; flex-directi
 margin-top: 40px;
 }
 
+.Step55{
+
+      width: 100%; height: 145vh; padding-bottom: 50px; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: center; gap: 50px; display: inline-flex;
+      margin-top: 40px;
+      }
+
+
+
 .FormStepFoto{
 flex-direction: column; justify-content: center; align-items: center; gap: 23px; display: flex; position: relative; top: 93px; z-index: 0;
 }
@@ -1912,6 +1943,18 @@ top: 50px;
 height: 85vh;
 }
 
+
+.FormStep111 {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      position: relative;
+      top: 50px;
+      height: 105vh;
+      }
+
+
 .ProgresoConfirm{
 width: 678px; height: 54px; padding: 10px; flex-direction: column; justify-content: center; align-items: center; gap: 10px;
 margin-top: -25px;
@@ -1919,6 +1962,17 @@ margin-bottom: 10px;
 display: flex;
 
 }
+
+
+
+.ProgresoConfirmYes{
+      
+      width: 678px; height: 54px; padding: 1px; flex-direction: column; justify-content: center; align-items: center; gap: 10px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      display: flex;
+      
+      }
 
 .Step1BarC{
 width: 98.09px; height: 6px; left: 52px; top: 13.50px; position: absolute; background: #7021EB; border-radius: 40px
@@ -2169,6 +2223,22 @@ justify-content: center;
       }
 
 
+      .Step55{
+            width: 100%;
+      }
+
+
+      .FinForm{
+            width: 50%  !important;
+      }
+
+
+.TextWidth{
+      width: 60%;
+      max-width: 200px;
+}
+
+
       .Logo{
             margin-right: 32px;
       }
@@ -2178,6 +2248,20 @@ justify-content: center;
 }
 
 
+    /* cada ítem de archivo */
+    .file-item {
+      display: flex;
+      width: 280px;
+      margin: 0 auto;
+      align-items: center;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.75rem;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
 
 
       .Step1{
@@ -2209,26 +2293,52 @@ justify-content: center;
       height: 900px;
 }
 
+.StepTerreno{
+      height: 160px;
+}
 
 
-.Step33{
+.StepTerreno2{
+      height: 260px;
+}
+
+/* .Step33{
+      margin-left: 120px;
             text-align: start;
             flex-direction: column;
       display: flex;
       gap: 10px;
             
             
+      }  */
+
+
+
+      .Step33{
+            margin-top: 68px;
+            margin-right: -70px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+            }
+            
+
+
+      .InputLada1Ano{
+            margin: 0 auto;
+      }
+      
+      
+      
+      .Condition{
+
+            margin: 0 auto;
       } 
       
-      
-      /* 
-      .Condition{
-            margin-right: 195px;
-      
-      } */
-      
       .ConditioName{
-            margin-right: 65px;
+            width: 100px;
+            margin: 0 auto;
+            margin-left: 22px;
       }
       
       /* .InputCondi{
@@ -2240,6 +2350,7 @@ justify-content: center;
       
       .Ano{
       
+            
             margin-right: 50px;
       
       }
@@ -2249,25 +2360,56 @@ justify-content: center;
             width: 52%;
       } */
       
-      .AnoCons{
-            margin-right: 165px;
-      }     
+      .Amenidades{
+            flex-direction: column; justify-content: center; align-items: center; gap: 4px; display: inline-flex
+            }
+            .Tags{
+                  border: none;
+                  flex-direction: column;
+                  margin: 0 auto;
+                  font-family: DM Sans;
+                  padding: 8px; justify-content: flex-start; align-items: flex-start; gap: 5px; display: flex
+      
+            }
+
+
+.InputContentAme{
+      height: 220px;
+      border: none;
+
+}
+                  
+.Badge{
+      padding: 5px 10px;
+      flex-direction: column;
+}
+
       
       
-      
-      /* .Step4 {
+      .Step4 {
+            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-      margin-left: -20px;
-        margin-bottom: 100px;
-        margin-top: -100px;
-        flex-wrap: wrap;
-        gap: 20px;
-      } */
-      
+            align-items: center;
+            margin-left: -40px;
+            margin-right: auto;
+            margin-bottom: 110px;
+            margin-top: -60px;
+            width: 100%;
+            gap: 30px 26px; /* Espaciado entre columnas y filas */
+          }
+
+
+
+
       .Step4 > .Recamaras {
             
         flex: 0 0 calc(40% - 50px); /* Dos por fila, descontando el gap */
-        box-sizing: border-box;     /* Para que padding/margen no rompan el 50% */
+        box-sizing: border-box;
+        
+        /* Para que 
+        padding/margen no rompan 
+        el 50% */
       }
       
       /* Opcional: centrar el contenido interno de cada tarjeta */
@@ -2397,7 +2539,12 @@ scrollbar-width: none; */
     line-height: 32px;
   }
 
+.TituloTextIn{
+      font-size: 24px;
+    line-height: 32px;
 
+
+}
   
   .Descripcion, .Desc, .DescText {
       text-align: center;
@@ -2897,14 +3044,21 @@ width:50%;
 }
 
 .DescText{
+
       margin: 0 auto;
       width: 75%;
 }
 
 .FormStepFoto{
-      width: 90%;
+      width: 85%;
+      height: 1500px;
+      margin-bottom: 300px;
 }
 
+
+.Step5{
+      height: 1250px;
+}
 
 .NumberFourNotCompleteYes {
 z-index: 100;
@@ -2981,13 +3135,15 @@ word-wrap: break-word;
 } 
 
 .FinForm{
-      width: 56%;
+      margin-top: 20px;
+      width: 85%;
 }
 
 .ModalEn{
       justify-content: center;
       margin: 0 auto;
       width: 80%;
+
 }
 
 .DescTT{
@@ -2997,7 +3153,7 @@ word-wrap: break-word;
 
 
 .Step1BarC{
-width: 45px; height: 6px; left: 126px; top: 13.50px; position: absolute; background: #7021EB; border-radius: 40px
+width: 45px; height: 6px; left: 136px; top: 13.50px; position: absolute; background: #7021EB; border-radius: 40px
 }
 
 
@@ -3007,7 +3163,7 @@ width: 45px; height: 6px; left: 240.09px; top: 13.50px; position: absolute; back
 
 
 .Step3BarC{
-width: 45px; height: 6px; left: 358.18px; top: 13.50px; position: absolute; background: #7021EB; border-radius: 40px
+width: 45px; height: 6px; left: 348.18px; top: 13.50px; position: absolute; background: #7021EB; border-radius: 40px
 }
 
 .Ellipse435Morado{
@@ -3086,7 +3242,7 @@ a{
 }
 
 .FinProgreso{
-      margin-bottom: -20px;
+      margin-bottom: 20px;
 }
 .Tipo1:hover {
 border: 2px #7021eb solid;
