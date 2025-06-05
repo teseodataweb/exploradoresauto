@@ -95,47 +95,56 @@
         <br>
         <div class="Step2Mapasa">
           <div class="Nombre">
-            <label class="" for="cp">Código postal:</label><br>
-            <input class="InputDirec" type="text" id="cp" name="cp" maxlength="5"><br><br>
+            <label class="" for="cp">Código postal:</label><samp>*</samp><br>
+            <input class="InputDirec" type="text" id="cp" name="cp" maxlength="5" placeholder="00000" required><br><br>
           </div>
           <div class="Nombre">
-            <label class="" for="estado">Estado:</label><br>
-            <input class="InputDirec" type="text" id="estado" name="estado" disabled><br><br>
+            <label class="" for="estado">Estado:</label><samp>*</samp><br>
+            <input class="InputDirec" type="text" id="estado" name="estado" disabled required><br><br>
           </div>
         </div>
         <div class="Step2Mapasa">
           <div class="Nombre">
-            <label class="Nombre" for="municipio">Municipio / Alcaldía:</label><br>
-            <input class="InputDirec" type="text" id="municipio" name="municipio" disabled><br><br>
+            <label class="Nombre" for="municipio">Municipio / Alcaldía:</label><samp>*</samp><br>
+            <input class="InputDirec" type="text" id="municipio" name="municipio" disabled required><br><br>
           </div>
           <div class="Nombre">
-            <label for="localidad">Localidad:</label><br>
-            <select class="InputDirecSelect" id="localidad" name="localidad">
+            <label for="localidad">Localidad:</label><samp>*</samp><br>
+            <select class="InputDirecSelect" id="localidad" name="localidad" required>
               <option value="">Seleccione una localidad</option>
             </select>
             <input class="InputDirec" type="text" id="localidad-custom" name="localidad-custom"
-              placeholder="Escriba la localidad" style="display: none;"><br><br>
+              placeholder="Escriba la localidad" style="display: none;" required><br><br>
           </div>
         </div>
         <div class="Step2Mapasa">
           <div class="Nombre">
-            <label for="colonia">Colonia o barrio:</label><br>
-            <select class="InputDirecSelect" type="text" id="colonia" name="colonia">
+            <label for="colonia">Colonia o barrio:</label><samp>*</samp><br>
+            <select class="InputDirecSelect" type="text" id="colonia" name="colonia" required>
               <option value="">Seleccione una colonia</option>
             </select>
             <input class="InputDirec" type="text" id="colonia-custom" name="colonia-custom"
-              placeholder="Escriba la colonia" style="display: none;"><br><br>
+              placeholder="Escriba la colonia" style="display: none;" required><br><br>
           </div>
           <div class="Nombre">
-            <label for="numero">Número:</label><br>
-            <input class="InputDirec" type="text" id="numero" name="numero" placeholder="Opcional"><br>
+            <label for="numero">Número:</label><samp>*</samp><br>
+            <input class="InputDirec" type="text" id="numero" name="numero" placeholder="Ej. 123" required><br>
+            <div id="error-message" style="color: red;"></div><br>
+          </div>
+        </div>
+        <div class="Step2Mapasa">
+          <div class="Nombre" style="width: 100%;">
+            <label for="calle">Calle:</label><samp>*</samp><br>
+            <input class="InputDirec" style="width: 93%;" type="text" id="calle" name="calle" placeholder="Ingrese nombre de la calle" required><br>
             <div id="error-message" style="color: red;"></div>
           </div>
         </div>
         <br>
-
+        
         <a href="#" class="BtnBuscarMapa" id="buscarMapa">Buscar en el mapa</a>
-
+        <div data-layer="desc" class="Desc">
+          <i>Espera a que cargue el mapa para mover el pin</i>
+        </div>
         <br>
       </form>
       <div data-layer="mapa" class="MapaImg">
@@ -236,6 +245,7 @@
       const coloniaSelect = document.getElementById('colonia');
       coloniaSelect.innerHTML = '<option value="">Seleccione una colonia</option>';
       colonias.forEach(colonia => {
+        // Opción por defecto
         const option = document.createElement('option');
         option.value = colonia;
         option.text = colonia;
@@ -302,13 +312,32 @@
         ? document.getElementById('colonia-custom').value
         : document.getElementById('colonia').value;
       var numero = document.getElementById('numero').value;
+      var calle = document.getElementById('calle').value;
 
       if (!cp || !estado || !municipio) {
         alert('Por favor, completa los campos obligatorios: Código postal, Estado y Municipio');
         return;
       }
+      function normalizarTexto(texto) {
+        return texto
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")  // Elimina acentos
+          .replace(/[^\w\s]/gi, '')         // Elimina caracteres especiales
+          .replace(/\s+/g, ' ')             // Sustituye múltiples espacios por uno
+          .trim();
+      }
 
-      var direccion = [numero, colonia, localidad, municipio, estado, cp, 'México']
+      // var direccion = [ calle,numero, colonia, localidad, municipio, estado, cp, 'México']
+      var direccion = [
+       // normalizarTexto(calle), 
+        numero,
+        normalizarTexto(colonia),
+        normalizarTexto(localidad),
+        normalizarTexto(municipio),
+        normalizarTexto(estado),
+        cp,
+        'México'
+      ]
         .filter(Boolean)
         .join(', ');
 
@@ -372,6 +401,7 @@
                 }
               }
               document.getElementById("numero").value = data.numero || "";
+              document.getElementById("calle").value = data.calle || "";
             }, 500);
           }
         }
@@ -436,7 +466,8 @@
           colonia: document.getElementById("colonia").value === "other"
             ? document.getElementById("colonia-custom").value
             : document.getElementById("colonia").value,
-          numero: document.getElementById("numero").value
+          numero: document.getElementById("numero").value,
+          numero: document.getElementById("calle").value
         };
         sessionStorage.setItem("direccionData", JSON.stringify(direccionData));
       });
