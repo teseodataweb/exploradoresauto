@@ -259,7 +259,10 @@ flex-direction: column;
 
 
 .InputDirecSelect{
+      margin-top: 20px;
       width: 225px;
+      border-radius: 30px;
+
       padding-left: 12px;
       padding-right: 12px;
       padding-top: 10px;
@@ -384,6 +387,28 @@ line-height: 30px;
 word-wrap: break-word;
 }
 
+
+.frase{
+      margin: 0 auto;
+      margin-top: -40px;
+      text-align: center;
+font-style: italic;
+font-size: 15px;
+      width: 76%;
+      color: #5f5d6c;
+font-family: DM Sans;
+
+}
+
+
+/* Agrega este CSS a tu archivo styles.css o dentro de <style> en el <head> */
+.input-error {
+  border: 1px solid rgb(255, 87, 87) !important;
+}
+
+
+
+
 .StepForm {
 width: 92%;
 max-width: 698px;
@@ -494,6 +519,9 @@ position: absolute;
 background: #8dff00;
 border-radius: 40px;
 }
+
+
+
 
 .Step2Bar {
 width: 98.09px;
@@ -1036,7 +1064,11 @@ display: inline-flex;
 font-family: DM Sans;
 font-size: 18px;
 font-weight: 500;
+/* padding-bottom: 18px; */
+
 }🎩
+
+
 
 .TextInfo {
 display: flex;
@@ -1260,6 +1292,10 @@ display: flex;
 height: auto;
 }
 
+
+
+
+
 .StepRazon{
 flex-direction: column;
 justify-content: flex-start;
@@ -1448,7 +1484,9 @@ display: flex;
 }
 
 .InputDirec{
+      border-radius: 30px;
 width: 200px;
+margin-top: 20px;
 padding-left: 12px;
 padding-right: 12px;
 padding-top: 10px;
@@ -1591,8 +1629,6 @@ color: #6F6C90; font-size: 18px; font-family: DM Sans; font-weight: 400; line-he
 
 .FormStep3 {
       width: 90%;
-margin-top: 50vh;
-margin: 0 auto;
 width: 100vh;
 flex-direction: column;
 align-items: center;
@@ -1603,7 +1639,12 @@ display: flex;
 
       width: 36%;
 flex-direction: column; justify-content: center; align-items: flex-start; gap: 4px; display: inline-flex;
-margin-left: 180px;
+}
+
+
+
+.Condition2{
+      margin-left: 70px;
 }
 
 .InputCondi{
@@ -1622,6 +1663,11 @@ margin-left: 50px;
 .InputMT{
 border-radius: 10px;
 justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex
+}
+
+
+.InputMT2{
+      margin-top: -24px;
 }
 
 .MTerreno{
@@ -1648,7 +1694,23 @@ border: 1px #e5e7eb solid;
 text-align: center;
 width: 35px;
 
+
 }
+
+
+.InputLada22{
+      margin-top: 24px;
+width: 30px;
+padding-left: 6px;
+padding-right: 6px;
+padding-top: 10px;
+padding-bottom: 10px;
+border-radius: 10px;
+border: 1px #e5e7eb solid;
+text-align: center;
+width: 35px;}
+
+
 
 .MConstruc{
 margin-left: 20px;
@@ -2201,10 +2263,12 @@ border: 8px solid #fff;
 
 .Step33{
       margin-right: 190px;
+      margin: 0 auto;
 display: flex;
 flex-direction: row;
 justify-content: center;
       }
+
       
 
 
@@ -2332,6 +2396,7 @@ justify-content: center;
       
       .Condition{
 
+            
             margin: 0 auto;
       } 
       
@@ -2520,6 +2585,7 @@ scrollbar-width: none; */
       padding-left: 12px;
       padding-right: 12px;
       padding-top: 10px;
+      
       padding-bottom: 10px;
       border: 1px #e5e7eb solid;
       justify-content: space-between;

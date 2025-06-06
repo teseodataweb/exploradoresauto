@@ -101,6 +101,7 @@
           <div class="Nombre">
             <label class="" for="estado">Estado:</label><samp>*</samp><br>
             <input class="InputDirec" type="text" id="estado" name="estado" disabled required><br><br>
+            <span class="error-msg"></span>
           </div>
         </div>
         <div class="Step2Mapasa">
@@ -129,13 +130,14 @@
           <div class="Nombre">
             <label for="numero">Número:</label><samp>*</samp><br>
             <input class="InputDirec" type="text" id="numero" name="numero" placeholder="Ej. 123" required><br>
+            <span class="error-msg"></span>
             <div id="error-message" style="color: red;"></div><br>
           </div>
         </div>
         <div class="Step2Mapasa">
           <div class="Nombre" style="width: 100%;">
             <label for="calle">Calle:</label><samp>*</samp><br>
-            <input class="InputDirec" style="width: 93%;" type="text" id="calle" name="calle" placeholder="Ingrese nombre de la calle" required><br>
+            <input id="calle"  class="InputDirec" style="width: 93%;" type="text" id="calle" name="calle" placeholder="Ingrese nombre de la calle" required><br>
             <div id="error-message" style="color: red;"></div>
           </div>
         </div>
@@ -160,6 +162,203 @@
       </a>
     </div>
   </div>
+
+  
+<script>
+  // Cuando el usuario hace clic en “Siguiente” (PrimaryBtn), validamos todos los campos
+  document.getElementById("PrimaryBtn").addEventListener("click", function (e) {
+    e.preventDefault();
+    
+    // Lista de IDs de campos obligatorios
+    const requiredFields = [
+      "cp",
+      "estado",
+      "municipio",
+      "localidad",
+      "localidad-custom",
+      "colonia",
+      "colonia-custom",
+      "numero",
+      "calle"
+    ];
+    
+    let formIsValid = true;
+    let firstInvalid = null;
+    
+    requiredFields.forEach((fieldId) => {
+      const el = document.getElementById(fieldId);
+      if (!el) return;
+      // Solo validamos si el campo está visible (p. ej. “-custom” podría estar oculto)
+      const style = window.getComputedStyle(el);
+      if (style.display === "none") {
+        // Asegurarnos de ocultar mensaje anterior si se estaba mostrando
+        setErrorMessage(el, "");
+        return;
+      }
+      
+      // Si está vacío o es “seleccione…” (value === "")
+      if (!el.value.trim()) {
+        setErrorMessage(el, "Campo obligatorio");
+        if (!firstInvalid) firstInvalid = el;
+        formIsValid = false;
+      } else {
+        setErrorMessage(el, "");
+      }
+    });
+    
+    // Si hay algún campo inválido, enfocamos el primero y no avanzamos
+    if (!formIsValid) {
+      firstInvalid.focus();
+      return;
+    }
+
+    
+  // Guardar en sessionStorage
+  const direccionData = {
+    cp: document.getElementById("cp").value,
+    estado: document.getElementById("estado").value,
+    municipio: document.getElementById("municipio").value,
+    localidad: document.getElementById("localidad").value === "other"
+      ? document.getElementById("localidad-custom").value
+      : document.getElementById("localidad").value,
+    colonia: document.getElementById("colonia").value === "other"
+      ? document.getElementById("colonia-custom").value
+      : document.getElementById("colonia").value,
+    numero: document.getElementById("numero").value,
+    calle: document.getElementById("calle").value
+  };
+
+  sessionStorage.setItem("direccionData", JSON.stringify(direccionData));
+
+    
+    // Si todos los campos son válidos, redirigimos a la siguiente página
+    window.location.href = "/form/step3_casa.html";
+  });
+</script>
+
+
+
+  <script>
+  // Función auxiliar para mostrar/ocultar mensaje de error bajo cada campo
+  function setErrorMessage(inputElement, message) {
+    let errorSpan = inputElement.nextElementSibling;
+    // Si no existe un <span> de error, crearlo.
+    if (!errorSpan || !errorSpan.classList.contains("error-msg")) {
+      errorSpan = document.createElement("span");
+      errorSpan.classList.add("error-msg");
+      inputElement.parentNode.insertBefore(errorSpan, inputElement.nextSibling);
+    }
+    // Mostrar u ocultar mensaje según corresponda
+    if (message) {
+      errorSpan.textContent = message;
+      errorSpan.style.color = "red";
+      errorSpan.style.fontFamily = "DM Sans, sans-serif";
+      errorSpan.style.fontSize = "0.75rem";
+      errorSpan.style.marginTop = "2px";
+      errorSpan.style.display = "block";
+    } else {
+      errorSpan.textContent = "";
+      errorSpan.style.display = "none";
+    }
+  }
+
+  // Lista de campos que requieren validación de "no vacío"
+  const requiredFields = [
+    "cp",
+    "estado",
+    "municipio",
+    "localidad",
+    "localidad-custom",
+    "colonia",
+    "colonia-custom",
+    "numero",
+    "calle"
+  ];
+
+  // Para cada campo, asociar el evento adecuado y validar cuando el usuario escriba/cambie valor
+  requiredFields.forEach((fieldId) => {
+    const el = document.getElementById(fieldId);
+    if (!el) return;
+
+    // Determinar si es <select> (evento 'change') o <input> (evento 'input')
+    const eventType = el.tagName.toLowerCase() === "select" ? "change" : "input";
+
+    el.addEventListener(eventType, function () {
+      // Si el valor está vacío, se muestra mensaje de "Campo obligatorio"
+      if (this.value.trim() === "") {
+        setErrorMessage(this, "Campo obligatorio");
+      } else {
+        // Si tiene algo, se oculta el mensaje
+        setErrorMessage(this, "");
+      }
+    });
+  });
+
+  // Si el <select> "localidad" o "colonia" cambia a "Otra" o similar y se muestra el campo "-custom",
+  // también necesitamos validar ese campo "custom" cuando sea visible. (Ejemplo genérico:)
+  const selectLocalidad = document.getElementById("localidad");
+  const localidadCustom = document.getElementById("localidad-custom");
+  if (selectLocalidad && localidadCustom) {
+    selectLocalidad.addEventListener("change", function () {
+      if (this.value === "Otra") {
+        localidadCustom.style.display = "block";
+        localidadCustom.setAttribute("required", "required");
+      } else {
+        localidadCustom.style.display = "none";
+        localidadCustom.value = "";
+        setErrorMessage(localidadCustom, "");
+        localidadCustom.removeAttribute("required");
+      }
+    });
+  }
+
+  const selectColonia = document.getElementById("colonia");
+  const coloniaCustom = document.getElementById("colonia-custom");
+  if (selectColonia && coloniaCustom) {
+    selectColonia.addEventListener("change", function () {
+      if (this.value === "Otra") {
+        coloniaCustom.style.display = "block";
+        coloniaCustom.setAttribute("required", "required");
+      } else {
+        coloniaCustom.style.display = "none";
+        coloniaCustom.value = "";
+        setErrorMessage(coloniaCustom, "");
+        coloniaCustom.removeAttribute("required");
+      }
+    });
+  }
+
+  // Validación al intentar desplegar el mapa (o enviar el formulario)
+  document.getElementById("buscarMapa").addEventListener("click", function (e) {
+    let formIsValid = true;
+    // Para cada campo requerido, si está vacío, mostrar error y evitar avanzar
+    requiredFields.forEach((fieldId) => {
+      const el = document.getElementById(fieldId);
+      if (!el) return;
+      // Solo validar si el campo está visible (display !== "none")
+      const style = window.getComputedStyle(el);
+      if (style.display === "none") return;
+
+      if (el.value.trim() === "") {
+        setErrorMessage(el, "Campo obligatorio");
+        if (formIsValid) {
+          // Enfocar el primer campo inválido
+          el.focus();
+        }
+        formIsValid = false;
+      }
+    });
+
+    if (!formIsValid) {
+      e.preventDefault();
+      return;
+    }
+
+    // Si todos los campos obligatorios están completos, sigue con la lógica de buscar en el mapa
+    // (por ejemplo, cargar el mapa, centrar el pin, etc.)
+  });
+</script>
+
 
   <script>
     let cpData = [];
@@ -221,6 +420,8 @@
         document.getElementById('colonia').innerHTML = '<option value="">Seleccione una colonia</option>';
         document.getElementById('colonia-custom').style.display = 'none';
         document.getElementById('colonia-custom').value = '';
+        document.getElementById('numero').value = '';
+        document.getElementById('calle').value = '';
         return;
       }
 
@@ -255,7 +456,12 @@
       otherOptionColonia.value = 'other';
       otherOptionColonia.text = 'Otro';
       coloniaSelect.appendChild(otherOptionColonia);
+
     }
+
+
+
+
 
     var map = new ol.Map({
       target: 'map',
@@ -327,47 +533,104 @@
           .trim();
       }
 
-      // var direccion = [ calle,numero, colonia, localidad, municipio, estado, cp, 'México']
-      var direccion = [
-       // normalizarTexto(calle), 
-        numero,
-        normalizarTexto(colonia),
-        normalizarTexto(localidad),
-        normalizarTexto(municipio),
-        normalizarTexto(estado),
-        cp,
-        'México'
-      ]
+      
+
+var direccion = [
+  normalizarTexto(calle), 
+  numero,
+  normalizarTexto(colonia),
+  normalizarTexto(localidad),
+  normalizarTexto(municipio),
+  normalizarTexto(estado),
+  cp,
+  'México'
+]
+
         .filter(Boolean)
         .join(', ');
 
-      var query = encodeURIComponent(direccion);
 
-      fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
-        .then(response => response.json())
-        .then(data => {
-          if (data.length > 0) {
-            var lon = parseFloat(data[0].lon);
-            var lat = parseFloat(data[0].lat);
-            var coordinates = ol.proj.fromLonLat([lon, lat]);
 
-            map.getView().setCenter(coordinates);
-            map.getView().setZoom(16);
-            addOrMoveMarker(coordinates);
+         // Construir la dirección sin calle
+  var direccionSinCalle = [
+    numero,
+    normalizarTexto(colonia),
+    normalizarTexto(localidad),
+    normalizarTexto(municipio),
+    normalizarTexto(estado),
+    cp,
+    'México'
+  ].filter(Boolean).join(', ');
 
-            // Guardar coordenadas
-            sessionStorage.setItem("mapCoords", JSON.stringify({ lon, lat }));
-          } else {
-            alert('No se encontró la dirección');
-          }
-        })
-        .catch(error => {
-          console.error('Error en la geocodificación:', error);
-          alert('Error al buscar la dirección');
-        });
-    }
+
+  
+
+       // Construir la dirección sin calle
+  var direccionSinCalle = [
+    numero,
+    normalizarTexto(colonia),
+    normalizarTexto(localidad),
+    normalizarTexto(municipio),
+    normalizarTexto(estado),
+    cp,
+    'México'
+  ].filter(Boolean).join(', ');
+
+  // Intentar buscar con calle primero
+  buscarConDireccion(direccionConCalle)
+    .then(data => {
+      if (data.length > 0) {
+        return data;
+      } else {
+        // Si no encontró, buscar sin calle
+        return buscarConDireccion(direccionSinCalle);
+      }
+    })
+    .then(data => {
+      if (data.length > 0) {
+        var lon = parseFloat(data[0].lon);
+        var lat = parseFloat(data[0].lat);
+        var coordinates = ol.proj.fromLonLat([lon, lat]);
+
+        map.getView().setCenter(coordinates);
+        map.getView().setZoom(16);
+        addOrMoveMarker(coordinates);
+
+        // Guardar coordenadas
+        sessionStorage.setItem("mapCoords", JSON.stringify({ lon, lat }));
+      } else {
+        alert('No se encontró la dirección');
+      }
+    })
+    .catch(error => {
+      console.error('Error en la geocodificación:', error);
+      alert('Error al buscar la dirección');
+    });
+}
 
     document.addEventListener("DOMContentLoaded", () => {
+
+
+      const campos = ['calle', 'numero', 'colonia', 'localidad', 'municipio', 'estado', 'cp'];
+
+campos.forEach(campo => {
+  const input = document.getElementById(campo);
+  if (input) {
+    // Cargar datos desde sessionStorage si existen
+    const valorGuardado = sessionStorage.getItem(campo);
+    if (valorGuardado) {
+      input.value = valorGuardado;
+    }
+
+    // Escuchar cambios en los inputs para guardar en sessionStorage
+    input.addEventListener('input', () => {
+      sessionStorage.setItem(campo, input.value.trim());
+    });
+  }
+});
+
+
+
       loadExcelFile().then(() => {
         const saved = sessionStorage.getItem("direccionData");
         if (saved) {
@@ -416,7 +679,7 @@
           addOrMoveMarker(coordinates);
         }
       });
-
+      
       document.getElementById('cp').addEventListener('input', () => {
         if (document.getElementById('cp').value.length === 5) {
           updateFields();
@@ -429,6 +692,8 @@
           document.getElementById('colonia').innerHTML = '<option value="">Seleccione una colonia</option>';
           document.getElementById('colonia-custom').style.display = 'none';
           document.getElementById('colonia-custom').value = '';
+        document.getElementById('numero').value = '';
+        document.getElementById('calle').value = '';
           clearError();
         }
       });
@@ -455,22 +720,8 @@
         }
       });
 
-      document.getElementById("PrimaryBtn").addEventListener("click", () => {
-        const direccionData = {
-          cp: document.getElementById("cp").value,
-          estado: document.getElementById("estado").value,
-          municipio: document.getElementById("municipio").value,
-          localidad: document.getElementById("localidad").value === "other"
-            ? document.getElementById("localidad-custom").value
-            : document.getElementById("localidad").value,
-          colonia: document.getElementById("colonia").value === "other"
-            ? document.getElementById("colonia-custom").value
-            : document.getElementById("colonia").value,
-          numero: document.getElementById("numero").value,
-          numero: document.getElementById("calle").value
-        };
-        sessionStorage.setItem("direccionData", JSON.stringify(direccionData));
-      });
+
+
 
       document.getElementById('buscarMapa').addEventListener('click', function (event) {
         event.preventDefault();

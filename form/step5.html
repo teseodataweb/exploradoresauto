@@ -112,67 +112,113 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById('btnEnviar').addEventListener('click', async e => {
-      e.preventDefault();
 
-      const orden = [
-        'nombre', 'dedication', 'prefijo', 'numerotelefono', 'email',
-        'razon', 'DescribeRazon', 'tipo_propiedad', 'tipovienda', 'cp',
-        'estado', 'municipio', 'localidad', 'Condición', 'colonia', 'numero',
-        'AnoConstruccion', 'mTerreno', 'mConstruccion', 'Recamaras',
-        'Estacionamiento', 'Banos', 'mediobano', 'amenidades', 'Precio', 'Moneda'
-      ];
 
-      const datos = {};
+  <style>
+  .swal2-popup {
+    border-radius: 20px !important;
+    font-family: 'DM Sans', sans-serif !important;
+  }
 
-      // Leer claves simples
-      for (const key of orden) {
-        const v = sessionStorage.getItem(key);
-        if (v !== null) datos[key] = v;
-      }
+  .swal2-title {
+    font-weight: 700;
+  }
 
-      // Leer datos combinados de direccionData
-      const direccionData = sessionStorage.getItem("direccionData");
-      if (direccionData) {
-        const parsed = JSON.parse(direccionData);
-        ['cp', 'estado', 'municipio', 'localidad', 'colonia', 'numero'].forEach(k => {
-          if (parsed[k]) datos[k] = parsed[k];
+  .swal2-html-container {
+    font-weight: 400;
+  }
+
+  .swal2-confirm {
+    border-radius: 8px !important;
+    padding: 10px 20px;
+    font-family: 'DM Sans', sans-serif;
+  }
+</style>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+ <script>
+  document.getElementById('btnEnviar').addEventListener('click', async e => {
+    e.preventDefault();
+
+    const orden = [
+      'nombre', 'Dedication', 'prefijo', 'numerotelefono', 'email',
+      'razon', 'DescribeRazon', 'tipo_propiedad', 'tipovienda', 'cp',
+      'estado', 'municipio', 'localidad', 'Condición', 'EstadoCasa', 'colonia', 'numero',
+      'AnoConstruccion', 'mTerreno', 'mConstruccion', 'Recamaras',
+      'Estacionamiento', 'Banos', 'mediobano', 'amenidades', 'Precio', 'Moneda'
+    ];
+
+    const datos = {};
+
+    for (const key of orden) {
+      const v = sessionStorage.getItem(key);
+      if (v !== null) datos[key] = v;
+    }
+
+    const direccionData = sessionStorage.getItem("direccionData");
+    if (direccionData) {
+      const parsed = JSON.parse(direccionData);
+      ['cp', 'estado', 'municipio', 'localidad', 'colonia', 'numero', 'calle'].forEach(k => {
+        if (parsed[k]) datos[k] = parsed[k];
+      });
+    }
+
+    const mapCoords = sessionStorage.getItem("mapCoords");
+    if (mapCoords) {
+      const { lat, lon } = JSON.parse(mapCoords);
+      datos.latitud = lat;
+      datos.longitud = lon;
+    }
+
+    datos.fotos = JSON.parse(sessionStorage.getItem('fotos') || '[]');
+    datos.apoyos = JSON.parse(sessionStorage.getItem('apoyos') || '[]');
+
+    try {
+      const resp = await fetch('../propiedades/guardar.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos)
+      });
+      const j = await resp.json();
+
+      if (j.ok) {
+        await Swal.fire({
+          icon: 'success',
+          title: '¡Guardado exitosamente!',
+          text: `Guardado en propiedades/${j.archivo}`,
+          confirmButtonText: 'OK',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
         });
+        sessionStorage.clear();
+        window.location.href = "/form/step6.html";
+      } else {
+        throw new Error(j.error);
       }
-
-      // Leer latitud y longitud
-      const mapCoords = sessionStorage.getItem("mapCoords");
-      if (mapCoords) {
-        const { lat, lon } = JSON.parse(mapCoords);
-        datos.latitud = lat;
-        datos.longitud = lon;
-      }
-
-      // Leer fotos y apoyos
-      datos.fotos = JSON.parse(sessionStorage.getItem('fotos') || '[]');
-      datos.apoyos = JSON.parse(sessionStorage.getItem('apoyos') || '[]');
-
-      // Enviar al servidor
-      try {
-        const resp = await fetch('../propiedades/guardar.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(datos)
-        });
-        const j = await resp.json();
-        if (j.ok) {
-          alert(`Guardado en propiedades/${j.archivo}`);
-          sessionStorage.clear();
-        } else {
-          throw new Error(j.error);
+    } catch (err) {
+      console.error(err);
+      await Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Error guardando metadatos.',
+        confirmButtonText: 'OK',
+        showClass: {
+          popup: 'animate__animated animate__shakeX'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
         }
-      } catch (err) {
-        console.error(err);
-        alert('Error guardando metadatos.');
-      }
-    });
-  </script>
+      });
+    }
+  });
+</script>
 
 
 

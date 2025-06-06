@@ -122,12 +122,33 @@
               </div>
               <select data-layer="condicion" class="InputCondi">
                 <option value="">Seleccione</option>
-                <option value="Buena">Buena</option>
-                <option value="Excelente">Excelente</option>
+                <option value="Nueva">Nueva</option>
+                <option value="Usada">Usada</option>
                 <option value="Construcción">En construcción</option>
-                <option value="">Seleccione</option>
-              </select>
+              </select>              
             </div>
+
+
+
+<div data-layer="condition" class="Condition  Condition2">
+              <div data-layer="titulo" class="Titulo">
+                <div data-layer="titulo_text" class="Nombre ConditioName">
+                  Estado<samp>*</samp>
+                </div>
+              </div>
+              <select name="estado" id="EstadoCasa" data-layer="condicion" class="InputCondi">
+                <option value="">Seleccione</option>
+                <option value="Venta">Venta</option>
+                <option value="Renta">Renta</option>
+               
+              </select>              
+            </div>
+
+            
+
+
+
+
 
             <div data-layer="ano" class="Ano">
               <div data-layer="titulo" class="Titulo">
@@ -136,7 +157,9 @@
                 </div>
               </div>
               <input type="text" data-layer="input-año" class="InputLada1Ano" placeholder="0000" required />
-              <small id="anoErrorMsg" style="color: red; display: none;">El año debe estar entre 1600 y 2025</small>
+             <span id="anoErrorMsg" style="display:none; borde-color:red;">
+</span>
+
 
             </div>
           </div>
@@ -160,8 +183,8 @@
                 </div>
               </div>
 
-              <div data-layer="input">
-                <input type="number" data-layer="input-construccion" class="InputLada2" placeholder="0" required />
+              <div  class="InputMT2" data-layer="input">
+                <input type="number" data-layer="input-construccion" class="InputLada22" placeholder="0" required />
               </div>
             </div>
           </div>
@@ -252,6 +275,17 @@
             </div>
           </div>
 
+
+          <style>
+  .input-error {
+    border: 1px solid rgb(255, 74, 74) !important;
+    border-radius: 10px;
+  }
+</style>
+
+
+
+
           <div data-layer="step" class="StepTerreno2">
             <div data-layer="amenidades" class="Amenidades">
               <div data-layer="titulo" class="Titulo">
@@ -327,125 +361,186 @@
         <a href="/form/step2.html" data-layer="Secondary BTN" class="SecondaryBtn">
           <div data-layer="Button Text" class="ButtonTextWhite">Anterior</div>
         </a>
-        <a href="/form/step4.html" data-layer="Primary BTN" id="btnSiguiente" class="PrimaryBtn">
+        <a href="#" data-layer="Primary BTN" id="btnSiguiente" class="PrimaryBtn">
           <div data-layer="Button Text" class="ButtonText">Siguiente</div>
         </a>
       </div>
     </div>
   </div>
+  
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
 
-      const amenCheckboxes = document.querySelectorAll("input[type='checkbox'][name^='amenidad_']");
 
-      function saveAmenidades() {
-        const seleccionadas = Array.from(amenCheckboxes)
-          .filter(cb => cb.checked)
-          .map(cb => {
-            const label = document.querySelector(`label[for='${cb.id}']`);
-            return label ? label.textContent.trim() : cb.value || cb.name;
-          });
-        sessionStorage.setItem("amenidades", JSON.stringify(seleccionadas));
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const amenCheckboxes = document.querySelectorAll("input[type='checkbox'][name^='amenidad_']");
+
+    function saveAmenidades() {
+      const seleccionadas = Array.from(amenCheckboxes)
+        .filter(cb => cb.checked)
+        .map(cb => {
+          const label = document.querySelector(`label[for='${cb.id}']`);
+          return label ? label.textContent.trim() : cb.value || cb.name;
+        });
+      sessionStorage.setItem("amenidades", JSON.stringify(seleccionadas));
+    }
+
+    amenCheckboxes.forEach(cb => cb.addEventListener("change", saveAmenidades));
+
+    const savedAmen = sessionStorage.getItem("amenidades");
+    if (savedAmen) {
+      try {
+        const arr = JSON.parse(savedAmen);
+        amenCheckboxes.forEach(cb => {
+          const label = document.querySelector(`label[for='${cb.id}']`);
+          const text = label ? label.textContent.trim() : cb.value || cb.name;
+          cb.checked = arr.includes(text);
+        });
+      } catch (e) {
+        console.warn("Error parseando amenidades:", e);
       }
+    }
 
-      amenCheckboxes.forEach(cb => cb.addEventListener("change", saveAmenidades));
+    const formFields = {
+      Estado: document.querySelector("select[name='estado']"),
+      Condicion: document.querySelector(".InputCondi"),
+      AnoConstruccion: document.querySelector("input[data-layer='input-año']"),
+      mTerreno: document.querySelector("input[data-layer='input-terreno']"),
+      mConstruccion: document.querySelector("input[data-layer='input-construccion']"),
+      Recamaras: document.querySelectorAll("input.InputNumberC")[0],
+      Estacionamiento: document.querySelectorAll("input.InputNumberC")[1],
+      Banos: document.querySelectorAll("input.InputNumberC")[2],
+      mediobano: document.querySelectorAll("input.InputNumberC")[3],
+      Precio: document.querySelector("input[data-layer='input-precio']"),
+      Moneda: document.querySelector("select[data-layer='input']")
+    };
 
-      const savedAmen = sessionStorage.getItem("amenidades");
-      if (savedAmen) {
-        try {
-          const arr = JSON.parse(savedAmen);
-          amenCheckboxes.forEach(cb => {
-            const label = document.querySelector(`label[for='${cb.id}']`);
-            const text = label ? label.textContent.trim() : cb.value || cb.name;
-            cb.checked = arr.includes(text);
-          });
-        } catch (e) {
-          console.warn("Error parseando amenidades:", e);
+    const opcionales = ["Estacionamiento", "mediobano"];
+
+    // Nuevo: Referencia al select EstadoCasa
+    const estadoCasaSelect = document.getElementById("EstadoCasa");
+
+    // Cargar valor guardado para EstadoCasa si existe
+    const savedEstadoCasa = sessionStorage.getItem("EstadoCasa");
+    if (savedEstadoCasa) {
+      estadoCasaSelect.value = savedEstadoCasa;
+    }
+
+    // Guardar EstadoCasa al cambiar valor
+    estadoCasaSelect.addEventListener("change", () => {
+      sessionStorage.setItem("EstadoCasa", estadoCasaSelect.value);
+    });
+
+    for (const key in formFields) {
+      const input = formFields[key];
+      if (!input) continue;
+
+      const storedValue = sessionStorage.getItem(key);
+      if (storedValue) input.value = storedValue;
+
+      input.addEventListener("input", () => {
+        let value = input.value.trim();
+
+        if (key === "AnoConstruccion") {
+          value = value.replace(/\D/g, "").slice(0, 4);
+          input.value = value;
+          const year = parseInt(value, 10);
+          if (value.length === 4 && year >= 1800 && year <= 2025) {
+            input.classList.remove("input-error");
+          } else {
+            input.classList.add("input-error");
+          }
+        } else if (key === "Precio") {
+          value = value.replace(/\D/g, "").slice(0, 12);
+          input.value = value;
+          const price = parseInt(value, 10);
+          if (price >= 200) {
+            input.classList.remove("input-error");
+          } else {
+            input.classList.add("input-error");
+          }
+        } else if (["mTerreno", "mConstruccion", "Recamaras", "Estacionamiento", "Banos", "mediobano"].includes(key)) {
+          value = value.replace(/\D/g, "");
+          input.value = value;
         }
-      }
 
-      const formFields = {
-        Condicion: document.querySelector(".InputCondi"),
-        AnoConstruccion: document.querySelector(".InputLada1[placeholder='0000']"),
-        mTerreno: document.querySelector("input[data-layer='input-terreno']"),
-        mConstruccion: document.querySelector("input[data-layer='input-construccion']"),
-        Recamaras: document.querySelectorAll("input.InputNumberC")[0],
-        Estacionamiento: document.querySelectorAll("input.InputNumberC")[1],
-        Banos: document.querySelectorAll("input.InputNumberC")[2],
-        mediobano: document.querySelectorAll("input.InputNumberC")[3],
-        Precio: document.querySelector("input[data-layer='input-precio']"),
-        Moneda: document.querySelector("select[data-layer='input']")
-      };
+        if (value !== "") input.classList.remove("input-error");
 
-      const anoErrorMsg = document.getElementById("anoErrorMsg");
+        sessionStorage.setItem(key, input.value.trim());
+      });
+    }
 
-      for (const key in formFields) {
-        const input = formFields[key];
-        if (!input) continue;
+    const nextBtn = document.getElementById("btnSiguiente");
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function (e) {
+        e.preventDefault();
 
-        const storedValue = sessionStorage.getItem(key);
-        if (storedValue) {
-          input.value = storedValue;
-        }
+        let allValid = true;
 
-        input.addEventListener("input", () => {
-          let value = input.value.trim();
+        for (const key in formFields) {
+          const input = formFields[key];
+          if (!input) continue;
+
+          const value = input.value.trim();
+          const esOpcional = opcionales.includes(key);
+
+          if (!esOpcional && value === "") {
+            input.classList.add("input-error");
+            allValid = false;
+            continue;
+          }
 
           if (key === "AnoConstruccion") {
-            value = value.replace(/\D/g, "").slice(0, 4);
-            input.value = value;
             const year = parseInt(value, 10);
-            if (value.length === 4 && (year < 1600 || year > 2025)) {
-              input.setCustomValidity("El año debe estar entre 1600 y 2025");
-              anoErrorMsg && (anoErrorMsg.style.display = "block");
-            } else {
-              input.setCustomValidity("");
-              anoErrorMsg && (anoErrorMsg.style.display = "none");
-            }
-          } else if (key === "Precio") {
-            value = value.replace(/\D/g, "").slice(0, 12);
-            input.value = value;
-            input.setCustomValidity("");
-          } else if (["mTerreno", "mConstruccion", "Recamaras", "Estacionamiento", "Banos", "mediobano"].includes(key)) {
-            value = value.replace(/\D/g, "");
-            input.value = value;
-          }
-
-          sessionStorage.setItem(key, input.value.trim());
-        });
-      }
-
-      const nextBtn = document.getElementById("btnSiguiente");
-      if (nextBtn) {
-        nextBtn.addEventListener("click", function (e) {
-          let allValid = true;
-
-          for (const key in formFields) {
-            const input = formFields[key];
-            if (!input.value.trim() || !input.checkValidity()) {
+            if (value.length !== 4 || year < 1800 || year > 2025) {
               input.classList.add("input-error");
               allValid = false;
-            } else {
-              input.classList.remove("input-error");
+              continue;
             }
           }
 
-          if (!allValid) {
-            e.preventDefault();
-            alert("Por favor, completa todos los campos correctamente.");
-            return;
+          if (key === "Precio") {
+            const price = parseInt(value, 10);
+            if (isNaN(price) || price < 200) {
+              input.classList.add("input-error");
+              allValid = false;
+              continue;
+            }
           }
 
-          saveAmenidades();
-
-          for (const key in formFields) {
-            sessionStorage.setItem(key, formFields[key].value.trim());
+          if (!esOpcional && !input.checkValidity()) {
+            input.classList.add("input-error");
+            allValid = false;
+            continue;
           }
-        });
-      }
-    });
-  </script>
+
+          input.classList.remove("input-error");
+        }
+
+        if (!allValid) return;
+
+        saveAmenidades();
+
+        for (const key in formFields) {
+          sessionStorage.setItem(key, formFields[key].value.trim());
+        }
+
+        // Guardar EstadoCasa al hacer click en siguiente también
+        sessionStorage.setItem("EstadoCasa", estadoCasaSelect.value);
+
+        window.location.href = "/form/step4.html";
+      });
+    }
+  });
+</script>
+
+
+
+
+
+
 
 
 

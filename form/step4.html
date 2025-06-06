@@ -178,185 +178,194 @@
 
 
 
-  <script>
-    (function () {
-      const STORAGE_FOTOS = 'fotos';
-      const STORAGE_APOYOS = 'apoyos';
-      const userName = sessionStorage.getItem('nombre');
+<style>
+  .input-error {
+    border: 2px solid red !important;
+  }
+</style>
 
-      if (!userName) {
-        alert('Primero debes rellenar tu nombre en pasos anteriores.');
+<script>
+ (function () {
+  const STORAGE_FOTOS = 'fotos';
+  const STORAGE_APOYOS = 'apoyos';
+  const userName = sessionStorage.getItem('nombre');
+
+  const fotosQueue = JSON.parse(sessionStorage.getItem(STORAGE_FOTOS) || '[]');
+  const apoyosQueue = JSON.parse(sessionStorage.getItem(STORAGE_APOYOS) || '[]');
+
+  function saveQueues() {
+    sessionStorage.setItem(STORAGE_FOTOS, JSON.stringify(fotosQueue));
+    sessionStorage.setItem(STORAGE_APOYOS, JSON.stringify(apoyosQueue));
+  }
+
+  function crearVista(nombre, contenedorId) {
+    const div = document.createElement('div');
+    div.classList.add('file-item');
+
+    const icon = document.createElement('span');
+    icon.classList.add('file-icon');
+    icon.textContent = nombre.match(/\.(jpe?g|png|gif)$/i) ? '🖼️' : '📄';
+
+    const nameSpan = document.createElement('span');
+    nameSpan.classList.add('file-name');
+    nameSpan.textContent = nombre;
+
+    const btn = document.createElement('button');
+    btn.classList.add('file-remove');
+    btn.setAttribute('aria-label', `Eliminar ${nombre}`);
+    btn.innerHTML = '&times;';
+    btn.addEventListener('click', () => {
+      div.remove();
+      if (contenedorId === 'filesDrop') {
+        removeFromQueue(nombre, fotosQueue);
+      } else {
+        removeFromQueue(nombre, apoyosQueue);
       }
+      saveQueues();
+      updateValidationStyles(false);
+    });
 
-      const fotosQueue = JSON.parse(sessionStorage.getItem(STORAGE_FOTOS) || '[]');
-      const apoyosQueue = JSON.parse(sessionStorage.getItem(STORAGE_APOYOS) || '[]');
+    div.append(icon, nameSpan);
+    if (icon.textContent === '🖼️') {
+      const img = document.createElement('img');
+      img.src = '';
+      img.style.maxWidth = '60px';
+      img.style.marginLeft = '0.5rem';
+      div.insertBefore(img, nameSpan);
+    }
+    div.appendChild(btn);
 
-      function saveQueues() {
-        sessionStorage.setItem(STORAGE_FOTOS, JSON.stringify(fotosQueue));
-        sessionStorage.setItem(STORAGE_APOYOS, JSON.stringify(apoyosQueue));
-      }
+    document.getElementById(contenedorId).appendChild(div);
+  }
 
-      function crearVista(nombre, contenedorId) {
-        const div = document.createElement('div');
-        div.classList.add('file-item');
+  function removeFromQueue(nombre, queueArr) {
+    const idx = queueArr.indexOf(nombre);
+    if (idx > -1) queueArr.splice(idx, 1);
+  }
 
-        const icon = document.createElement('span');
-        icon.classList.add('file-icon');
-        icon.textContent = nombre.match(/\.(jpe?g|png|gif)$/i) ? '🖼️' : '📄';
-
-        const nameSpan = document.createElement('span');
-        nameSpan.classList.add('file-name');
-        nameSpan.textContent = nombre;
-
-        const btn = document.createElement('button');
-        btn.classList.add('file-remove');
-        btn.setAttribute('aria-label', `Eliminar ${nombre}`);
-        btn.innerHTML = '&times;';
-        btn.addEventListener('click', () => {
-          div.remove();
-          if (contenedorId === 'filesDrop') {
-            removeFromQueue(nombre, fotosQueue);
-          } else {
-            removeFromQueue(nombre, apoyosQueue);
-          }
-          saveQueues();
-        });
-
-        div.append(icon, nameSpan);
-        if (icon.textContent === '🖼️') {
-          const img = document.createElement('img');
-          img.src = '';
-          img.style.maxWidth = '60px';
-          img.style.marginLeft = '0.5rem';
-          div.insertBefore(img, nameSpan);
-        }
-        div.appendChild(btn);
-
-        document.getElementById(contenedorId).appendChild(div);
-      }
-
-      function removeFromQueue(nombre, queueArr) {
-        const idx = queueArr.indexOf(nombre);
-        if (idx > -1) queueArr.splice(idx, 1);
-      }
-
-      async function uploadFile(file, tipo) {
-        const form = new FormData();
-        form.append('nombre', userName);
-        form.append('tipo', tipo);
-        form.append('archivo', file);
-        try {
-          const resp = await fetch('../propiedades/guardar.php?upload=1', {
-            method: 'POST',
-            body: form
-          });
-          const j = await resp.json();
-          if (!j.ok) console.error('Error al subir', j.error);
-        } catch (e) {
-          console.error('Fetch error', e);
-        }
-      }
-
-      async function handleFiles(files, tipo, contenedorId, queueArr, storageKey) {
-        for (const file of files) {
-          if (!queueArr.includes(file.name)) {
-            queueArr.push(file.name);
-            crearVista(file.name, contenedorId);
-            saveQueues();
-            uploadFile(file, tipo);
-          }
-        }
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        if (fotosQueue.length) fotosQueue.forEach(name => crearVista(name, 'filesDrop'));
-        if (apoyosQueue.length) apoyosQueue.forEach(name => crearVista(name, 'supportFilesDrop'));
+  async function uploadFile(file, tipo) {
+    const form = new FormData();
+    form.append('nombre', userName);
+    form.append('tipo', tipo);
+    form.append('archivo', file);
+    try {
+      await fetch('../propiedades/guardar.php?upload=1', {
+        method: 'POST',
+        body: form
       });
+    } catch (e) {
+      console.error('Fetch error', e);
+    }
+  }
 
-      document.getElementById('fotoLink').onclick = () =>
-        document.getElementById('fotoInput').click();
-      document.getElementById('filesLink').onclick = () =>
-        document.getElementById('filesInput').click();
+  function updateValidationStyles(showError) {
+    const filesDrop = document.getElementById('filesDrop');
+    if (showError && fotosQueue.length === 0) {
+      filesDrop.classList.add('input-error');
+    } else if (fotosQueue.length > 0) {
+      filesDrop.classList.remove('input-error');
+    }
+  }
 
-      document.getElementById('fotoInput').addEventListener('change', e =>
-        handleFiles(e.target.files, 'fotos', 'filesDrop', fotosQueue, STORAGE_FOTOS)
-      );
-      document.getElementById('filesInput').addEventListener('change', e =>
-        handleFiles(e.target.files, 'apoyos', 'supportFilesDrop', apoyosQueue, STORAGE_APOYOS)
-      );
-
-      function makeDrop(areaId, tipo, queueArr, storageKey) {
-        const area = document.getElementById(areaId);
-        area.addEventListener('dragover', e => {
-          e.preventDefault();
-          area.style.border = '1px dashed #8DFF00';
-        });
-        area.addEventListener('dragleave', () => {
-          area.style.border = '1px solid #ccc';
-        });
-        area.addEventListener('drop', e => {
-          e.preventDefault();
-          area.style.border = '1px solid #ccc';
-          handleFiles(e.dataTransfer.files, tipo, areaId, queueArr, storageKey);
-        });
+  async function handleFiles(files, tipo, contenedorId, queueArr) {
+    for (const file of files) {
+      if (!queueArr.includes(file.name)) {
+        queueArr.push(file.name);
+        crearVista(file.name, contenedorId);
+        saveQueues();
+        uploadFile(file, tipo);
       }
-      makeDrop('filesDrop', 'fotos', fotosQueue, STORAGE_FOTOS);
-      makeDrop('supportFilesDrop', 'apoyos', apoyosQueue, STORAGE_APOYOS);
+    }
+    updateValidationStyles(false);
+  }
 
-      // Validación antes de ir a step5.html
-      document.getElementById('nextBtn').addEventListener('click', function (e) {
-        if (fotosQueue.length === 0) {
-          e.preventDefault();
-          alert('Por favor, sube al menos una foto para continuar.');
-        }
+  document.addEventListener('DOMContentLoaded', () => {
+    if (fotosQueue.length) fotosQueue.forEach(name => crearVista(name, 'filesDrop'));
+    if (apoyosQueue.length) apoyosQueue.forEach(name => crearVista(name, 'supportFilesDrop'));
+  });
+
+  document.getElementById('fotoLink').onclick = () =>
+    document.getElementById('fotoInput').click();
+  document.getElementById('filesLink').onclick = () =>
+    document.getElementById('filesInput').click();
+
+  document.getElementById('fotoInput').addEventListener('change', e =>
+    handleFiles(e.target.files, 'fotos', 'filesDrop', fotosQueue)
+  );
+  document.getElementById('filesInput').addEventListener('change', e =>
+    handleFiles(e.target.files, 'apoyos', 'supportFilesDrop', apoyosQueue)
+  );
+
+  function makeDrop(areaId, tipo, queueArr, storageKey) {
+    const area = document.getElementById(areaId);
+    area.addEventListener('dragover', e => {
+      e.preventDefault();
+      area.style.border = '1px dashed #8DFF00';
+    });
+    area.addEventListener('dragleave', () => {
+      area.style.border = '1px solid #ccc';
+    });
+    area.addEventListener('drop', e => {
+      e.preventDefault();
+      area.style.border = '1px solid #ccc';
+      handleFiles(e.dataTransfer.files, tipo, areaId, queueArr);
+    });
+  }
+  makeDrop('filesDrop', 'fotos', fotosQueue);
+  makeDrop('supportFilesDrop', 'apoyos', apoyosQueue);
+
+  document.getElementById('nextBtn').addEventListener('click', function (e) {
+    if (fotosQueue.length === 0) {
+      e.preventDefault();
+      updateValidationStyles(true);
+    }
+  });
+
+  document.getElementById('btnEnviar').addEventListener('click', async e => {
+    e.preventDefault();
+    const orden = [
+      'nombre', 'dedication', 'prefijo', 'numeroteléfono', 'email',
+      'razon', 'DescribeRazon', 'tipo_propiedad', 'tipovienda', 'direccion',
+      'idea', 'Condición', 'AnoConstruccion', 'mTerreno', 'mConstruccion',
+      'Recamaras', 'Estacionamiento', 'Banos', 'midiobano', 'amenidades',
+      'Precio', 'Moneda'
+    ];
+    const datos = {};
+    for (const key of orden) {
+      const v = sessionStorage.getItem(key);
+      if (v !== null) datos[key] = v;
+    }
+    datos.fotos = fotosQueue;
+    datos.apoyos = apoyosQueue;
+
+    try {
+      const resp = await fetch('../propiedades/guardar.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos)
       });
+      const j = await resp.json();
+      if (j.ok) {
+        alert(`Guardado en propiedades/${j.archivo}`);
+        sessionStorage.clear();
+      } else {
+        throw new Error(j.error);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  });
 
-      // Envío final de metadatos
-      document.getElementById('btnEnviar').addEventListener('click', async e => {
-        e.preventDefault();
-        const orden = [
-          'nombre', 'dedication', 'prefijo', 'numeroteléfono', 'email',
-          'razon', 'DescribeRazon', 'tipo_propiedad', 'tipovienda', 'direccion',
-          'idea', 'Condición', 'AnoConstruccion', 'mTerreno', 'mConstruccion',
-          'Recamaras', 'Estacionamiento', 'Banos', 'midiobano', 'amenidades',
-          'Precio', 'Moneda'
-        ];
-        const datos = {};
-        for (const key of orden) {
-          const v = sessionStorage.getItem(key);
-          if (v !== null) datos[key] = v;
-        }
-        datos.fotos = fotosQueue;
-        datos.apoyos = apoyosQueue;
+  document.getElementById('back').addEventListener('click', () => {
+    window.location.href = 'step3_casa.html';
+  });
+  document.getElementById('next').addEventListener('click', () => {
+    window.location.href = 'step5.html';
+  });
+})();
 
-        try {
-          const resp = await fetch('../propiedades/guardar.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(datos)
-          });
-          const j = await resp.json();
-          if (j.ok) {
-            alert(`Guardado en propiedades/${j.archivo}`);
-            sessionStorage.clear();
-          } else {
-            throw new Error(j.error);
-          }
-        } catch (err) {
-          console.error(err);
-          alert('Error guardando metadatos.');
-        }
-      });
+</script>
 
-      document.getElementById('back').addEventListener('click', () => {
-        window.location.href = 'step3_casa.html';
-      });
-      document.getElementById('next').addEventListener('click', () => {
-        window.location.href = 'step5.html';
-      });
-
-    })();
-  </script>
 
 
   <script src="/form/script.js"></script>

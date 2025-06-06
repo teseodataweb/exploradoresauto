@@ -62,13 +62,22 @@
                 </div>
               </div>
               <select data-layer="input" id="Dedication" class="InputDedi" required>
-                <option value="">Seleccione una opción</option>
-                <option value="Empleado">Empleado</option>
-                <option value="Empresario">Empresario</option>
-                <option value="Freelancer">Freelancer</option>
-                <option value="Estudiante">Estudiante</option>
-                <option value="Otro">Otro</option>
+                <option value="">Ocupación</option>
+                <option value="Turista">Interés/Turista</option>
+                <option value="Corredor">Corredor de Bienes Raíces</option>
+                <option value="AgenciaInmobiliaria">Agencia Inmobiliaria</option>
+                <option value="AgentePrivado">Agente Privado</option>
+                <option value="DesarrolladorInmobiliario">Desarrollador Inmobiliario</option>
+
+                <option value="Inversionista">Inversionista</option>
+
               </select>
+
+
+              <span id="errorDedication" style="color: red; font-size: 0.875rem; margin-top: 4px; display: none;">
+    Campo obligatorio
+  </span>
+
             </div>
           </div>
         </div>
@@ -172,49 +181,99 @@
       </div>
     </div>
   </div>
+<script>
+  // Función auxiliar para mostrar/ocultar mensaje de error
+  function setErrorMessage(inputElement, message) {
+    let errorSpan = inputElement.nextElementSibling;
+    // Si no existe un span de error, crearlo
+    if (!errorSpan || !errorSpan.classList.contains("error-msg")) {
+      errorSpan = document.createElement("span");
+      errorSpan.classList.add("error-msg");
+      inputElement.parentNode.insertBefore(errorSpan, inputElement.nextSibling);
+    }
+    // Establecer mensaje y estilos
+    if (message) {
+      errorSpan.textContent = message;
+      errorSpan.style.color = "red";
+      errorSpan.style.fontFamily = "DM Sans";
+      errorSpan.style.fontSize = "0.785rem";
+      errorSpan.style.marginTop = "2px";
+      errorSpan.style.letterSpacing = "1px";
+      errorSpan.style.display = "block";
+    } else {
+      errorSpan.textContent = "";
+      errorSpan.style.display = "none";
+    }
+  }
 
-  <script>
-    // Validaciones
-    document.getElementById("nombre").addEventListener("input", function () {
-      const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]{3,50}$/;
-      this.setCustomValidity(
-        regex.test(this.value)
-          ? ""
-          : "Solo letras, espacios y acentos (mínimo 3 caracteres)"
-      );
-      this.reportValidity();
-    });
+  // Validación campo "nombre"
+  document.getElementById("nombre").addEventListener("input", function () {
+    const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]{3,50}$/;
+    if (!regex.test(this.value)) {
+      setErrorMessage(this, "Campo obligatorio");
+    } else {
+      setErrorMessage(this, "");
+    }
+  });
 
-    document.getElementById("prefijo").addEventListener("input", function () {
-      this.value = this.value.replace(/\D/g, "").slice(0, 2);
-      this.setCustomValidity(
-        this.value.length === 2 ? "" : "Debe ingresar exactamente 2 dígitos"
-      );
-      this.reportValidity();
-    });
+  // Validación campo "Dedication" (select)
+  document.getElementById("Dedication").addEventListener("change", function () {
+    if (this.value === "") {
+      // Mostrar mensaje de error
+      setErrorMessage(this, "Campo obligatorio");
+      // Poner borde rojo
 
-    document
-      .getElementById("numerotelefono")
-      .addEventListener("input", function () {
-        this.value = this.value.replace(/\D/g, "").slice(0, 10);
-        this.setCustomValidity(
-          this.value.length === 10
-            ? ""
-            : "Debe ingresar exactamente 10 dígitos"
-        );
-        this.reportValidity();
-      });
 
-    document.getElementById("email").addEventListener("input", function () {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      this.setCustomValidity(
-        emailRegex.test(this.value)
-          ? ""
-          : "Ingrese un correo electrónico válido"
-      );
-      this.reportValidity();
-    });
-  </script>
+
+
+
+    } else {
+      // Quitar mensaje de error
+      setErrorMessage(this, "");
+      // Quitar borde rojo
+      this.style.border = "";
+    }
+  });
+
+  // Validación campo "prefijo" (2 dígitos)
+  document.getElementById("prefijo").addEventListener("input", function () {
+    // Solo números, máximo 2 dígitos
+    this.value = this.value.replace(/\D/g, "").slice(0, 2);
+
+    if (this.value.length !== 2) {
+      // Si no tiene exactamente 2 dígitos, ponemos borde rojo
+      this.classList.add("input-error");
+    } else {
+      // Si es válido, quitamos el borde rojo
+      this.classList.remove("input-error");
+    }
+  });
+
+  // Validación campo "numerotelefono" (10 dígitos)
+  document.getElementById("numerotelefono").addEventListener("input", function () {
+    // Solo números, máximo 10 dígitos
+    this.value = this.value.replace(/\D/g, "").slice(0, 10);
+
+    if (this.value.length !== 10) {
+      // Si no tiene exactamente 10 dígitos, ponemos borde rojo
+      this.classList.add("input-error");
+    } else {
+      // Si es válido, quitamos el borde rojo
+      this.classList.remove("input-error");
+    }
+  });
+
+  // Validación campo "email"
+  document.getElementById("email").addEventListener("input", function () {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.value)) {
+      setErrorMessage(this, "Ingrese un correo electrónico válido");
+    } else {
+      setErrorMessage(this, "");
+    }
+  });
+</script>
+
 
   <script src="/assets/guardado.js"></script>
 </body>
