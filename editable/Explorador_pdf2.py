@@ -143,7 +143,7 @@ class PDF(FPDF):
     def create_price_chart(self, property_value):
         """Crear gráfica de rangos de precios con slider horizontal y precio dinámico"""
         # Datos para el rango de precios
-        bajo = 3268500      # Valor mínimo
+        bajo = 2268500      # Valor mínimo
         medio = property_value  # Valor de la propiedad (dinámico)
         alto = 3800000      # Valor máximo
         
