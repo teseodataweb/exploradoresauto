@@ -1,0 +1,38 @@
+{
+    "nombre": "Irving Alvarez Bautista",
+    "Dedication": "Turista",
+    "prefijo": "52",
+    "numerotelefono": "7711226366",
+    "email": "irving.4tocreativo@gmail.com",
+    "razon": "informativo",
+    "DescribeRazon": "Holaaaaa",
+    "tipo_propiedad": "casa",
+    "cp": "42088",
+    "estado": "Hidalgo",
+    "municipio": "Pachuca de Soto",
+    "localidad": "Pachuca de Soto",
+    "colonia": "La Esperanza",
+    "numero": "256",
+    "calle": "Río Cónsul",
+    "Condicion": "Nueva",
+    "EstadoCasa": "Renta",
+    "AnoConstruccion": "2002",
+    "mTerreno": "12",
+    "mConstruccion": "12",
+    "Recamaras": "2",
+    "Estacionamiento": "2",
+    "Banos": "1",
+    "mediobano": "2",
+    "amenidades": "[\"Piscina\",\"Jardín\"]",
+    "Precio": "800",
+    "Moneda": "MXN",
+    "latitud": 20.1073242,
+    "longitud": -98.7848078,
+    "fotos": [
+        "FB_IMG_1663180530088.jpg",
+        "453966.jpg"
+    ],
+    "apoyos": [
+        "icon-ios.svg"
+    ]
+}

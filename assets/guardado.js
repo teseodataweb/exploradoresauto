@@ -103,7 +103,7 @@ document.getElementById("BtnAdelante").addEventListener("click", function (e) {
   }
 
   // Si todos son válidos, redirigir al step1.html
-  window.location.href = "/form/step1.html";
+  window.location.href = "../form/step1.html";
 });
 
 // Función setErrorMessage (si no la tienes definida en otro script)

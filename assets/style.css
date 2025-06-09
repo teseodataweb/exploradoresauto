@@ -2162,12 +2162,18 @@ margin-top: 40px;
 
 .ModalEnviado{
 margin-top: 15%;
-height: 298.41px; flex-direction: column; justify-content: center; align-items: center; gap: 23px; display: flex;
+height: 400px; flex-direction: column; justify-content: center; align-items: center; gap: 23px; display: flex;
 }
 
 .ModalEn{
 width: 780px;
-align-self: stretch; padding-left: 10px; padding-right: 10px; padding-top: 30px; padding-bottom: 30px; background: white; box-shadow: 0px 6px 54px rgba(20.11, 19.66, 42.50, 0.07); border-radius: 34px; overflow: hidden; border: 1px #EFF0F6 solid; flex-direction: column; justify-content: flex-start; align-items: center; gap: 50px; display: flex
+height: 600px;
+align-self: stretch; padding-left: 10px; 
+padding-right: 10px; padding-top: 30px; 
+padding-bottom: 30px; background: white; 
+box-shadow: 0px 6px 54px rgba(20.11, 19.66, 42.50, 0.07); 
+border-radius: 34px; overflow: hidden; border: 1px #EFF0F6 solid; 
+flex-direction: column; justify-content: flex-start; align-items: center; gap: 50px; display: flex
 }
 
 .IconoExito {
@@ -3292,6 +3298,23 @@ padding-left: 40px;
 padding-right: 40px;
 background: #7021eb;
 
+box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18);
+border-radius: 8px;
+justify-content: center;
+align-items: center;
+display: flex;
+text-decoration: none;
+}
+
+
+.BtnFinal{
+margin: 0 auto;
+      padding-top: 10px;
+padding-bottom: 11px;
+padding-left: 20px;
+padding-right: 20px;
+background: #7021eb;
+width: 50px;
 box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18);
 border-radius: 8px;
 justify-content: center;

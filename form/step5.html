@@ -139,43 +139,62 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
- <script>
+<script>
   document.getElementById('btnEnviar').addEventListener('click', async e => {
     e.preventDefault();
 
+    // Orden exacto deseado, incluyendo 'calle' en la posición correcta
     const orden = [
       'nombre', 'Dedication', 'prefijo', 'numerotelefono', 'email',
-      'razon', 'DescribeRazon', 'tipo_propiedad', 'tipovienda', 'cp',
-      'estado', 'municipio', 'localidad', 'Condición', 'EstadoCasa', 'colonia', 'numero',
-      'AnoConstruccion', 'mTerreno', 'mConstruccion', 'Recamaras',
-      'Estacionamiento', 'Banos', 'mediobano', 'amenidades', 'Precio', 'Moneda'
+      'razon', 'DescribeRazon', 'tipo_propiedad', 'tipovienda',
+      'cp', 'estado', 'municipio', 'localidad',  'colonia', 'numero', 'calle', // <- calle justo después de número
+     'Condicion',
+      'EstadoCasa', 'AnoConstruccion', 'mTerreno', 'mConstruccion', 'Recamaras',
+      'Estacionamiento', 'Banos', 'mediobano', 'amenidades',
+      'Precio', 'Moneda'
     ];
 
-    const datos = {};
+    // Recolectamos todo en un solo objeto temporal
+    const fusion = {};
 
+    // 1. Cargar datos directamente de sessionStorage
     for (const key of orden) {
-      const v = sessionStorage.getItem(key);
-      if (v !== null) datos[key] = v;
+      const value = sessionStorage.getItem(key);
+      if (value !== null) fusion[key] = value;
     }
 
+    // 2. Agregar datos desde 'direccionData', sin romper el orden aún
     const direccionData = sessionStorage.getItem("direccionData");
     if (direccionData) {
       const parsed = JSON.parse(direccionData);
-      ['cp', 'estado', 'municipio', 'localidad', 'colonia', 'numero', 'calle'].forEach(k => {
-        if (parsed[k]) datos[k] = parsed[k];
-      });
+      Object.assign(fusion, parsed); // fusiona calle, cp, estado, etc.
     }
 
+    // 3. Agregar coordenadas si existen
     const mapCoords = sessionStorage.getItem("mapCoords");
     if (mapCoords) {
       const { lat, lon } = JSON.parse(mapCoords);
-      datos.latitud = lat;
-      datos.longitud = lon;
+      fusion.latitud = lat;
+      fusion.longitud = lon;
     }
 
-    datos.fotos = JSON.parse(sessionStorage.getItem('fotos') || '[]');
-    datos.apoyos = JSON.parse(sessionStorage.getItem('apoyos') || '[]');
+    // 4. Agregar fotos y apoyos
+    fusion.fotos = JSON.parse(sessionStorage.getItem('fotos') || '[]');
+    fusion.apoyos = JSON.parse(sessionStorage.getItem('apoyos') || '[]');
 
+    // 5. Construir objeto final en el orden correcto
+    const datos = {};
+    for (const key of orden) {
+      if (fusion[key] !== undefined) datos[key] = fusion[key];
+    }
+
+    // 6. Agregar datos adicionales al final
+    if (fusion.latitud) datos.latitud = fusion.latitud;
+    if (fusion.longitud) datos.longitud = fusion.longitud;
+    datos.fotos = fusion.fotos;
+    datos.apoyos = fusion.apoyos;
+
+    // 7. Enviar datos al servidor
     try {
       const resp = await fetch('../propiedades/guardar.php', {
         method: 'POST',
